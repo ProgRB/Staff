@@ -1,0 +1,438 @@
+﻿<Window x:Class="ManningTable.StaffEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManningTable"
+        xmlns:cmd="clr-namespace:KadrWPF.Helpers"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:libhl="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+        mc:Ignorable="d"
+        Title="Редактор штатных единиц" Height="485" Width="810" Language="ru-RU" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Window.Resources>
+        <CollectionViewSource Source="{Binding PositionSource}" x:Key="PositionSource1">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="CodePos"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource Source="{Binding PositionSource}" x:Key="PositionSource2">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="PosName"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <cmd:ValueToIDConverter x:Key="OrderToNameConverter" />
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:AppCommands.SaveStaff" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
+        <CommandBinding Command="cmd:AppCommands.ChooseStaffWorkPlace" CanExecute="ChooseWork_CanExecute" Executed="ChooseWorkPlace_Executed"/>
+        <CommandBinding Command="cmd:AppCommands.DeleteStaffWorkPlace" CanExecute="DeleteWorkPlace_CanExecute" Executed="DeleteWorkPlace_Executed"/>
+    </Window.CommandBindings>
+    <DockPanel>
+        <DockPanel.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="6,2,8,2"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource DisabledTextBox}" x:Key="DisabledTextBox">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="IsReadOnly" Value="False"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="Separator" BasedOn="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+        </DockPanel.Resources>
+        <WrapPanel DockPanel.Dock="Bottom">
+            <Button Command="cmd:AppCommands.SaveStaff" Style="{StaticResource ToolBoxLikeStyle}" Content="Сохранить" Padding="15, 3"/>
+            <Separator/>
+            <Button Style="{StaticResource ToolBoxLikeStyle}" Content="Закрыть" Padding="15, 3" Click="Close_Click"/>
+            <Label Content="{Binding Error, FallbackValue=Нет привязки}" ContentStringFormat="Ошибка заполнения данных: {0}" Foreground="Red">
+                <Label.Style>
+                    <Style TargetType="Label">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Error}" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Label.Style>
+            </Label>
+        </WrapPanel>
+        <TabControl>
+            <TabItem Header="Основные данные" Grid.IsSharedSizeScope="True">
+                <AdornerDecorator>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="4*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Header="Основные">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  SharedSizeGroup="clGrid1"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="Сроки действия"/>
+                                <DataGrid Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Height="130" ItemsSource="{Binding StaffPeriodSource}" CanUserSortColumns="False"
+                                              ToolTip="Периоды действия штатных единиц" CanUserDeleteRows="True" CanUserAddRows="True" VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray"
+                                              AutoGenerateColumns="False">
+                                    <DataGrid.Columns>
+                                        <DataGridTemplateColumn Header="Начало" Width="120">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding DateStaffBegin, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Padding="5,2" VerticalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding DateStaffBegin, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Окончание" Width="120">
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <TextBlock Text="{Binding DateStaffEnd, StringFormat={}{0:dd.MM.yyyy}}" TextAlignment="Left" Padding="5,2" VerticalAlignment="Center"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                            <DataGridTemplateColumn.CellEditingTemplate>
+                                                <DataTemplate>
+                                                    <DatePicker SelectedDate="{Binding DateStaffEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellEditingTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                    <DataGrid.Resources>
+                                        <Style TargetType="DataGridColumnHeader">
+                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGrid.Resources>
+                                </DataGrid>
+                                <TextBlock Grid.Row="3" Text="Внутриструктурное подр-ние" ToolTip="Внутриструктурное подразделение"/>
+                                <ComboBox Grid.Row="3" Grid.Column="1" ItemsSource="{Binding SubdivPartitionSource}" IsEditable="True" TextSearch.TextPath="CodeSubdivPartition"
+                                          SelectedValue="{Binding SubdivParitionID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedValuePath="SubdivPartitionID"
+                                          Grid.IsSharedSizeScope="True">
+                                    <ComboBox.ToolTip>
+                                        <GroupBox Header="Внутриструктурное подразделение штатной единицы">
+                                            <TextBlock Text="{Binding SubdivPartName}" Margin="10,2"/>
+                                        </GroupBox>
+                                    </ComboBox.ToolTip>
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="cl11"/>
+                                                    <ColumnDefinition SharedSizeGroup="cl21"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding CodeSubdivPartition}" VerticalAlignment="Center"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding SubdivPartName}" VerticalAlignment="Center" Margin="10,2,2,2"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+
+                                <TextBlock Grid.Row="4" Text="Подразделение"/>
+                                <libhl:SubdivSelector Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="1" SubdivId="{Binding SubdivID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" AppRoleName="MANNING_TABLE" ShowPromt="False"
+                                                      Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}"/>
+                                <TextBlock Grid.Row="5" Text="Должность"/>
+                                <ComboBox Grid.Row="5" Grid.Column="1" IsEditable="True" ItemsSource="{Binding Source={StaticResource PositionSource1}}" 
+                                        SelectedValue="{Binding PosID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" DisplayMemberPath="CodePos" SelectedValuePath="PosID"
+                                        HorizontalAlignment="Left" Width="60" ToolTip="Код должности" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel IsVirtualizing="True"/>
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                </ComboBox>
+                                <ComboBox Grid.Row="5" Grid.ColumnSpan="1" Grid.Column="1" IsEditable="True" ItemsSource="{Binding Source={StaticResource PositionSource2}}" 
+                                          SelectedValue="{Binding PosID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                          DisplayMemberPath="PosName" SelectedValuePath="PosID" Margin="65,2,0,2" TextSearch.TextPath="PosName" ToolTip="Наименование должности"
+                                          Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel IsVirtualizing="True"/>
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                </ComboBox>
+                                <TextBlock Text="Примечание к должности" Grid.Column="0" Grid.Row="6"/>
+                                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding PosNote, UpdateSourceTrigger=PropertyChanged}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Grid.RowSpan="2" Header="Коэффициент и надбавки">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBox" BasedOn="{StaticResource DisabledTextBox}" x:Key="RubleTextBoxStyle">
+                                        <Setter Property="IsReadOnly" Value="True"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="TextAlignment" Value="Right"/>
+                                        <Setter Property="ToolTip" Value="Значение в рублях рассчитанное по базе тарифного коэффициента"/>
+                                        <Setter Property="Margin" Value="0,3"/>
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="clGrid3"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition SharedSizeGroup="clGrid4"/>
+                                    <ColumnDefinition Width="2*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="База тарифного коэффициента" Grid.ColumnSpan="3"/>
+                                <TextBox Style="{StaticResource DisabledTextBox}" Grid.Column="3" VerticalAlignment="Center" IsReadOnly="True" Text="{Binding TariffBase}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Разряд"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Classific, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue={x:Static sys:String.Empty}}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="Сетка"/>
+                                <ComboBox Grid.Row="1" Grid.Column="3" SelectedValue="{Binding TariffGridID, UpdateSourceTrigger=PropertyChanged}" IsEditable="True"
+                                              SelectedValuePath="TariffGridID" ItemsSource="{Binding TariffGridSource}" DisplayMemberPath="CodeTariffGrid"></ComboBox>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Тариф. коэффициент"/>
+                                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding TarBySchema, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" IsEnabled="{Binding TarSchemaEditable}"
+                                         Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="в руб."/>
+                                <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding TarByMonth, StringFormat=N2, Mode=OneWay}" Style="{StaticResource RubleTextBoxStyle}"
+                                     ToolTip="Тарифная ставка (оклад) работника за месяц"/>
+                                <Grid Grid.Row="3"></Grid>
+                                <ItemsControl d:DataContext="{d:DesignInstance Type=local:TestAddition, IsDesignTimeCreatable=True}" ItemsSource="{Binding StaffAdditionSource}" Grid.Row="3" Grid.ColumnSpan="4">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="clGrid3"/>
+                                                    <ColumnDefinition/>
+                                                    <ColumnDefinition SharedSizeGroup="clGrid4"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding ShortNameStaffAdd}" HorizontalAlignment="Right" Margin="3,3,8,3" VerticalAlignment="Center" MaxWidth="130" TextWrapping="Wrap" 
+                                                           TextAlignment="Right" ToolTip="{Binding NameStaffAdd}"/>
+                                                <TextBox Grid.Column="1" Text="{Binding Path=AdditionValue, UpdateSourceTrigger=PropertyChanged, TargetNullValue={x:Static sys:String.Empty}, ValidatesOnDataErrors=True}" 
+                                                         VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}"
+                                                          ToolTip="{Binding NameStaffAdd}"/>
+                                                <TextBlock Grid.Column="2" Text="в руб." HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5,2,5,2"/>
+                                                <TextBox Grid.Column="3" Style="{StaticResource RubleTextBoxStyle}" Text="{Binding AdditionValueMonth, StringFormat=N2, Mode=OneWay}" VerticalAlignment="Center"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <TextBlock Grid.Row="4" Grid.ColumnSpan="3" Text="Месячный фонд ЗП"/>
+                                <TextBox Grid.Row="4" Grid.Column="3" Text="{Binding SumSalMonth, StringFormat=N2, Mode=OneWay}" Style="{StaticResource RubleTextBoxStyle}"/>
+                                <TextBlock Grid.Row="5" Text="РПК"/>
+                                <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding WaistAddition, Mode=OneWay}" Style="{StaticResource RubleTextBoxStyle}" TextAlignment="Center"/>
+                                <TextBlock Grid.Row="5" Grid.Column="2" Text="в руб."/>
+                                <TextBox Grid.Row="5" Grid.Column="3" Text="{Binding WaistAddMonth, StringFormat=N2, Mode=OneWay}" Style="{StaticResource RubleTextBoxStyle}"/>
+                                <TextBlock Grid.Row="6" Text="Надбавка за стаж"/>
+                                <TextBox Grid.Row="6" Grid.Column="1" Text="{Binding ExpAddition, Mode=OneWay}"  Style="{StaticResource RubleTextBoxStyle}" TextAlignment="Center"/>
+                                <TextBlock Grid.Row="6" Grid.Column="2" Text="в руб."/>
+                                <TextBox Grid.Row="6" Grid.Column="3" Text="{Binding ExpAddMonth, StringFormat=N2, Mode=OneWay}" Style="{StaticResource RubleTextBoxStyle}"/>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Row="1" Header="Дополнительные">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="clGrid1"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="0" Text="Категория"/>
+                                <ComboBox Grid.Column="1" Grid.Row="0" ItemsSource="{Binding DegreeSource}" SelectedValue="{Binding DegreeID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                        SelectedValuePath="DegreeID" IsEditable="True" TextSearch.TextPath="CodeNameDegree" Grid.IsSharedSizeScope="True"
+                                          Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="cldeg1"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding CodeDegree}" VerticalAlignment="Center" Margin="3,2,5,2"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding DegreeName}" VerticalAlignment="Center" Margin="0,2"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Кол-во единиц"/>
+                                <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding StaffCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, TargetNullValue={x:Static sys:String.Empty}}"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Вид производства"/>
+                                <ComboBox Grid.Column="1" Grid.Row="2" ItemsSource="{Binding FormOperationSource}" SelectedValue="{Binding FormOperationID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                                        SelectedValuePath="FormOperationID" IsEditable="True" TextSearch.TextPath="CodeNameFormOperation" Grid.IsSharedSizeScope="True"
+                                          Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition SharedSizeGroup="cloper1"/>
+                                                    <ColumnDefinition/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="{Binding CodeFormOperation}" VerticalAlignment="Center" Margin="3,2,5,2"/>
+                                                <TextBlock Grid.Column="1" Text="{Binding NameFormOperation}" VerticalAlignment="Center" Margin="0,2"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Заказ"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding OrderID, Converter={StaticResource OrderToNameConverter}}" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}"/>
+                            </Grid>
+                        </GroupBox>
+                    </Grid>
+                </AdornerDecorator>
+            </TabItem>
+            <TabItem Header="Карточка рабочего места">
+                <AdornerDecorator>
+                    <DockPanel DataContext="{Binding WorkPlace}">
+                        <WrapPanel DockPanel.Dock="Left" Background="{StaticResource PanelGrayBack}" Orientation="Vertical">
+                            <Button Command="cmd:AppCommands.ChooseStaffWorkPlace" Margin="5,2" HorizontalAlignment="Left" Padding="10,2" Style="{StaticResource ToolBoxLikeStyle}" ToolTip="Выбрать карту рабочего места">
+                                <Image Source="/Images/adept_preview_3232.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+                            </Button>
+                            <Separator/>
+                            <Button Command="cmd:AppCommands.DeleteStaffWorkPlace" Margin="5,2" HorizontalAlignment="Left" Padding="10,2" Style="{StaticResource ToolBoxLikeStyle}" ToolTip="Убрать карту рабочего места">
+                                <Image Source="/Images/delete_3232.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                            </Button>
+                        </WrapPanel>
+                        <local:WorkPlaceUserControl Grid.Row="1" />
+                    </DockPanel>
+                </AdornerDecorator>
+            </TabItem>
+            <TabItem Header="Дополнительные данные">
+                <AdornerDecorator>
+                    <StackPanel Grid.IsSharedSizeScope="True">
+                        <GroupBox Header="График работы">
+                            <DockPanel>
+                                <WrapPanel Orientation="Vertical" Background="{StaticResource PanelGrayBack}">
+                                    <Button Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5,2" Margin="5,2" 
+                                        Command="local:StaffEditor.ChooseGrWork" CommandManager.CanExecute="ChooseWork_CanExecute" CommandManager.Executed="ChooseWork_Executed"
+                                        Style="{StaticResource ToolBoxLikeStyle}" ToolTip="Выбрать график работы или добавить новый">
+                                        <Image Source="/Images/adept_preview_3232.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+                                    </Button>
+                                    <Separator/>
+                                    <Button Grid.Row="1" Grid.Column="3" HorizontalAlignment="Left" VerticalAlignment="Center" Padding="5,2" Margin="5,2" 
+                                        Style="{StaticResource ToolBoxLikeStyle}" ToolTip="Убрать график работы"
+                                        Command="local:StaffEditor.DeleteGrWork" CommandManager.CanExecute="DeleteGrWork_CanExecuted" CommandManager.Executed="DeleteGrWork_Executed" >
+                                        <Image Source="/Images/delete_3232.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                                    </Button>
+                                </WrapPanel>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition SharedSizeGroup="tb3Cl1"/>
+                                        <ColumnDefinition SharedSizeGroup="tb3Cl2"/>
+                                        <ColumnDefinition SharedSizeGroup="tb3Cl3"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Text="Продолжительность рабочего времени"/>
+                                    <ComboBox Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding WorkingTimeSource}" DisplayMemberPath="WorkingTimeName" SelectedValue="{Binding WorkingTimeID, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="WorkingTimeID">
+                                    </ComboBox>
+                                    <TextBlock Grid.Row="1" Text="Наименование графика"/>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Style="{StaticResource DisabledTextBox}" IsReadOnly="True" Text="{Binding GrWork.GrWorkName}"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Дней в графике" />
+                                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding GrWork.CountDay}" Style="{StaticResource DisabledTextBox}" HorizontalAlignment="Left" Width="30" IsReadOnly="True"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Норма часов"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding GrWork.HoursForNorm}" IsReadOnly="True" Style="{StaticResource DisabledTextBox}" HorizontalAlignment="Left" Width="30"/>
+                                    <TextBlock Grid.Row="2" Grid.Column="2" Text="Дата окончания действия"/>
+                                    <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding GrWork.DateEndGraph, StringFormat={}{0:dd.MM.yyyy}}" Style="{StaticResource DisabledTextBox}" 
+                                     HorizontalAlignment="Left" Width="150" IsReadOnly="True"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Сменный график"/>
+                                    <CheckBox Grid.Row="3" Grid.Column="3" IsChecked="{Binding GrWork.SignShiftman}" HorizontalAlignment="Left" IsEnabled="False" BorderBrush="Gray" BorderThickness="3"/>
+                                    <TextBlock Grid.Row="3" Grid.Column="3" Text="Суммированный учет" HorizontalAlignment="Left" Margin="30,2,5,2"/>
+                                    <CheckBox Grid.Row="3" Grid.Column="3" IsChecked="{Binding GrWork.SignSummarize}" HorizontalAlignment="Left" Margin="160,2,5,2" IsEnabled="False" BorderBrush="Gray" BorderThickness="3"/>
+                                </Grid>
+                            </DockPanel>
+                        </GroupBox>
+                        <GroupBox Header="Дополнительно">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="tb3Cl1"/>
+                                    <ColumnDefinition SharedSizeGroup="tb3Cl2"/>
+                                    <ColumnDefinition SharedSizeGroup="tb3Cl3"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Column="0" Grid.Row="1" Text="Материальная ответственность"></TextBlock>
+                                <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding SignMatRespContr, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                                <TextBlock Grid.Column="2" Grid.Row="1" Text="Вид образования"></TextBlock>
+                                <ComboBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="2" SelectedValue="{Binding TypeEduID, UpdateSourceTrigger=PropertyChanged}" IsEditable="True"
+                                      ItemsSource="{Binding TypeEduSource}" SelectedValuePath="TypeEduID" DisplayMemberPath="TeName"/>
+                            </Grid>
+                        </GroupBox>
+                    </StackPanel>
+                </AdornerDecorator>
+            </TabItem>
+            <TabItem Header="Доп. отпуск">
+                <AdornerDecorator>
+                    <DataGrid CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding StaffVacSource}" Style="{StaticResource DataGridSalaryStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Вид отпуска" Binding="{Binding GroupVacFullName}" Width="380" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Положен отпуск" Width="100">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}">
+                                            <CheckBox.LayoutTransform>
+                                                <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                            </CheckBox.LayoutTransform>
+                                        </CheckBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Header="Кол-во дней" Binding="{Binding CountPeriodDay}" Width="100" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                </AdornerDecorator>
+            </TabItem>
+        </TabControl>
+    </DockPanel>
+</Window>

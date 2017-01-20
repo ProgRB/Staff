@@ -1,0 +1,250 @@
+﻿<Window x:Class="WpfControlLibrary.Resume_Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование данных сотрудника" ShowInTaskbar="False" WindowStartupLocation="CenterScreen"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:WpfControlLibrary" ResizeMode="CanMinimize" Name="_this" Language="ru-RU"
+        mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" SizeToContent="WidthAndHeight">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveResume" CanExecute="SaveResume_CanExecute" Executed="SaveResume_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.AddEdu" CanExecute="AddEdu_CanExecute" Executed="AddEdu_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.AddPrev_Work" CanExecute="AddEdu_CanExecute" Executed="AddPrev_Work_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditEdu" CanExecute="EditEdu_CanExecute" Executed="EditEdu_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditPrev_Work" CanExecute="EditPrev_Work_CanExecute" Executed="EditPrev_Work_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.DeleteEdu" CanExecute="EditEdu_CanExecute" Executed="DeleteEdu_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.DeletePrev_Work" CanExecute="EditPrev_Work_CanExecute" Executed="DeletePrev_Work_Executed"/>
+    </Window.CommandBindings>
+    <Grid Grid.IsSharedSizeScope="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Header="Персональные данные" Name="gbPerson_Data">
+            <Grid Name="grPerson_Data">
+                <Grid.Resources>
+                    <x:Array x:Key="Emp_Sexs" Type="{x:Type sys:String}">
+                        <sys:String>М</sys:String>
+                        <sys:String>Ж</sys:String>
+                    </x:Array>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Фамилия" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="4" MinWidth="150" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" CharacterCasing="Upper">
+                    <TextBox.Text>
+                        <Binding Path="EMP_LAST_NAME">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Имя" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" CharacterCasing="Upper">
+                    <TextBox.Text>
+                        <Binding Path="EMP_FIRST_NAME">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="7" Text="Отчество" ></TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="4" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" CharacterCasing="Upper">
+                    <TextBox.Text>
+                        <Binding Path="EMP_MIDDLE_NAME">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
+                <TextBlock Grid.Row="0" Grid.Column="2" Margin="7" Text="Пол" HorizontalAlignment="Right" ></TextBlock>
+                <ComboBox Grid.Row="0" Grid.Column="3" Margin="4" Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}"
+                          ItemsSource="{Binding Source={StaticResource Emp_Sexs}}" SelectedItem="EMP_SEX">
+                    <ComboBox.Text>
+                        <Binding Path="EMP_SEX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </ComboBox.Text>
+                </ComboBox>
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="7" Text="Дата рождения" HorizontalAlignment="Right"></TextBlock>
+                <DatePicker Margin="4" Grid.Row="1" Grid.Column="3" Grid.RowSpan="2"
+                            Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="EMP_BIRTH_DATE">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+                <TextBlock Grid.Row="3" Grid.Column="2" Margin="7" Text="Дата подачи резюме" ></TextBlock>
+                <DatePicker Margin="4" Grid.Row="3" Grid.Column="3" Grid.RowSpan="2"
+                            Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                    <DatePicker.SelectedDate>
+                        <Binding Path="FILING_DATE_RESUME">
+                            <Binding.ValidationRules>
+                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </DatePicker.SelectedDate>
+                </DatePicker>
+                <TextBlock Grid.Row="0" Grid.Column="4" Margin="7" Text="Источник трудоустройства" ></TextBlock>
+                <ComboBox Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Margin="4" Name="cbSource_Employability"
+                                          DisplayMemberPath="SOURCE_EMPLOYABILITY_NAME" SelectedValuePath="SOURCE_EMPLOYABILITY_ID"
+                                          SelectedValue="{Binding Path=SOURCE_EMPLOYABILITY_ID}"/>
+            </Grid>
+        </GroupBox>
+        <TabControl Grid.Row="1">
+            <TabControl.Items>
+                <TabItem Header="Адресные данные" Name="tabAddress">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Name="gbRegistr" Header="Место прописки">
+                            <WindowsFormsHost Name="whRegistr"></WindowsFormsHost>
+                        </GroupBox>
+                        <GroupBox Grid.Column="1" Name="gbHabit" Header="Место проживания">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <WindowsFormsHost Name="whHabit">
+                                </WindowsFormsHost>
+                                <GroupBox Grid.Row="1" Header="Адрес отсутствующий в справочнике адресов">
+                                    <TextBox Name="tbHab_Non_Kladr_Address" Margin="4" TextWrapping="Wrap"
+                                         MaxWidth="300" Text="{Binding Path=HAB_NON_KLADR_ADDRESS}"/>
+                                </GroupBox>
+                            </Grid>
+                            
+                        </GroupBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Образование">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Grid.Column="0" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}"
+                                  MaxWidth="721" MinHeight="150" Name="dgEdu">
+                            <DataGrid.Columns>
+                                <DataGridComboBoxColumn  x:Name="dcSPEC_ID" DisplayMemberPath="NAME_SPEC" SelectedValuePath="SPEC_ID" 
+                                         SelectedValueBinding="{Binding Path=SPEC_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Наименование специальности" IsReadOnly="True"/>
+                                <DataGridComboBoxColumn  x:Name="dcINSTIT_ID" DisplayMemberPath="INSTIT_NAME" SelectedValuePath="INSTIT_ID" 
+                                         SelectedValueBinding="{Binding Path=INSTIT_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Учебное заведение" IsReadOnly="True"/>
+                                <DataGridComboBoxColumn  x:Name="dcTYPE_STUDY_ID" DisplayMemberPath="TS_NAME" SelectedValuePath="TYPE_STUDY_ID" 
+                                         SelectedValueBinding="{Binding Path=TYPE_STUDY_ID, 
+                                                UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Вид обучения" IsReadOnly="True"/>
+                                <DataGridComboBoxColumn  x:Name="dcTYPE_EDU_ID" DisplayMemberPath="TE_NAME" SelectedValuePath="TYPE_EDU_ID" 
+                                         SelectedValueBinding="{Binding Path=TYPE_EDU_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Вид образования" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Основная профессия" Binding="{Binding Path=MAIN_PROF}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Серия диплома" Binding="{Binding Path=SERIA_DIPLOMA}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="№ диплома" Binding="{Binding Path=NUM_DIPLOMA}" IsReadOnly="True"/>
+                                <DataGridComboBoxColumn  x:Name="dcQUAL_ID" DisplayMemberPath="QUAL_NAME" SelectedValuePath="QUAL_ID" 
+                                         SelectedValueBinding="{Binding Path=QUAL_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Квалификация" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Специализация" Binding="{Binding Path=SPECIALIZATION}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Дата окончания" Binding="{Binding Path=YEAR_GRADUATING, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                                <DataGridComboBoxColumn  x:Name="dcGR_SPEC_ID" DisplayMemberPath="GS_NAME" SelectedValuePath="GR_SPEC_ID" 
+                                         SelectedValueBinding="{Binding Path=GR_SPEC_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                         Header="Группа спец." IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Признак от завода" Binding="{Binding Path=FROM_FACT}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <ToolBarTray Grid.Column="1" Orientation="Vertical" IsLocked="True">
+                        <ToolBar>
+                                <Button Command="local:Wpf_Commands.AddEdu" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_new_1616.ico"/>
+                                </Button>
+                                <Button Command="local:Wpf_Commands.EditEdu" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_edit_1616.ico"/>
+                                </Button>
+                                <Button Command="local:Wpf_Commands.DeleteEdu" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_close_1616.ico"/>
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+                    </Grid>
+
+                </TabItem>
+                <TabItem Header="Предыдущая деятельность">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <DataGrid Grid.Column="0" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}"
+                                  MaxWidth="721" MinHeight="150" Name="dgPrev_Work">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Организация" Binding="{Binding Path=PW_FIRM}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Наименование должности" Binding="{Binding Path=PW_NAME_POS}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Начало периода" Binding="{Binding Path=PW_DATE_START, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Конец периода" Binding="{Binding Path=PW_DATE_END, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Стаж&#13; лет" Binding="{Binding Path=STAGYEAR}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Стаж&#13; мес." Binding="{Binding Path=STAGMONTH}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Стаж&#13;дней" Binding="{Binding Path=STAGDAY}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header="Работа на&#13;   заводе" Binding="{Binding Path=WORK_IN_FACT}" IsReadOnly="True"/>
+                                <DataGridCheckBoxColumn Header=" Не вкл. в&#13;стаж на БЛ" Binding="{Binding Path=MEDICAL_SIGN}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <ToolBarTray Grid.Column="1" Orientation="Vertical" IsLocked="True">
+                            <ToolBar>
+                                <Button Command="local:Wpf_Commands.AddPrev_Work" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_new_1616.ico"/>
+                                </Button>
+                                <Button Command="local:Wpf_Commands.EditPrev_Work" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_edit_1616.ico"/>
+                                </Button>
+                                <Button Command="local:Wpf_Commands.DeletePrev_Work" ToolTipService.ShowOnDisabled="True"
+                                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                    <Image Source="/Images/document_close_1616.ico"/>
+                                </Button>
+                            </ToolBar>
+                        </ToolBarTray>
+                    </Grid>
+
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+        <DockPanel Grid.Row="2" LastChildFill="False">
+            <Button TabIndex="1" Name="btExit" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" DockPanel.Dock="Right" IsCancel="True"/>
+            <Button TabIndex="0" Name="btSave" Margin="4" Command="local:Wpf_Commands.SaveResume" 
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" 
+                    DockPanel.Dock="Right"/>
+        </DockPanel>
+    </Grid>
+</Window>

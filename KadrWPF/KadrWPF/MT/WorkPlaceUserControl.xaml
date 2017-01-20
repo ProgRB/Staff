@@ -1,0 +1,219 @@
+﻿<UserControl x:Class="ManningTable.WorkPlaceUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManningTable"
+             xmlns:cmd="clr-namespace:KadrWPF.Helpers"
+             xmlns:kwpf="clr-namespace:KadrWPF"
+             xmlns:lhlp="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="600" x:Name="WPUserControl">
+    <UserControl.Resources>
+        <CollectionViewSource Source="{Binding PositionSource}" x:Key="PositionSource1">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="CODE_POS"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource Source="{Binding PositionSource}" x:Key="PositionSource2">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="POS_NAME"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <CollectionViewSource x:Key="CondWorkTypeSource" Source="{Binding CondWorkTypeSource}"/>
+        <CollectionViewSource x:Key="ProtectionTypeSource" Source="{Binding ProtectionTypeSource}"/>
+        <kwpf:BooleanToVisibilityConverter True="Collapsed" False="Visible" x:Key="InvertBoolVisibConverter"/>
+    </UserControl.Resources>
+    <TabControl>
+        <TabControl.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="15,2,10,2"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+
+                <Setter Property="Margin" Value="0,2"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </TabControl.Resources>
+        <TabItem Header="Рабочее место">
+            <AdornerDecorator>
+                <Grid IsEnabled="{Binding ElementName=WPUserControl, Path=IsReadOnly}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Подразделение"/>
+                    <lhlp:SubdivSelector Grid.Column="1" ShowPromt="False" Grid.ColumnSpan="3" AppRoleName="MANNING_TABLE" SubdivId="{Binding SubdivID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+                    <TextBlock Text="№ карты" Grid.Row="1"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding WorkPlaceNum, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" />
+                    <TextBlock Text="Кол-во работников" Grid.Row="1" Grid.Column="2"/>
+                    <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding WorkerCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+                    <TextBlock Text="Должность" Grid.Row="2" Grid.Column="0"/>
+                    <ComboBox Grid.Row="2" Grid.Column="1" IsEditable="True" ItemsSource="{Binding Source={StaticResource PositionSource1}}" 
+                              SelectedValue="{Binding PosID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                              DisplayMemberPath="CODE_POS" SelectedValuePath="POS_ID"
+                              HorizontalAlignment="Left" Width="80" ToolTip="Код должности">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsVirtualizing="True"/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <ComboBox Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="1" IsEditable="True" ItemsSource="{Binding Source={StaticResource PositionSource2}}" 
+                              SelectedValue="{Binding PosID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                              DisplayMemberPath="POS_NAME" SelectedValuePath="POS_ID"
+                              Margin="85,2,0,2" TextSearch.TextPath="POS_NAME" ToolTip="Наименование должности">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel IsVirtualizing="True"/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Повышенная оплата"/>
+                    <CheckBox IsChecked="{Binding HighSalarySign, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="3"/>
+                    <TextBlock Grid.Row="3" Grid.Column="2" Text="Дополнительный отпуск"/>
+                    <CheckBox IsChecked="{Binding AdditionVacSign, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="3"/>
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Сокр. рабочий день"/>
+                    <CheckBox IsChecked="{Binding ShortWorkDaySign, ValidatesOnDataErrors=True}" Grid.Column="1" Grid.Row="4"/>
+                    <TextBlock Grid.Row="4" Grid.Column="2" Text="Молоко"/>
+                    <CheckBox IsChecked="{Binding MilkSign, ValidatesOnDataErrors=True}" Grid.Column="3" Grid.Row="4"/>
+                    <TextBlock Grid.Row="5" Text="Периодичность медосмотра"/>
+                    <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding MedicalCheckSource}" 
+                              SelectedValue="{Binding MedCheckupPeriod, ValidatesOnDataErrors=True}"
+                              SelectedValuePath="Period" DisplayMemberPath="Description"/>
+                    <TextBlock Grid.Row="6" Text="Льготная пенсия"/>
+                    <CheckBox Grid.Row="6" Grid.Column="1" IsChecked="{Binding SignPreferentialPens, ValidatesOnDataErrors=True}"/>
+                    <TextBlock Grid.Row="7" Grid.Column="0" Text="Особые условия труда"/>
+                    <TextBox IsReadOnly="True" Grid.Column="1" Grid.Row="7" Style="{StaticResource DisabledTextBox}" Text="{Binding PrivPosition.SpecialConditions}"
+                             HorizontalAlignment="Left" Width="80" VerticalAlignment="Center"/>
+                    <TextBlock Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="2" Text="Код позиции списка" HorizontalAlignment="Left" Margin="88,2,10,2"/>
+                    <ComboBox Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3" SelectedValue="{Binding PrivilegedPositionID, ValidatesOnDataErrors=True}" SelectedValuePath="PrivilegedPositionID"
+                              DisplayMemberPath="Kps" IsEditable="True" Margin="210,2,0,2" IsEnabled="{Binding SignPreferentialPens}" ItemsSource="{Binding PrivPositionSource}"/>
+                </Grid>
+            </AdornerDecorator>
+        </TabItem>
+        <TabItem Header="Условия труда">
+            <AdornerDecorator>
+                <DataGrid ItemsSource="{Binding WPConditionSource}" CanUserAddRows="False" CanUserDeleteRows="False"  AutoGenerateColumns="False" HorizontalGridLinesBrush="LightGray"
+                          VerticalGridLinesBrush="LightGray"  IsReadOnly="{Binding ElementName=WPUserControl, Path=IsReadOnly}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="300" Binding="{Binding TypeConditionName}" Header="Условия труда" IsReadOnly="True"></DataGridTextColumn>
+                        <DataGridComboBoxColumn Width="150" Header="Класс (подкласс) УТ" SelectedValueBinding="{Binding ConditionsOfWorkID}" SelectedValuePath="ConditionsOfWorkID"
+                                                DisplayMemberPath="SubclassNumber" ItemsSource="{Binding Source={StaticResource CondWorkTypeSource}}">
+                            <DataGridComboBoxColumn.EditingElementStyle>
+                                <Style TargetType="ComboBox">
+                                    <Setter Property="IsEditable" Value="True"/>
+                                </Style>
+                            </DataGridComboBoxColumn.EditingElementStyle>
+                        </DataGridComboBoxColumn>
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                        <Style TargetType="DataGridRow">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding SignMainType}" Value="1">
+                                    <Setter Property="Background" Value="#FFF1B7B7"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </AdornerDecorator>
+        </TabItem>
+        <TabItem Header="СИЗ">
+            <AdornerDecorator>
+                <DockPanel>
+                    <WrapPanel DockPanel.Dock="Top" Background="{StaticResource PanelGrayBack}" Visibility="{Binding ElementName=WPUserControl, Path=IsReadOnly, Converter={StaticResource InvertBoolVisibConverter}}">
+                        <Button Command="cmd:AppCommands.AddWPProtection" Style="{StaticResource ToolBoxLikeStyle}">
+                            <Image Source="/Images/new_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                        </Button>
+                        <Button Command="cmd:AppCommands.DeleteWPProtection" CommandParameter="{Binding ElementName=dgWPS, Path=SelectedItem}" Style="{StaticResource ToolBoxLikeStyle}">
+                            <Image Source="/Images/delete_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                        </Button>
+                    </WrapPanel>
+                    <DataGrid x:Name="dgWPS" Style="{StaticResource DataGridSalaryStyle}" ItemsSource="{Binding WPProtectionSource}" CanUserAddRows="False" CanUserDeleteRows="False"
+                               IsReadOnly="{Binding ElementName=WPUserControl, Path=IsReadOnly}">
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="Средство индив. защиты" Width="350">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Text="{Binding IndividProtection.CodeProtection}" VerticalAlignment="Center"/>
+                                            <TextBlock Grid.Column="1" Text="{Binding IndividProtection.NameProtection}" VerticalAlignment="Center" Margin="5,2"/>
+                                        </Grid>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Source={StaticResource ProtectionTypeSource}}" SelectedValue="{Binding IndividProtectionID, UpdateSourceTrigger=PropertyChanged}"
+                                                      SelectedValuePath="IndividProtectionID" TextSearch.TextPath="CodeNameProtection"
+                                                      IsEditable="True">
+                                            <ComboBox.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition SharedSizeGroup="cl11"/>
+                                                            <ColumnDefinition SharedSizeGroup="cl12"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <TextBlock Text="{Binding CodeProtection}" Margin="2,2,2,2"/>
+                                                        <TextBlock Grid.Column="1" Text="{Binding NameProtection}" Margin="5,2"/>
+                                                    </Grid>
+                                                </DataTemplate>
+                                            </ComboBox.ItemTemplate>
+                                            <ComboBox.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <VirtualizingStackPanel IsItemsHost="True"/>
+                                                </ItemsPanelTemplate>
+                                            </ComboBox.ItemsPanel>
+                                        </ComboBox>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridTextColumn Binding="{Binding PeriodForUse}" Header="Период использования" Width="140"/>
+                        </DataGrid.Columns>
+                        <DataGrid.Resources>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.Resources>
+                    </DataGrid>
+                </DockPanel>
+            </AdornerDecorator>
+        </TabItem>
+    </TabControl>
+</UserControl>

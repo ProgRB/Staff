@@ -1,0 +1,6 @@
+select
+	REGION_SUBDIV_ID, SUBDIV_ID, 
+	REGION_NAME, CODE_REGION, DATE_START_REG, DATE_END_REG
+from
+	{0}.REGION_SUBDIV
+where subdiv_id=:p_subdiv_id

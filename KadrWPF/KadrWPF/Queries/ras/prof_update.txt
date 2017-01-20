@@ -1,0 +1,7 @@
+begin 
+    update {0}.per_data 
+    set sign_profunion = :p_SIGN_PROFUNION
+    where per_num = :p_per_num;
+    insert into {0}.audit_table(audit_id,primary_key,table_name,user_change,date_change,type_audit,primary_key_old)  
+    values({0}.audit_id_seq.nextval,:p_per_num,'PER_DATA', ora_login_user, sysdate,'U_P_UN',:p_per_num); 
+end;

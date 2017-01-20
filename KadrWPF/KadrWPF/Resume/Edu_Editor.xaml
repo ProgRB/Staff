@@ -1,0 +1,93 @@
+﻿<Window x:Class="WpfControlLibrary.Edu_Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактирование образования" ShowInTaskbar="False" WindowStartupLocation="CenterScreen"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:WpfControlLibrary" ResizeMode="CanMinimize" Name="_this" Language="ru-RU"
+        mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" Height="300" Width="555">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveEdu" CanExecute="SaveEdu_CanExecute" Executed="SaveEdu_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Grid.Row="0" Name="gbPerson_Data">
+            <Grid Name="grPerson_Data">
+                <Grid.Resources>
+                    <x:Array x:Key="Emp_Sexs" Type="{x:Type sys:String}">
+                        <sys:String>М</sys:String>
+                        <sys:String>Ж</sys:String>
+                    </x:Array>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Учебное заведение" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" Name="cbINSTIT_ID"
+                          DisplayMemberPath="INSTIT_NAME" SelectedValuePath="INSTIT_ID" SelectedValue="{Binding Path=INSTIT_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Специальность по диплому" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" Name="cbSPEC_ID"
+                          DisplayMemberPath="NAME_SPEC" SelectedValuePath="SPEC_ID" SelectedValue="{Binding Path=SPEC_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="7" Text="Серия диплома"  HorizontalAlignment="Right"></TextBlock>
+                <TextBox Grid.Row="2" Grid.Column="1" Margin="4" Text="{Binding Path=SERIA_DIPLOMA}" 
+                         MaxWidth="{Binding ElementName=dpYear_Graduating, Path=ActualWidth}"/>
+                <TextBlock Grid.Row="2" Grid.Column="2" Margin="7" Text="Вид обучения" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Margin="4" Name="cbTYPE_STUDY_ID"
+                          DisplayMemberPath="TS_NAME" SelectedValuePath="TYPE_STUDY_ID" SelectedValue="{Binding Path=TYPE_STUDY_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="3" Grid.Column="0" Margin="7" Text="Номер диплома" HorizontalAlignment="Right"></TextBlock>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="4" Text="{Binding Path=NUM_DIPLOMA}"
+                         MaxWidth="{Binding ElementName=dpYear_Graduating, Path=ActualWidth}"/>
+                <TextBlock Grid.Row="3" Grid.Column="2" Margin="7" Text="Вид образования" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2"  Margin="4" Name="cbTYPE_EDU_ID"
+                          DisplayMemberPath="TE_NAME" SelectedValuePath="TYPE_EDU_ID" SelectedValue="{Binding Path=TYPE_EDU_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Margin="7" Text="Квалификация" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" Name="cbQUAL_ID"
+                          DisplayMemberPath="QUAL_NAME" SelectedValuePath="QUAL_ID" SelectedValue="{Binding Path=QUAL_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="5" Grid.Column="0" Margin="7" Text="Специализация по диплому" ></TextBlock>
+                <TextBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" Text="{Binding Path=SPECIALIZATION}"/>
+                <TextBlock Grid.Row="6" Grid.Column="0" Margin="7" Text="Группа специальности" HorizontalAlignment="Right"></TextBlock>
+                <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" Name="cbGR_SPEC_ID"
+                          DisplayMemberPath="GS_NAME" SelectedValuePath="GR_SPEC_ID" SelectedValue="{Binding Path=GR_SPEC_ID}"
+                          IsEditable="True" IsTextSearchEnabled="True"/>
+                <TextBlock Grid.Row="7" Grid.Column="0" Margin="7" Text="Дата диплома" HorizontalAlignment="Right"></TextBlock>
+                <DatePicker Margin="4" Grid.Row="7" Grid.Column="1" Name="dpYear_Graduating"
+                            SelectedDate="{Binding Path=YEAR_GRADUATING}"/>
+                <CheckBox Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Margin="7" Content=" Основная профессия" 
+                          FlowDirection="RightToLeft" IsChecked="{Binding Path=MAIN_PROF}"/>
+                <CheckBox Grid.Row="7" Grid.Column="4" Margin="7" Content=" От завода" FlowDirection="RightToLeft"
+                           IsChecked="{Binding Path=FROM_FACT}"/>
+            </Grid>
+        </GroupBox>
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <Button TabIndex="1" Name="btExit" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" DockPanel.Dock="Right" IsCancel="True"/>
+            <Button TabIndex="0" Name="btSave" Margin="4" Command="local:Wpf_Commands.SaveEdu" 
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" 
+                    DockPanel.Dock="Right"/>
+        </DockPanel>
+    </Grid>
+</Window>

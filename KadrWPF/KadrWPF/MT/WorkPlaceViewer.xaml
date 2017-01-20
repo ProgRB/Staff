@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="ManningTable.WorkPlaceViewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cmd="clr-namespace:KadrWPF.Helpers"
+             xmlns:local="clr-namespace:ManningTable"
+             xmlns:kwpf="clr-namespace:KadrWPF"
+             xmlns:lstaff="clr-namespace:Staff;assembly=LibraryKadr"
+             mc:Ignorable="d" Background="White" x:Name="_this" d:DesignWidth="675" d:DesignHeight="485">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="cmd:AppCommands.AddWorkPlace" CanExecute="AddPlace_CanExecuted" Executed="Add_Executed"/>
+        <CommandBinding Command="cmd:AppCommands.EditWorkPlace" CanExecute="Edit_CanExecuted" Executed="Edit_Executed"/>
+        <CommandBinding Command="cmd:AppCommands.DeleteWorkPlace" CanExecute="Edit_CanExecuted" Executed="Delete_Executed"/>
+    </UserControl.CommandBindings>
+    <UserControl.Resources>
+        <kwpf:BooleanToVisibilityConverter True="Collapsed" False="Visible" x:Key="BoolInvertConvert"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" MinHeight="140"/>
+        </Grid.RowDefinitions>
+        <Expander Grid.Row="0" Header="Фильтр" IsExpanded="True">
+            <Expander.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="Margin" Value="15,2,10,2"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}">
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+            </Expander.Resources>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition  Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition  MinWidth="200"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Подразделение"/>
+                <ComboBox Grid.Column="1" ItemsSource="{Binding SubdivSource}" SelectedValue="{Binding SubdivID}" SelectedValuePath="SubdivID" DisplayMemberPath="CodeSubdiv"
+                          IsEditable="True" Width="80" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+                <ComboBox Grid.Column="2" Grid.ColumnSpan="1" ItemsSource="{Binding SubdivSource}" SelectedValue="{Binding SubdivID}" 
+                          SelectedValuePath="SubdivID" TextSearch.TextPath="SubdivName"
+                          IsEditable="True" Grid.IsSharedSizeScope="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="claa"/>
+                                    <ColumnDefinition SharedSizeGroup="clab"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding CodeSubdiv}" Margin="5,2"/>
+                                <TextBlock Grid.Column="1" Text="{Binding SubdivName}" Margin="5,2"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Grid.Column="3" Margin="10,2,0,2" HorizontalAlignment="Left" Click="Refresh_Click">
+                    <Image Source="/Images/refresh2424.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                </Button>
+            </Grid>
+        </Expander>
+        <GroupBox Header="Карты условий труда" Grid.Row="1">
+            <DockPanel>
+                <WrapPanel Background="{StaticResource PanelGrayBack}" DockPanel.Dock="Top" Visibility="{Binding ElementName=_this, Path=IsReadOnly, Converter={StaticResource BoolInvertConvert}}">
+                    <Button Command="cmd:AppCommands.AddWorkPlace" Style="{StaticResource ToolBoxLikeStyle}">
+                        <Image Source="/Images/new_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                    </Button>
+                    <Button Command="cmd:AppCommands.EditWorkPlace" Style="{StaticResource ToolBoxLikeStyle}" >
+                        <Image Source="/Images/edit_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                    </Button>
+                    <Button Command="cmd:AppCommands.DeleteWorkPlace" Style="{StaticResource ToolBoxLikeStyle}">
+                        <Image Source="/Images/delete_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                    </Button>
+                </WrapPanel>
+                <DataGrid x:Name="dgWP" IsReadOnly="True" Style="{StaticResource DataGridSalaryStyle}" ItemsSource="{Binding WorkPlaceSource}" Margin="0,5,0,0" SelectedItem="{Binding CurrentWorkPlace}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding CODE_SUBDIV}" Header="Подр." Width="60" SortDirection="Ascending" SortMemberPath="CODE_SUBDIV"/>
+                        <DataGridTextColumn Binding="{Binding WORK_PLACE_NUM}" Header="№ карты" Width="80" SortDirection="Ascending" SortMemberPath="WORK_PLACE_NUM"/>
+                        <DataGridTextColumn Binding="{Binding CODE_POS}" Header="Код долж." Width="80"/>
+                        <DataGridTextColumn Binding="{Binding POS_NAME}" Header="Наименование должности" Width="260"/>
+                        <DataGridTextColumn Binding="{Binding WORKER_COUNT}" Header="Кол-во работников" Width="80">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment" Value="Right"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Binding="{Binding SUBCLASS_NUMBER}" Header="Класс условий труда" Width="90">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+                    <DataGrid.Resources>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding }" TextWrapping="Wrap" TextAlignment="Center"/>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGrid.Resources>
+                </DataGrid>
+            </DockPanel>
+        </GroupBox>
+        <GridSplitter Grid.Row="2" Height="5" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+        <GroupBox Header="Средства индивидуальной защиты" Grid.Row="3">
+            <DataGrid IsReadOnly="True" Style="{StaticResource DataGridSalaryStyle}" ItemsSource="{Binding WorkplaceProtectionSource}" Margin="0,5,0,0">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CODE_PROTECTION}" Header="Код" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding NAME_PROTECTION}" Header="Наименование" Width="280"/>
+                    <DataGridTextColumn Binding="{Binding PERIOD_FOR_USE}" Header="Срок" Width="80"/>
+                    <DataGridTextColumn Binding="{Binding TYPE_PROTECTION_NAME}" Header="Тип" Width="260"/>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding }" TextWrapping="Wrap" TextAlignment="Center"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </GroupBox>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="WpfControlLibrary.Transfer_For_Group_Hire_View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Language="ru-RU" Name="_this"
+             xmlns:local="clr-namespace:WpfControlLibrary" d:DesignWidth="854" d:DesignHeight="464">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveExecuted_Transfer_Emp" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.CancelExecuted_Transfer_Emp" CanExecute="Cancel_CanExecute" Executed="Cancel_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Name="dgTransfer_Emp" ItemsSource="{Binding}" MinHeight="200" SelectedCellsChanged="dgTransfer_Emp_SelectedCellsChanged"
+                  Style="{StaticResource datagridStyle}" SelectionUnit="CellOrRowHeader">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn Header="Признак" Binding="{Binding Path=SIGN_PROCESSING}"/>
+                <DataGridTextColumn x:Name="tcDate_Processing" Header="Обработано" Binding="{Binding Path=DATE_PROCESSING, StringFormat='dd.MM.yyyy HH:mm'}" IsReadOnly="True"
+                                    Visibility="Collapsed"/>
+                <DataGridTextColumn Header="Таб.№" Binding="{Binding Path=PER_NUM}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Сов." Binding="{Binding Path=COMB}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=EMP_LAST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=EMP_FIRST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=EMP_MIDDLE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата перевода" Binding="{Binding Path=DATE_TRANSFER, StringFormat=d}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Старое подр-е" Binding="{Binding Path=PREV_CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Новое подр-е" Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Старая должность" Binding="{Binding Path=PREV_POS_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Новая должность" Binding="{Binding Path=POS_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel Grid.Row="1" Orientation="Horizontal">
+            <ToggleButton x:Name="tbtFilter_Processing" Margin="20,7,7,7" Content="Показать обработанные" IsChecked="False" 
+                          Checked="tbtFilter_Processing_Checked" Unchecked="tbtFilter_Processing_Checked"/>
+            <Button Margin="20,7,7,7" Command="local:Wpf_Commands.SaveExecuted_Transfer_Emp" 
+                    Content="{ Binding RelativeSource={RelativeSource Self},Path=Command.Text }" VerticalAlignment="Center"/>
+            <Button Margin="7" Command="local:Wpf_Commands.CancelExecuted_Transfer_Emp" 
+                    Content="{ Binding RelativeSource={RelativeSource Self},Path=Command.Text }" VerticalAlignment="Center"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

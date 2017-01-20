@@ -1,0 +1,177 @@
+﻿<UserControl x:Class="WpfControlLibrary.Emps_Access.Access_Template_Viewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Language="ru-RU" 
+             xmlns:local="clr-namespace:WpfControlLibrary" d:DesignHeight="485" d:DesignWidth="853">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveAccess_Template" CanExecute="SaveAccess_Template_CanExecute" Executed="SaveAccess_Template_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.CancelAccess_Template" CanExecute="CancelAccess_Template_CanExecute" Executed="CancelAccess_Template_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.UnloadTemplate_From_Perco" CanExecute="UnloadTemplate_From_Perco_CanExecute" Executed="UnloadTemplate_From_Perco_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditAccess_Templ_By_Subdiv" CanExecute="EditAccess_Templ_By_Subdiv_CanExecute" Executed="EditAccess_Templ_By_Subdiv_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="150"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ToolBarTray Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" IsLocked="True" Name="tbtAccess_Template">
+            <ToolBar>
+                <Button Command="local:Wpf_Commands.UnloadTemplate_From_Perco" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/download2_1616.png"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="local:Wpf_Commands.EditAccess_Templ_By_Subdiv" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/document_edit_1616.ico"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="local:Wpf_Commands.SaveAccess_Template" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/save_1616.ico"/>
+                </Button>
+                <Button Command="local:Wpf_Commands.CancelAccess_Template" ToolTipService.ShowOnDisabled="True" MaxHeight="24"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/Undo_2424.png"/>
+                </Button>
+                <Separator></Separator>
+                <Label Content="  Фильтр по подразделению"/>
+                <TextBox Name="tbFilterCode_Subdiv" Width="40"></TextBox>
+                <Label Content="  Фильтр по наименованию шаблона"/>
+                <TextBox Name="tbFilterName_Access_Template" MinWidth="240"></TextBox>
+                <Button ToolTip="Установить фильтр" ToolTipService.ShowOnDisabled="True" MaxHeight="24" Name="btFilter_Apply" Click="btFilter_Apply_Click">
+                    <Image Source="/Images/filter_add.png"/>
+                </Button>
+                <Button ToolTip="Установить фильтр" ToolTipService.ShowOnDisabled="True" MaxHeight="24" Name="btFilter_Clear" Click="btFilter_Clear_Click">
+                    <Image Source="/Images/filter_delete.png"/>
+                </Button>
+                <Separator></Separator>
+                <Button ToolTip="Поиск шаблона" ToolTipService.ShowOnDisabled="True" MaxHeight="24" Name="btFind_Template" Click="btFind_Template_Click">
+                    <Image Source="/Images/find_1616.ico"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <DataGrid Grid.Row="1" Grid.Column="0" Name="dgAccess_Template" ItemsSource="{Binding}" 
+                  Style="{StaticResource datagridStyle}" SelectionUnit="CellOrRowHeader" 
+                  SelectedCellsChanged="dgAccess_Template_SelectedCellsChanged" 
+                  CurrentCellChanged="dgAccess_Template_CurrentCellChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование шаблона доступа" Binding="{Binding Path=DISPLAY_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Описание шаблона доступа" Binding="{Binding Path=DESCRIPTION}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Тип шаблона доступа" Binding="{Binding Path=TEMPORARY_ACC_NAME}" IsReadOnly="True"/>
+                <DataGridTemplateColumn Header="Дата начала&#13;действия шаблона">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=BEGIN_ACCESS, StringFormat={}{0:d}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Path=BEGIN_ACCESS, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" 
+                                        FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Дата окончания&#13;действия шаблона">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Path=END_ACCESS, StringFormat={}{0:d}}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <DatePicker SelectedDate="{Binding Path=END_ACCESS, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" 
+                                        FocusManager.FocusedElement="{Binding RelativeSource={RelativeSource Mode=Self}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <GroupBox Grid.Row="1" Grid.Column="1" Header="Параметры доступа для шаблона">
+            <Grid>
+                <DataGrid Name="dgAccess_Parameters" ItemsSource="{Binding}" SelectionUnit="FullRow" SelectionMode="Single"
+                          Style="{StaticResource datagridStyle}" RowDetailsVisibilityMode="VisibleWhenSelected">
+                    <DataGrid.RowDetailsTemplate>
+                        <DataTemplate>
+                            <Grid Background="#ECE9D8">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="10"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" >
+                                    <Label Content="Доступ из " FontWeight="Bold"/>
+                                    <Label Content="{Binding Path=AREA_NAME}" FontWeight="Bold"/>
+                                    <Label Content="в" FontWeight="Bold"/>
+                                    <Label Content="{Binding Path=PARENT_AREA}" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Content="Временной критерий"/>
+                                <Label Grid.Row="1" Grid.Column="3" Content="{Binding Path=GR_ACCESS_TYPE_1_NAME}"/>
+                                <Label Grid.Row="2" Grid.Column="2" Content="{Binding Path=GR_ACCESS_TYPE_1_NAME}"/>
+                                <StackPanel Grid.Row="2" Grid.Column="3" Orientation="Horizontal">
+                                    <Label Content="{Binding Path=ACCESS_1}"/>
+                                    <Label Content=" ("/>
+                                    <Label Content="{Binding Path=ACCESS_TIME1}"/>
+                                    <Label Content=")"/>
+                                </StackPanel>
+                                <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal">
+                                    <Label Content="Доступ из" FontWeight="Bold"/>
+                                    <Label Content="{Binding Path=PARENT_AREA}" FontWeight="Bold"/>
+                                    <Label Content=" в " FontWeight="Bold"/>
+                                    <Label Content="{Binding Path=AREA_NAME}" FontWeight="Bold"/>
+                                </StackPanel>
+                                <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Content="Временной критерий"/>
+                                <Label Grid.Row="4" Grid.Column="3" Content="{Binding Path=GR_ACCESS_TYPE_2_NAME}"/>
+                                <Label Grid.Row="5" Grid.Column="2" Content="{Binding Path=GR_ACCESS_TYPE_2_NAME}"/>
+                                <StackPanel Grid.Row="5" Grid.Column="3" Orientation="Horizontal">
+                                    <Label Content="{Binding Path=ACCESS_2}"/>
+                                    <Label Content=" ("/>
+                                    <Label Content="{Binding Path=ACCESS_TIME2}"/>
+                                    <Label Content=")"/>
+                                </StackPanel>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGrid.RowDetailsTemplate>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Устройство" Binding="{Binding Path=DEVICE_NAME}" IsReadOnly="True"/>
+                        <DataGridTemplateColumn Header="Доступ">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Header="Список подразделений, в которых доступен данный шаблон доступа">
+            <Grid>
+                <DataGrid Name="dgAccess_Templ_By_Subdiv" ItemsSource="{Binding}"
+                          Style="{StaticResource datagridStyle}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Шифр" Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Наименование подразделения" Binding="{Binding Path=SUBDIV_NAME}" IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</UserControl>

@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="WpfControlLibrary.Moon_PDF_Viewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Name="_this"
+             xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+             xmlns:local="clr-namespace:WpfControlLibrary">
+    <UserControl.Resources>
+        <ImageBrush x:Key="FirstPageImage"  Stretch="Uniform" ImageSource="/Images/FirstPage.png" Viewport="0.05,0.05,0.9,0.9"/>
+        <ImageBrush x:Key="PreviousPageImage"  Stretch="Uniform" ImageSource="/Images/PreviousPage.png" Viewport="0.05,0.05,0.9,0.9"/>
+        <ImageBrush x:Key="NextPageImage"  Stretch="Uniform" ImageSource="/Images/NextPage.png" Viewport="0.05,0.05,0.9,0.9"/>
+        <ImageBrush x:Key="LastPageImage"  Stretch="Uniform" ImageSource="/Images/LastPage.png" Viewport="0.05,0.05,0.9,0.9"/>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Moon_PDF_Viewer.FirstPage" CanExecute="FirstPage_CanExecute" Executed="ChangePage_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.PreviousPage" CanExecute="FirstPage_CanExecute" Executed="ChangePage_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.NextPage" CanExecute="LastPage_CanExecute" Executed="ChangePage_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.LastPage" CanExecute="LastPage_CanExecute" Executed="ChangePage_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.ZoomIn" CanExecute="ZoomIn_CanExecute" Executed="ZoomIn_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.ZoomOut" CanExecute="ZoomIn_CanExecute" Executed="ZoomIn_Executed"/>
+        <CommandBinding Command="local:Moon_PDF_Viewer.UnloadDocument" CanExecute="UnloadDocument_CanExecute" Executed="UnloadDocument_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Grid.Row="0" Grid.ColumnSpan="4" Orientation="Horizontal" IsLocked="True" Name="tbtReplEmp_Contr_Emp">
+            <ToolBar>
+                <Button Command="local:Moon_PDF_Viewer.FirstPage" CommandParameter="First"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/FirstPage.png"/>
+                </Button>
+                <Button Command="local:Moon_PDF_Viewer.PreviousPage" CommandParameter="Previous"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"
+                        >
+                    <Image Source="/Images/PreviousPage.png"/>
+                </Button>
+                <TextBox Name="tbCurrentPageNumber" Width="50" Margin="4"
+                         Text="{Binding ElementName=_this, Path=CurrentPage, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
+                <TextBlock Margin="7"> из </TextBlock>
+                <TextBlock Margin="7" Text="{Binding ElementName=_this, Path=TotalPages}"/>
+                <Button Command="local:Moon_PDF_Viewer.NextPage" CommandParameter="Next"
+                        ToolTipService.ShowOnDisabled="True" 
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/NextPage.png"/>
+                </Button>
+                <Button Command="local:Moon_PDF_Viewer.LastPage" CommandParameter="Last"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/LastPage.png"/>
+                </Button>
+                <Separator></Separator>
+                <Button Command="local:Moon_PDF_Viewer.ZoomOut" CommandParameter="ZoomOut"
+                        ToolTipService.ShowOnDisabled="True" 
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/zoomout_2424.png"/>
+                </Button>
+                <Button Command="local:Moon_PDF_Viewer.ZoomIn" CommandParameter="ZoomIn"
+                        ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="/Images/zoomin_2424.ico"/>
+                </Button>
+                <Button Command="local:Moon_PDF_Viewer.UnloadDocument" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" MaxHeight="32"
+                        Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}">
+                    <Image Source="/Images/file_upload_128128.ico"/>
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <mpp:MoonPdfPanel x:Name="moonPdfPanel" Grid.Row="1" Background="LightGray" ViewType="SinglePage" MinHeight="100"
+                          PageMargin="0,2,4,2" AllowDrop="True"/>
+    </Grid>
+</UserControl>

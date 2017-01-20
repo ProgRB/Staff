@@ -1,0 +1,865 @@
+﻿<Window x:Class="KadrWPF.MainWindow"
+        xmlns:hlp="clr-namespace:LibrarySalary.Helpers;assembly=LibraryKadr"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ribbon="clr-namespace:Microsoft.Windows.Controls.Ribbon;assembly=RibbonControlsLibrary"
+        xmlns:vm="clr-namespace:LibrarySalary.ViewModel;assembly=LibraryKadr"
+        xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+        WindowStartupLocation="CenterScreen" WindowState="Maximized"
+        Title="Кадры" Height="350" Width="987" Closed="Window_Closed"
+        xmlns:hl="clr-namespace:KadrWPF.Helpers" >
+    <Window.CommandBindings>
+        <CommandBinding Command="hl:AppCommands.Sql_Trace_Enabled" CanExecute="MenuCommand_CanExecute" Executed="Sql_Trace_Enabled_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtMainDb" CanExecute="MenuCommand_CanExecute" Executed="BtMainDb_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtArchives" CanExecute="MenuCommand_CanExecute" Executed="BtArchives_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTempDb" CanExecute="MenuCommand_CanExecute" Executed="BtTempDb_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtResume" CanExecute="MenuCommand_CanExecute" Executed="BtResume_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEditEmp" CanExecute="ListEmpButton_CanExecute" Executed="BtEditEmp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtViewTransfer" CanExecute="ListEmpButton_CanExecute" Executed="BtViewTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdTransfer" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.DdTransferNow" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtAddTransfer" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtAddTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEditTransfer" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtEditTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDeleteTransfer" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtDeleteTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransferComb" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtTransferComb_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdTransferOld" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtAddOld" CanExecute="ListEmpButton_CanExecute" Executed="BtAddOld_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEditOld" CanExecute="ListEmpButton_CanExecute" Executed="BtEditOld_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDeleteOld" CanExecute="ListEmpButton_CanExecute" Executed="BtDeleteOld_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRecoveryTransfer" CanExecute="ListEmpArchiveButton_CanExecute" Executed="BtRecoveryTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtReverseTransfer" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtReverseTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtAdd_Agreement_For_Emp" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtAdd_Agreement_For_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDismiss" CanExecute="ListEmpButton_CanExecute" Executed="BtDismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDismissToFR" CanExecute="ListEmpButton_CanExecute" Executed="BtDismissToFR_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDismissComb" CanExecute="ListEmpButton_CanExecute" Executed="BtDismissComb_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProject_Order_Dismiss" CanExecute="ListEmpMainDbButton_CanExecute" Executed="BtProject_Order_Dismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransfer_Term" CanExecute="MenuCommand_CanExecute" Executed="BtTransfer_Term_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransferCond_Of_Work" CanExecute="MenuCommand_CanExecute" Executed="BtTransferCond_Of_Work_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransfer_Emp_For_Group_Hire" CanExecute="MenuCommand_CanExecute" Executed="BtTransfer_Emp_For_Group_Hire_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtBase_Exchange" CanExecute="MenuCommand_CanExecute" Executed="BtBase_Exchange_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProject_Statement" CanExecute="MenuCommand_CanExecute" Executed="BtProject_Statement_Executed"/>
+        <CommandBinding Command="hl:AppCommands.Project_Transfer_Combined" CanExecute="MenuCommand_CanExecute" Executed="Project_Transfer_Combined_Executed"/>
+        <CommandBinding Command="hl:AppCommands.View_Emp_Mobile_Comm" CanExecute="MenuCommand_CanExecute" Executed="View_Emp_Mobile_Comm_Executed"/>
+        <!--Отчеты АСУ Кадры-->
+        <CommandBinding Command="hl:AppCommands.DdReportGH" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtRepCountHire" CanExecute="MenuCommand_CanExecute" Executed="BtRepCountHire_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListOrdHire" CanExecute="MenuCommand_CanExecute" Executed="BtListOrdHire_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdBkOrdHire" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtBkOrdHireForPeriod" CanExecute="MenuCommand_CanExecute" Executed="BtBkOrdHireForPeriod_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtBkOrdHireYear" CanExecute="MenuCommand_CanExecute" Executed="BtBkOrdHireYear_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtViolations_By_Period" CanExecute="MenuCommand_CanExecute" Executed="BtViolations_By_Period_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdReportPers" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtRepCountDismiss" CanExecute="MenuCommand_CanExecute" Executed="BtRepCountDismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepCountDismissR" CanExecute="MenuCommand_CanExecute" Executed="BtRepCountDismissR_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepReasonDismiss1" CanExecute="MenuCommand_CanExecute" Executed="BtRepReasonDismiss1_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepReasonDismiss2" CanExecute="MenuCommand_CanExecute" Executed="BtRepReasonDismiss2_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListOrdDismiss" CanExecute="MenuCommand_CanExecute" Executed="BtListOrdDismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEndOfContr" CanExecute="MenuCommand_CanExecute" Executed="BtEndOfContr_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtOrdDismiss" CanExecute="MenuCommand_CanExecute" Executed="BtOrdDismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtOrdTransfer" CanExecute="MenuCommand_CanExecute" Executed="BtOrdTransfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdListDismiss" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListDismissFull" CanExecute="MenuCommand_CanExecute" Executed="BtListDismissFull_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListDismissShort" CanExecute="MenuCommand_CanExecute" Executed="BtListDismissShort_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListDismissForDir" CanExecute="MenuCommand_CanExecute" Executed="BtListDismissForDir_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListDismissJobman" CanExecute="MenuCommand_CanExecute" Executed="BtListDismissJobman_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListAcadDegree" CanExecute="MenuCommand_CanExecute" Executed="BtListAcadDegree_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRep_Staff_Subdiv" CanExecute="MenuCommand_CanExecute" Executed="BtRep_Staff_Subdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdNotice_Expiry" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtNotice_Expiry_Contract" CanExecute="MenuCommand_CanExecute" Executed="BtNotice_Expiry_Contract_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtNotice_Expiry_Add_Agreement" CanExecute="MenuCommand_CanExecute" Executed="BtNotice_Expiry_Add_Agreement_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdBlank_Reference" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtReference_On_Place_Requirements" CanExecute="MenuCommand_CanExecute" Executed="BtReference_On_Place_Requirements_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtReference_Child_Realing_Leave" CanExecute="MenuCommand_CanExecute" Executed="BtReference_Child_Realing_Leave_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdRepStaff_Pension" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtRepNonState_Pens_Prov" CanExecute="MenuCommand_CanExecute" Executed="BtRepNonState_Pens_Prov_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepNPP_With_Date" CanExecute="MenuCommand_CanExecute" Executed="BtRepNPP_With_Date_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdListInvalid" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListInvalid" CanExecute="MenuCommand_CanExecute" Executed="BtListInvalid_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListInvalidSub" CanExecute="MenuCommand_CanExecute" Executed="BtListInvalidSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdRetirer" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.DdRetirerStruct" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListRetirerStruct" CanExecute="MenuCommand_CanExecute" Executed="BtListRetirerStruct_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListRetirerStructSubdiv" CanExecute="MenuCommand_CanExecute" Executed="BtListRetirerStructSubdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdListRetirer" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListRetirerPlant" CanExecute="MenuCommand_CanExecute" Executed="BtListRetirerPlant_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListRetirerSubdiv" CanExecute="MenuCommand_CanExecute" Executed="BtListRetirerSubdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListRetirerDismiss" CanExecute="MenuCommand_CanExecute" Executed="BtListRetirerDismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEmptyInsurNum" CanExecute="MenuCommand_CanExecute" Executed="BtEmptyInsurNum_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSprObj" CanExecute="MenuCommand_CanExecute" Executed="BtSprObj_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtPersonalCard" CanExecute="MenuCommand_CanExecute" Executed="BtPersonalCard_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepOtherType" CanExecute="ListEmpButton_CanExecute" Executed="BtRepOtherType_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepMRP" CanExecute="MenuCommand_CanExecute" Executed="BtRepMRP_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdReportMSFO" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtRepMSFOSal" CanExecute="MenuCommand_CanExecute" Executed="BtRepMSFOSal_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepMSFODisEmp" CanExecute="MenuCommand_CanExecute" Executed="BtRepMSFODisEmp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdReportsPrivPos" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListEmpPrivPos" CanExecute="MenuCommand_CanExecute" Executed="BtListEmpPrivPos_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransferPrivPos" CanExecute="MenuCommand_CanExecute" Executed="BtTransferPrivPos_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepChild_Realing_Leave" CanExecute="MenuCommand_CanExecute" Executed="BtRepChild_Realing_Leave_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEmp_By_Service" CanExecute="MenuCommand_CanExecute" Executed="BtEmp_By_Service_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdVeteran" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.DdNumbersVeteran" CanExecute="MenuCommand_CanExecute"/>        
+        <CommandBinding Command="hl:AppCommands.BtNumbersVeteranPlant" CanExecute="MenuCommand_CanExecute" Executed="BtNumbersVeteranPlant_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtNumbersVeteranSub" CanExecute="MenuCommand_CanExecute" Executed="BtNumbersVeteranSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdListVeteran" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtListVeteranPlant" CanExecute="MenuCommand_CanExecute" Executed="BtListVeteranPlant_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListVeteranSub" CanExecute="MenuCommand_CanExecute" Executed="BtListVeteranSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtListDismissVeteran" CanExecute="MenuCommand_CanExecute" Executed="BtListDismissVeteran_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepTransfer_By_Period" CanExecute="MenuCommand_CanExecute" Executed="BtRepTransfer_By_Period_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepYoung_Specialist" CanExecute="ListEmpButton_CanExecute" Executed="BtRepYoung_Specialist_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtOrderOnEncouraging" CanExecute="MenuCommand_CanExecute" Executed="BtOrderOnEncouraging_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtAdd_Agreement_On_Subdiv" CanExecute="MenuCommand_CanExecute" Executed="BtAdd_Agreement_On_Subdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdAdd_Agreement_ShortDay" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtAdd_Agreement_On_ShortDay1" CanExecute="MenuCommand_CanExecute" Executed="BtAdd_Agreement_On_ShortDay1_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtAdd_Agreement_On_ShortDay2" CanExecute="MenuCommand_CanExecute" Executed="BtAdd_Agreement_On_ShortDay2_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepChild_Realing_Leave2" CanExecute="MenuCommand_CanExecute" Executed="BtRepChild_Realing_Leave2_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DdNotification_For_Emp" CanExecute="MenuCommand_CanExecute"/>
+        <CommandBinding Command="hl:AppCommands.BtNotification_Short_Week" CanExecute="MenuCommand_CanExecute" Executed="BtNotification_Short_Week_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtNotification_Early_Ending" CanExecute="MenuCommand_CanExecute" Executed="BtNotification_Early_Ending_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtCount_Short_Graph" CanExecute="MenuCommand_CanExecute" Executed="BtCount_Short_Graph_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtCorporate_Support_Contract" CanExecute="MenuCommand_CanExecute" Executed="BtCorporate_Support_Contract_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtCorporate_Support_Agreement" CanExecute="MenuCommand_CanExecute" Executed="BtCorporate_Support_Agreement_Executed"/>
+        <!--Вкладка Бюро пропусков-->
+        <CommandBinding Command="hl:AppCommands.BtPermit" CanExecute="MenuCommand_CanExecute" Executed="BtPermit_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtEditFilterPermit" CanExecute="MenuCommand_CanExecute" Executed="BtEditFilterPermit_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Permit" CanExecute="MenuCommand_CanExecute" Executed="BtType_Permit_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtViewViolators" CanExecute="MenuCommand_CanExecute" Executed="BtViewViolators_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDismissed_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtDismissed_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTransfer_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtTransfer_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtAccess_Template" CanExecute="MenuCommand_CanExecute" Executed="BtAccess_Template_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtList_Emp_With_Template" CanExecute="MenuCommand_CanExecute" Executed="BtList_Emp_With_Template_Executed"/>
+        <!--Справочники АСУ Кадры-->
+        <CommandBinding Command="hl:AppCommands.BtType_Study" CanExecute="MenuCommand_CanExecute" Executed="BtType_Study_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Edu" CanExecute="MenuCommand_CanExecute" Executed="BtType_Edu_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtInstit" CanExecute="MenuCommand_CanExecute" Executed="BtInstit_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtStudy_City" CanExecute="MenuCommand_CanExecute" Executed="BtStudy_City_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtGroup_Spec" CanExecute="MenuCommand_CanExecute" Executed="BtGroup_Spec_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtQual" CanExecute="MenuCommand_CanExecute" Executed="BtQual_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSpeciality" CanExecute="MenuCommand_CanExecute" Executed="BtSpeciality_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtLang" CanExecute="MenuCommand_CanExecute" Executed="BtLang_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtLevel_Know" CanExecute="MenuCommand_CanExecute" Executed="BtLevel_Know_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtComm" CanExecute="MenuCommand_CanExecute" Executed="BtComm_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtMil_Spec" CanExecute="MenuCommand_CanExecute" Executed="BtMil_Spec_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtMed_Classif" CanExecute="MenuCommand_CanExecute" Executed="BtMed_Classif_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtMil_Rank" CanExecute="MenuCommand_CanExecute" Executed="BtMil_Rank_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtMil_Cat" CanExecute="MenuCommand_CanExecute" Executed="BtMil_Cat_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Troop" CanExecute="MenuCommand_CanExecute" Executed="BtType_Troop_Executed"/>        
+        <CommandBinding Command="hl:AppCommands.BtType_Priv" CanExecute="MenuCommand_CanExecute" Executed="BtType_Priv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Rise_Qual" CanExecute="MenuCommand_CanExecute" Executed="BtType_Rise_Qual_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtPrivileged_Position" CanExecute="MenuCommand_CanExecute" Executed="BtPrivileged_Position_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Postg_Study" CanExecute="MenuCommand_CanExecute" Executed="BtType_Postg_Study_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSource_Employability" CanExecute="MenuCommand_CanExecute" Executed="BtSource_Employability_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtReason_dismiss" CanExecute="MenuCommand_CanExecute" Executed="BtReason_dismiss_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtPosition" CanExecute="MenuCommand_CanExecute" Executed="BtPosition_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSubdiv" CanExecute="MenuCommand_CanExecute" Executed="BtSubdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtReward_Name" CanExecute="MenuCommand_CanExecute" Executed="BtReward_Name_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Reward" CanExecute="MenuCommand_CanExecute" Executed="BtType_Reward_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtConditions_Of_Work" CanExecute="MenuCommand_CanExecute" Executed="BtConditions_Of_Work_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtType_Condition" CanExecute="MenuCommand_CanExecute" Executed="BtType_Condition_Executed"/>
+        <!--Вкладка Сторонние сотрудники-->
+        <CommandBinding Command="hl:AppCommands.BtPrevFR_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtPrevFR_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtReleaseBuffer" CanExecute="MenuCommand_CanExecute" Executed="BtReleaseBuffer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtFilterFR_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtFilterFR_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtFindFR_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtFindFR_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSubdivSort" CanExecute="MenuCommand_CanExecute" Executed="BtSubdivSort_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtFIOSort" CanExecute="MenuCommand_CanExecute" Executed="BtFIOSort_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtSubdivFIOSort" CanExecute="MenuCommand_CanExecute" Executed="BtSubdivFIOSort_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtPositionSort" CanExecute="MenuCommand_CanExecute" Executed="BtPositionSort_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtDate_StartSort" CanExecute="MenuCommand_CanExecute" Executed="BtDate_StartSort_Executed"/>
+        <!--Вкладка АРМ Бухгалтера-->
+        <CommandBinding Command="hl:AppCommands.BtDataFill" CanExecute="MenuCommand_CanExecute" Executed="BtDataFill_Executed"/>
+        <CommandBinding Command="hl:AppCommands.Bt_sbros_IBM" CanExecute="MenuCommand_CanExecute" Executed="Bt_sbros_IBM_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtFilterRas" CanExecute="MenuCommand_CanExecute" Executed="BtFilterRas_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtFindRas" CanExecute="MenuCommand_CanExecute" Executed="BtFindRas_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtUpdateRas" CanExecute="MenuCommand_CanExecute" Executed="BtUpdateRas_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtView_All_Transfer" CanExecute="MenuCommand_CanExecute" Executed="BtView_All_Transfer_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtOutside_Emp" CanExecute="MenuCommand_CanExecute" Executed="BtOutside_Emp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtPrintAD" CanExecute="MenuCommand_CanExecute" Executed="BtPrintAD_Executed"/>
+        <CommandBinding Command="hl:AppCommands.R_btRasCombList" CanExecute="MenuCommand_CanExecute" Executed="R_btRasCombList_Executed"/>
+        <CommandBinding Command="hl:AppCommands.R_btRASInvalidEmp" CanExecute="MenuCommand_CanExecute" Executed="R_btRASInvalidEmp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.R_btRASProfEmp" CanExecute="MenuCommand_CanExecute" Executed="R_btRASProfEmp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.R_btRASNonProfEmp" CanExecute="MenuCommand_CanExecute" Executed="R_btRASNonProfEmp_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProfUnion_Entered" CanExecute="MenuCommand_CanExecute" Executed="btProfUnion_Entered_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProfUnion_CameOut" CanExecute="MenuCommand_CanExecute" Executed="btProfUnion_CameOut_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProtocolDump" CanExecute="MenuCommand_CanExecute" Executed="BtProtocolDump_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepTransSub" CanExecute="MenuCommand_CanExecute" Executed="BtRepTransSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepEmpContract" CanExecute="MenuCommand_CanExecute" Executed="BtRepEmpContract_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtProtocolTr_Date_Order" CanExecute="MenuCommand_CanExecute" Executed="BtProtocolTr_Date_Order_Executed"/>
+        <!-- Табельный учет -->
+        <CommandBinding Command="hl:AppCommands.BtCalendar" CanExecute="MenuCommand_CanExecute" Executed="BtCalendar_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtTable" CanExecute="MenuCommand_CanExecute" Executed="BtTable_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtGr_Work" CanExecute="MenuCommand_CanExecute" Executed="BtGr_Work_Executed"/>
+
+        <CommandBinding Command="hl:AppCommands.BtList_Closing_Table" CanExecute="MenuCommand_CanExecute" Executed="BtList_Closing_Table_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtOrderTruancy" CanExecute="MenuCommand_CanExecute" Executed="BtOrderTruancy_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepOnAdministrVac" CanExecute="MenuCommand_CanExecute" Executed="BtRepOnAdministrVac_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepOnHospital" CanExecute="MenuCommand_CanExecute" Executed="BtRepOnHospital_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepOnPregnancy" CanExecute="MenuCommand_CanExecute" Executed="BtRepOnPregnancy_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepOnChildCare" CanExecute="MenuCommand_CanExecute" Executed="BtRepOnChildCare_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepAverage_Number_On_Plant" CanExecute="MenuCommand_CanExecute" Executed="BtRepAverage_Number_On_Plant_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepAverage_Number_Personnel" CanExecute="MenuCommand_CanExecute" Executed="BtRepAverage_Number_Personnel_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepFailureToAppear" CanExecute="MenuCommand_CanExecute" Executed="BtRepFailureToAppear_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepLate_Pass" CanExecute="MenuCommand_CanExecute" Executed="BtRepLate_Pass_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepLateness" CanExecute="MenuCommand_CanExecute" Executed="BtRepLateness_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepWorkOut" CanExecute="MenuCommand_CanExecute" Executed="BtRepWorkOut_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepAverage_Number" CanExecute="MenuCommand_CanExecute" Executed="BtRepAverage_Number_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepAverage_Number_Consolidated" CanExecute="MenuCommand_CanExecute" Executed="BtRepAverage_Number_Consolidated_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepListEmp_Number" CanExecute="MenuCommand_CanExecute" Executed="BtRepListEmp_Number_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepUseOfWorkTime" CanExecute="MenuCommand_CanExecute" Executed="BtRepUseOfWorkTime_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepUseOfWorkTimeOnSub" CanExecute="MenuCommand_CanExecute" Executed="BtRepUseOfWorkTimeOnSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepTimeNotWorker" CanExecute="MenuCommand_CanExecute" Executed="BtRepTimeNotWorker_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepTimeNotWorkerOnSub" CanExecute="MenuCommand_CanExecute" Executed="BtRepTimeNotWorkerOnSub_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepHoursByOrdersPlant" CanExecute="MenuCommand_CanExecute" Executed="BtRepHoursByOrdersPlant_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRep_Pay_Type_545" CanExecute="MenuCommand_CanExecute" Executed="BtRep_Pay_Type_545_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepAll_Limits_By_Subdiv" CanExecute="MenuCommand_CanExecute" Executed="BtRepAll_Limits_By_Subdiv_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtRepDocsOnPay_Type" CanExecute="MenuCommand_CanExecute" Executed="BtRepDocsOnPay_Type_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtLimit" CanExecute="MenuCommand_CanExecute" Executed="BtLimit_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtLimit303" CanExecute="MenuCommand_CanExecute" Executed="BtLimit303_Executed"/>
+        <CommandBinding Command="hl:AppCommands.BtViewOrders" CanExecute="MenuCommand_CanExecute" Executed="BtViewOrders_Executed"/>
+        <!--<CommandBinding Command="hl:AppCommands." CanExecute="MenuCommand_CanExecute" Executed="_Executed"/>-->
+        <!--*************** Графики отпусков    *****************************-->
+        <CommandBinding Command="hl:AppCommands.BtViewArchivVS" CanExecute="MenuCommand_CanExecute" Executed="BtViewArchivVS_Execute"/>
+        <CommandBinding Command="hl:AppCommands.BtViewMakeVS" CanExecute="MenuCommand_CanExecute" Executed="BtViewMakeVS_Execute"/>
+        <CommandBinding Command="hl:AppCommands.BtConfirmVS" CanExecute="MenuCommand_CanExecute" Executed="BtConfirmVS_Execute"/>
+        <CommandBinding Command="hl:AppCommands.BtDiagramsVS" CanExecute="MenuCommand_CanExecute" Executed="BtDiagramsVS_Execute"/>
+        <CommandBinding Command="hl:AppCommands.BtViewEmpLocationVac" CanExecute="MenuCommand_CanExecute" Executed="BtViewEmpLocationVac_Execute"/>
+    
+        <!--************** ШТАТНОЕ РАСПИСАНИЕ   ****************************-->
+        <CommandBinding Command="hl:AppCommands.OpenViewManningTable" CanExecute="MenuCommand_CanExecute" Executed="OpenViewManningTable_Execute"/>
+        <CommandBinding Command="hl:AppCommands.ViewSubdivPartition" CanExecute="MenuCommand_CanExecute" Executed="ViewSubdivPartition_Execute"/>
+        <CommandBinding Command="hl:AppCommands.ViewWorkPlace" CanExecute="MenuCommand_CanExecute" Executed="ViewWorkPlace_Execute"/>
+        <CommandBinding Command="hl:AppCommands.ViewIndividProtectionCatalog" CanExecute="MenuCommand_CanExecute" Executed="ViewIndividProtectionCatalog_Execute"/>
+    </Window.CommandBindings>
+
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ribbon:RibbonMenuItem">
+                <Setter Property="ToolTipDescription" Value="{Binding Source={RelativeSource Mode=Self}, Path=Command.Text}"/>
+            </Style>
+            <Style TargetType="ribbon:RibbonButton">
+                <Setter Property="ToolTipDescription" Value="{Binding Source={RelativeSource Mode=Self}, Path=Command.Text}"/>
+            </Style>
+        </Grid.Resources>
+
+        <ribbon:Ribbon x:Name="Ribbon" SelectedIndex="0">
+            <ribbon:Ribbon.ApplicationMenu>
+                <ribbon:RibbonApplicationMenu Name="ribbonApplicationMenu" >
+                    <ribbon:RibbonApplicationMenuItem Header="Включить трассировку" x:Name="btSql_Trace_Enabled"
+                                                      Command="hl:AppCommands.Sql_Trace_Enabled" IsCheckable="True"
+                                                      Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                </ribbon:RibbonApplicationMenu>
+            </ribbon:Ribbon.ApplicationMenu>
+            <ribbon:RibbonTab x:Name="rpKadr" 
+                              Header="АСУ Кадры">
+                <ribbon:RibbonGroup x:Name="rgEmp" 
+                                    Header="Просмотр сотрудников" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Прием" HorizontalAlignment="Center" Name="ddHire"
+                                             LargeImageSource="Images\Hire_128128.png" SmallImageSource="Images\hire_small_2424.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Приемная база" Name="btTempDb" ImageSource="Images\hire_small_2424.png"
+                                               Command="hl:AppCommands.BtTempDb"/>
+                        <ribbon:RibbonMenuItem Header="Резюме" Name="btResume" ImageSource="Images\Resume_3232.jpg"
+                                               Command="hl:AppCommands.BtResume"/>
+                    </ribbon:RibbonMenuButton>
+                    <ribbon:RibbonSeparator VerticalAlignment="Stretch" Height="60" BorderThickness="1,0,0,0" BorderBrush="#FFDAB9C5" ></ribbon:RibbonSeparator>
+                    <ribbon:RibbonButton x:Name="btMainDb" LargeImageSource="Images\user_main_4848.png" SmallImageSource="Images\user_main_2424.png"  
+                                         Label="Основная база" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtMainDb"/>
+                    <ribbon:RibbonButton x:Name="btArchives" LargeImageSource="Images\user_arh_4848.png" SmallImageSource="Images\user_arh_4848.png"       
+                                         Label="Архивная база" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtArchives"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup>
+                    <ribbon:RibbonButton Name="btAddEmp" SmallImageSource="Images\blank_1616.png" IsEnabled="False"></ribbon:RibbonButton>
+                    <ribbon:RibbonButton Name="btEditEmp" SmallImageSource="Images\TrackChanges_1616.png" Command="hl:AppCommands.BtEditEmp"></ribbon:RibbonButton>
+                    <ribbon:RibbonButton Name="btDeleteEmp" SmallImageSource="Images\Remove_1616.png" IsEnabled="False"></ribbon:RibbonButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup Header="Переводы">
+                    <ribbon:RibbonButton x:Name="btViewTransfer" Label="Просмотр перевода"  HorizontalAlignment="Center"
+                                         Command="hl:AppCommands.BtViewTransfer"
+                                         ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         LargeImageSource="Images\Transfer_3232.png" SmallImageSource="Images\Transfer_2424.png"/>
+                    <ribbon:RibbonMenuButton x:Name="ddTransfer" Label="Работа с переводами" 
+                                             LargeImageSource="Images\NewTransfer_3232.png" SmallImageSource="Images\NewTransfer_2424.png">
+                        <ribbon:RibbonMenuItem x:Name="ddTransferNow" Header="Основная деятельность" Command="hl:AppCommands.DdTransferNow">
+                            <ribbon:RibbonMenuItem x:Name="btAddTransfer" Header="Добавить перевод" Command="hl:AppCommands.BtAddTransfer"/>
+                            <ribbon:RibbonMenuItem x:Name="btEditTransfer" Header="Редактировать перевод" Command="hl:AppCommands.BtEditTransfer"/>
+                            <ribbon:RibbonMenuItem x:Name="btDeleteTransfer" Header="Удалить перевод" Command="hl:AppCommands.BtDeleteTransfer"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem x:Name="btTransferComb" Header="Совмещение" Command="hl:AppCommands.BtTransferComb"/>
+                        <ribbon:RibbonMenuItem x:Name="ddTransferOld" Header="Старые переводы" Command="hl:AppCommands.DdTransferOld">
+                            <ribbon:RibbonMenuItem x:Name="btAddOld" Header="Добавить перевод" Command="hl:AppCommands.BtAddOld"/>
+                            <ribbon:RibbonMenuItem x:Name="btEditOld" Header="Редактировать перевод" Command="hl:AppCommands.BtEditOld"/>
+                            <ribbon:RibbonMenuItem x:Name="btDeleteOld" Header="Удалить перевод" Command="hl:AppCommands.BtDeleteOld"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem x:Name="btRecoveryTransfer" Header="Восстановить работника" Command="hl:AppCommands.BtRecoveryTransfer"/>
+                        <ribbon:RibbonMenuItem x:Name="btReverseTransfer" Header="Обратный перевод" Command="hl:AppCommands.BtReverseTransfer"/>
+                        <ribbon:RibbonMenuItem x:Name="btAdd_Agreement_For_Emp" Header="Бланк дополнительного соглашения" Command="hl:AppCommands.BtAdd_Agreement_For_Emp"/>
+                    </ribbon:RibbonMenuButton>
+                    <ribbon:RibbonMenuButton Label="Увольнение" HorizontalAlignment="Center" Name="ddDismiss"
+                                             LargeImageSource="Images\delete_3232.png" SmallImageSource="Images\delete_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Увольнение с завода" Name="btDismiss" Command="hl:AppCommands.BtDismiss"/>
+                        <ribbon:RibbonMenuItem Header="Увольнение в стороннюю организацию на заводе" Name="btDismissToFR" Command="hl:AppCommands.BtDismissToFR"/>
+                        <ribbon:RibbonMenuItem Header="Увольнения с совмещения" Name="btDismissComb" Command="hl:AppCommands.BtDismissComb"/>
+                        <ribbon:RibbonMenuItem Header="Проект приказа об увольнении" Name="btProject_Order_Dismiss" Command="hl:AppCommands.BtProject_Order_Dismiss"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup Header="Отчеты">
+                    <ribbon:RibbonMenuButton Label="Отчеты" HorizontalAlignment="Center" Name="ddReports"
+                                             LargeImageSource="Images\Print_3232.png" SmallImageSource="Images\Print_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Отчеты ГРУППЫ ПРИЕМА" Name="ddReportGH" Command="hl:AppCommands.DdReportGH">
+                            <ribbon:RibbonMenuItem Header="Отчёт о количестве принятых" Name="btRepCountHire" Command="hl:AppCommands.BtRepCountHire"/>
+                            <ribbon:RibbonMenuItem Header="Опись приказов о приёме" Name="btListOrdHire" Command="hl:AppCommands.BtListOrdHire"/>
+                            <ribbon:RibbonMenuItem Header="Книга приказов о приеме" Name="ddBkOrdHire" Command="hl:AppCommands.DdBkOrdHire">
+                                <ribbon:RibbonMenuItem Header="За период" Name="btBkOrdHireForPeriod" Command="hl:AppCommands.BtBkOrdHireForPeriod"/>
+                                <ribbon:RibbonMenuItem Header="Год и номер посл. напечат. приказа" Name="btBkOrdHireYear" Command="hl:AppCommands.BtBkOrdHireYear"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Нарушения за период" Name="btViolations_By_Period" Command="hl:AppCommands.BtViolations_By_Period"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Отчеты ГРУППЫ ЛИЧНОГО СТОЛА" Name="ddReportPers" Command="hl:AppCommands.DdReportPers">
+                            <ribbon:RibbonMenuItem Header="Отчет о количестве уволенных" Name="btRepCountDismiss" Command="hl:AppCommands.BtRepCountDismiss"/>
+                            <ribbon:RibbonMenuItem Header="Отчёт о количестве уволенных (обратная сторона)" Name="btRepCountDismissR" Command="hl:AppCommands.BtRepCountDismissR"/>
+                            <ribbon:RibbonMenuItem Header="Отчёт по причинам увольнений (1 форма)" Name="btRepReasonDismiss1" Command="hl:AppCommands.BtRepReasonDismiss1"/>
+                            <ribbon:RibbonMenuItem Header="Отчёт по причинам увольнений (2 форма)" Name="btRepReasonDismiss2" Command="hl:AppCommands.BtRepReasonDismiss2"/>
+                            <ribbon:RibbonMenuItem Header="Опись приказов об увольнении" Name="btListOrdDismiss" Command="hl:AppCommands.BtListOrdDismiss"/>
+                            <ribbon:RibbonMenuItem Header="Окончание срока договора" Name="btEndOfContr" Command="hl:AppCommands.BtEndOfContr"/>
+                            <ribbon:RibbonMenuItem Header="Книга приказов об увольнении" Name="btOrdDismiss" Command="hl:AppCommands.BtOrdDismiss"/>
+                            <ribbon:RibbonMenuItem Header="Книга приказов о переводах" Name="btOrdTransfer" Command="hl:AppCommands.BtOrdTransfer"/>
+                            <ribbon:RibbonMenuItem Header="Список уволенных" Name="ddListDismiss" Command="hl:AppCommands.DdListDismiss">
+                                <ribbon:RibbonMenuItem Header="Полный" Name="btListDismissFull" Command="hl:AppCommands.BtListDismissFull"/>
+                                <ribbon:RibbonMenuItem Header="Без адресов" Name="btListDismissShort" Command="hl:AppCommands.BtListDismissShort"/>
+                                <ribbon:RibbonMenuItem Header="Без адресов (новая форма)" Name="btListDismissForDir" Command="hl:AppCommands.BtListDismissForDir"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Список уволенных (сдельщики)" Name="btListDismissJobman" Command="hl:AppCommands.BtListDismissJobman"/>
+                            <ribbon:RibbonMenuItem Header="Список работников, имеющих учёную степень" Name="btListAcadDegree" Command="hl:AppCommands.BtListAcadDegree"/>
+                            <ribbon:RibbonMenuItem Header="Отчёт по численности сотрудников" Name="btRep_Staff_Subdiv" Command="hl:AppCommands.BtRep_Staff_Subdiv"/>
+                            <ribbon:RibbonMenuItem Header="Формирование уведомлений" Name="ddNotice_Expiry" Command="hl:AppCommands.DdNotice_Expiry">
+                                <ribbon:RibbonMenuItem Header="Истечение срока трудового договора" Name="btNotice_Expiry_Contract" Command="hl:AppCommands.BtNotice_Expiry_Contract"/>
+                                <ribbon:RibbonMenuItem Header="Истечение срока дополнительного соглашения" Name="btNotice_Expiry_Add_Agreement" Command="hl:AppCommands.BtNotice_Expiry_Add_Agreement"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Бланки справок" Name="ddBlank_Reference" Command="hl:AppCommands.DdBlank_Reference">
+                                <ribbon:RibbonMenuItem Header="Справка по месту требования (Ф.005-039)" Name="btReference_On_Place_Requirements" Command="hl:AppCommands.BtReference_On_Place_Requirements"/>
+                                <ribbon:RibbonMenuItem Header="Справка об отпуске по уходу за ребенком (Ф.005-049)" Name="btReference_Child_Realing_Leave" Command="hl:AppCommands.BtReference_Child_Realing_Leave"/>
+                            </ribbon:RibbonMenuItem>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Отчеты ПЕНСИОННОГО БЮРО" Name="ddRepStaff_Pension" Command="hl:AppCommands.DdRepStaff_Pension">
+                            <ribbon:RibbonMenuItem Header="Участие в программе НПО" Name="btRepNonState_Pens_Prov" Command="hl:AppCommands.BtRepNonState_Pens_Prov"/>
+                            <ribbon:RibbonMenuItem Header="Участие в НПО с датой назначения пенсии" Name="btRepNPP_With_Date" Command="hl:AppCommands.BtRepNPP_With_Date"/>
+                            <ribbon:RibbonMenuItem Header="Список инвалидов" Name="ddListInvalid" Command="hl:AppCommands.DdListInvalid">
+                                <ribbon:RibbonMenuItem Header="По заводу" Name="btListInvalid" Command="hl:AppCommands.BtListInvalid"/>
+                                <ribbon:RibbonMenuItem Header="По подразделению" Name="btListInvalidSub" Command="hl:AppCommands.BtListInvalidSub"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Данные по пенсионерам" Name="ddRetirer" Command="hl:AppCommands.DdRetirer">
+                                <ribbon:RibbonMenuItem Header="Численность, состав и движение" Name="ddRetirerStruct" Command="hl:AppCommands.DdRetirerStruct">
+                                    <ribbon:RibbonMenuItem Header="По заводу" Name="btListRetirerStruct" Command="hl:AppCommands.BtListRetirerStruct"/>
+                                    <ribbon:RibbonMenuItem Header="По подразделению" Name="btListRetirerStructSubdiv" Command="hl:AppCommands.BtListRetirerStructSubdiv"/>
+                                </ribbon:RibbonMenuItem>
+                                <ribbon:RibbonMenuItem Header="Список пенсионеров" Name="ddListRetirer" Command="hl:AppCommands.DdListRetirer">
+                                    <ribbon:RibbonMenuItem Header="По заводу" Name="btListRetirerPlant" Command="hl:AppCommands.BtListRetirerPlant"/>
+                                    <ribbon:RibbonMenuItem Header="По подразделению" Name="btListRetirerSubdiv" Command="hl:AppCommands.BtListRetirerSubdiv"/>
+                                </ribbon:RibbonMenuItem>
+                                <ribbon:RibbonMenuItem Header="Список уволенных" Name="btListRetirerDismiss" Command="hl:AppCommands.BtListRetirerDismiss"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Список для заполнения страх.св-в" Name="btEmptyInsurNum" Command="hl:AppCommands.BtEmptyInsurNum"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Справка-объективка" Name="btSprObj" Command="hl:AppCommands.BtSprObj"/>
+                        <ribbon:RibbonMenuItem Header="Личная карточка" Name="btPersonalCard" Command="hl:AppCommands.BtPersonalCard"/>
+                        <ribbon:RibbonMenuItem Header="Отчёт произвольной формы" Name="btRepOtherType" Command="hl:AppCommands.BtRepOtherType"
+                                               Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                        <ribbon:RibbonMenuItem Header="Отчет по МОЛ" Name="btRepMRP" Command="hl:AppCommands.BtRepMRP"/>
+                        <ribbon:RibbonMenuItem Header="Отчеты МСФО" Name="ddReportMSFO" Command="hl:AppCommands.DdReportMSFO">
+                            <ribbon:RibbonMenuItem Header="Демографическая и финансовая статистика" Name="btRepMSFOSal" Command="hl:AppCommands.BtRepMSFOSal"/>
+                            <ribbon:RibbonMenuItem Header="Статистика текучести персонала" Name="btRepMSFODisEmp" Command="hl:AppCommands.BtRepMSFODisEmp"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Отчеты по льготным профессиям" Name="ddReportsPrivPos" Command="hl:AppCommands.DdReportsPrivPos">
+                            <ribbon:RibbonMenuItem Header="Список льготников" Name="btListEmpPrivPos" Command="hl:AppCommands.BtListEmpPrivPos"/>
+                            <ribbon:RibbonMenuItem Header="Список переводов" Name="btTransferPrivPos" Command="hl:AppCommands.BtTransferPrivPos"/>
+                            <ribbon:RibbonMenuItem Header="Список декретниц за период (ограничение периодов)" Name="btRepChild_Realing_Leave" Command="hl:AppCommands.BtRepChild_Realing_Leave"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Сотрудники по службам" Name="btEmp_By_Service" Command="hl:AppCommands.BtEmp_By_Service"/>
+                        <ribbon:RibbonMenuItem Header="Данные по ветеранам труда" Name="ddVeteran" Command="hl:AppCommands.DdVeteran">
+                            <ribbon:RibbonMenuItem Header="Численность, состав и движение" Name="ddNumbersVeteran" Command="hl:AppCommands.DdNumbersVeteran">
+                                <ribbon:RibbonMenuItem Header="По заводу" Name="btNumbersVeteranPlant" Command="hl:AppCommands.BtNumbersVeteranPlant"/>
+                                <ribbon:RibbonMenuItem Header="По подразделению" Name="btNumbersVeteranSub" Command="hl:AppCommands.BtNumbersVeteranSub"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Список ветеранов" Name="ddListVeteran" Command="hl:AppCommands.DdListVeteran">
+                                <ribbon:RibbonMenuItem Header="По заводу" Name="btListVeteranPlant" Command="hl:AppCommands.BtListVeteranPlant"/>
+                                <ribbon:RibbonMenuItem Header="По подразделению" Name="btListVeteranSub" Command="hl:AppCommands.BtListVeteranSub"/>
+                            </ribbon:RibbonMenuItem>
+                            <ribbon:RibbonMenuItem Header="Список уволенных" Name="btListDismissVeteran" Command="hl:AppCommands.BtListDismissVeteran"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Переводы за период" Name="btRepTransfer_By_Period" Command="hl:AppCommands.BtRepTransfer_By_Period"/>
+                        <ribbon:RibbonMenuItem Header="Отчет по молодым специалистам" Name="btRepYoung_Specialist" Command="hl:AppCommands.BtRepYoung_Specialist"
+                                               Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                        <ribbon:RibbonMenuItem Header="Приказ о поощрении" Name="btOrderOnEncouraging" Command="hl:AppCommands.BtOrderOnEncouraging"/>
+                        <ribbon:RibbonMenuItem Header="Доп. соглашения по подразделению" Name="btAdd_Agreement_On_Subdiv" Command="hl:AppCommands.BtAdd_Agreement_On_Subdiv"/>
+                        <ribbon:RibbonMenuItem Header="Доп. соглашения сокр. день" Name="ddAdd_Agreement_ShortDay" Command="hl:AppCommands.DdAdd_Agreement_ShortDay">
+                            <ribbon:RibbonMenuItem Header="Сокращенный день" Name="btAdd_Agreement_On_ShortDay1" Command="hl:AppCommands.BtAdd_Agreement_On_ShortDay1"/>
+                            <ribbon:RibbonMenuItem Header="Сокращенная неделя" Name="btAdd_Agreement_On_ShortDay2" Command="hl:AppCommands.BtAdd_Agreement_On_ShortDay2"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Список декретниц за период" Name="btRepChild_Realing_Leave2" Command="hl:AppCommands.BtRepChild_Realing_Leave2"/>
+                        <ribbon:RibbonMenuItem Header="Уведомления работникам" Name="ddNotification_For_Emp" Command="hl:AppCommands.DdNotification_For_Emp">
+                            <ribbon:RibbonMenuItem Header="Уведомление для неполной рабочей недели" Name="btNotification_Short_Week" Command="hl:AppCommands.BtNotification_Short_Week"/>
+                            <ribbon:RibbonMenuItem Header="Уведомление для раннего окончания работы" Name="btNotification_Early_Ending" Command="hl:AppCommands.BtNotification_Early_Ending"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Количество сотрудников на НС и НН" Name="btCount_Short_Graph" Command="hl:AppCommands.BtCount_Short_Graph"/>
+                        <ribbon:RibbonMenuItem Header="Документы для жилищной программы" Name="ddHousing_Program">
+                            <ribbon:RibbonMenuItem Header="Договор на оказание корпоративной поддержки" Name="btCorporate_Support_Contract" Command="hl:AppCommands.BtCorporate_Support_Contract"/>
+                            <ribbon:RibbonMenuItem Header="Дополнительное соглашение о корпоративной поддержке" Name="btCorporate_Support_Agreement" Command="hl:AppCommands.BtCorporate_Support_Agreement"/>
+                        </ribbon:RibbonMenuItem>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup>
+                    <ribbon:RibbonMenuButton Label="Списки сотрудников" HorizontalAlignment="Center" Name="ddTransfer_Term"
+                                             LargeImageSource="Images\user_edit_3535.png" SmallImageSource="Images\confirm_list1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Срочные ТД и доп.соглашения" Name="btTransfer_Term" Command="hl:AppCommands.BtTransfer_Term"
+                                               ImageSource="Images\icon_administracion_32_32.png"/>
+                        <ribbon:RibbonMenuItem Header="Условия труда" Name="btTransferCond_Of_Work" Command="hl:AppCommands.BtTransferCond_Of_Work"
+                                               ImageSource="Images\dialog_warning_3232.png"/>
+                        <ribbon:RibbonMenuItem Header="Список переводов для обработки" Name="btTransfer_Emp_For_Group_Hire" 
+                                               Command="hl:AppCommands.BtTransfer_Emp_For_Group_Hire" ImageSource="Images\forward_2424.png"/>
+                        <ribbon:RibbonMenuItem Header="Список абонентов мобильной связи" Command="hl:AppCommands.View_Emp_Mobile_Comm"
+                                               ImageSource="Images\sipphone_3232.png" 
+                                               Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup>
+                    <ribbon:RibbonMenuButton Label="Обменная база" HorizontalAlignment="Center" Name="ddBase_Exchange"
+                                             LargeImageSource="Images\exchange_3232.png" SmallImageSource="Images\exchange_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Обменная база" Name="btBase_Exchange" Command="hl:AppCommands.BtBase_Exchange"
+                                               ImageSource="Images\exchange_1616.png"/>
+                        <ribbon:RibbonMenuItem Header="Заявления о переводе" Name="btProject_Statement" Command="hl:AppCommands.BtProject_Statement"
+                                               ImageSource="Images\Order_2424.png"/>
+                        <ribbon:RibbonMenuItem Header="Проекты переводов" Name="btProject_Transfer_Combined" Command="hl:AppCommands.Project_Transfer_Combined"
+                                               ImageSource="Images\Order_2424.png" 
+                                               Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup>
+                    <ribbon:RibbonMenuButton Label="Справочники" HorizontalAlignment="Center" Name="ddHandBook"
+                                             LargeImageSource="Images\thesaurus_3232.png" SmallImageSource="Images\thesaurus_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Образование" Name="ddEdu"
+                                                 ImageSource="Images\thesaurus_1616.png"                                            
+                                                 ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                            <ribbon:RibbonMenuItem Header="Вид обучения" Name="btType_Study" Command="hl:AppCommands.BtType_Study"/>
+                            <ribbon:RibbonMenuItem Header="Вид образования" Name="btType_Edu" Command="hl:AppCommands.BtType_Edu"/>
+                            <ribbon:RibbonMenuItem Header="Учебные заведения" Name="btInstit" Command="hl:AppCommands.BtInstit"/>
+                            <ribbon:RibbonMenuItem Header="Города учебных заведений" Name="btStudy_City" Command="hl:AppCommands.BtStudy_City"/>
+                            <ribbon:RibbonMenuItem Header="Группы специальностей" Name="btGroup_Spec" Command="hl:AppCommands.BtGroup_Spec"/>
+                            <ribbon:RibbonMenuItem Header="Квалификации" Name="btQual" Command="hl:AppCommands.BtQual"/>
+                            <ribbon:RibbonMenuItem Header="Специальности" Name="btSpeciality" Command="hl:AppCommands.BtSpeciality"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Иностранные языки" Name="ddLang"
+                                                 ImageSource="Images\thesaurus_1616.png"                                             
+                                                 ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                            <ribbon:RibbonMenuItem Header="Иностранные языки" Name="btLang" Command="hl:AppCommands.BtLang"/>
+                            <ribbon:RibbonMenuItem Header="Степень владения языком" Name="btLevel_Know" Command="hl:AppCommands.BtLevel_Know"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Военный учет" Name="ddMilitary"
+                                                 ImageSource="Images\thesaurus_1616.png"                                            
+                                                 ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                            <ribbon:RibbonMenuItem Header="Военный комиссариат" Name="btComm" Command="hl:AppCommands.BtComm"/>
+                            <ribbon:RibbonMenuItem Header="Коды ВУС" Name="btMil_Spec" Command="hl:AppCommands.BtMil_Spec"/>
+                            <ribbon:RibbonMenuItem Header="Категории годности" Name="btMed_Classif" Command="hl:AppCommands.BtMed_Classif"/>
+                            <ribbon:RibbonMenuItem Header="Воинские звания" Name="btMil_Rank" Command="hl:AppCommands.BtMil_Rank"/>
+                            <ribbon:RibbonMenuItem Header="Воинский состав" Name="btMil_Cat" Command="hl:AppCommands.BtMil_Cat"/>
+                            <ribbon:RibbonMenuItem Header="Виды войск" Name="btType_Troop" Command="hl:AppCommands.BtType_Troop"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Типы льгот" Name="btType_Priv" Command="hl:AppCommands.BtType_Priv"/>
+                        <ribbon:RibbonMenuItem Header="Вид повышения квалификации" Name="btType_Rise_Qual" Command="hl:AppCommands.BtType_Rise_Qual"/>
+                        <ribbon:RibbonMenuItem Header="Льготные профессии" Name="btPrivileged_Position" Command="hl:AppCommands.BtPrivileged_Position"/>
+                        <ribbon:RibbonMenuItem Header="Вид послевузовского образования" Name="btType_Postg_Study" Command="hl:AppCommands.BtType_Postg_Study"/>
+                        <ribbon:RibbonMenuItem Header="Источники трудоустройства" Name="btSource_Employability" Command="hl:AppCommands.BtSource_Employability"/>
+                        <ribbon:RibbonMenuItem Header="Причина увольнения" Name="btReason_dismiss" Command="hl:AppCommands.BtReason_dismiss"/>
+                        <ribbon:RibbonMenuItem Header="Справочник должностей" Name="btPosition" Command="hl:AppCommands.BtPosition"/>
+                        <ribbon:RibbonMenuItem Header="Справочник подразделений" Name="btSubdiv" Command="hl:AppCommands.BtSubdiv"/>
+                        <ribbon:RibbonMenuItem Header="Награды" Name="ddReward_Name"
+                                                 ImageSource="Images\thesaurus_1616.png"                                            
+                                                 ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                            <ribbon:RibbonMenuItem Header="Справочник наименований наград" Name="btReward_Name" Command="hl:AppCommands.BtReward_Name"/>
+                            <ribbon:RibbonMenuItem Header="Справочник типов наград" Name="btType_Reward" Command="hl:AppCommands.BtType_Reward"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Подклассы условий труда" Name="btConditions_Of_Work" Command="hl:AppCommands.BtConditions_Of_Work"/>
+                        <ribbon:RibbonMenuItem Header="Типы условий труда" Name="btType_Condition" Command="hl:AppCommands.BtType_Condition"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            <ribbon:RibbonTab x:Name="rpTable" Header="Табельный учет">
+                <ribbon:RibbonGroup x:Name="rgCalendar" Header="ТУ. Календарь" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btCalendar" LargeImageSource="Images\calendar_today_3232.png" SmallImageSource="Images\calendar_today_1616.png"  
+                                         Label="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtCalendar"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgTable" Header="Табельный учет" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btTable" LargeImageSource="Images\thesaurus_3232.png" SmallImageSource="Images\thesaurus_1616.png"       
+                                         Label="Табель сотрудников" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtTable"/>
+                </ribbon:RibbonGroup>
+                <!--<ribbon:RibbonGroup x:Name="rgOperation" Header="Операции с табелем" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btFindEmp" LargeImageSource="Images\find_3232.png" SmallImageSource="Images\find_1616.png"       
+                                         Label="Поиск сотрудников" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtFindEmp"/>
+                    <ribbon:RibbonButton x:Name="btRefresh" LargeImageSource="Images\refresh_table_3232.png" SmallImageSource="Images\refresh_table_1616.png"       
+                                         Label="Обновление табеля" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtRefresh"/>
+                    <ribbon:RibbonButton x:Name="btRefTableList" LargeImageSource="Images\table_refresh.png" SmallImageSource="Images\table_refresh_large.png"       
+                                         Label="Обновление списка" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtRefTableList"/>
+                </ribbon:RibbonGroup>-->
+                <ribbon:RibbonGroup x:Name="rgGraphic" Header="Графики" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btGr_Work" LargeImageSource="Images\calendar_3232.png" SmallImageSource="Images\calendar_1616.png"       
+                                         Label="Графики работы" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtGr_Work"/>
+                </ribbon:RibbonGroup>
+                <!--<ribbon:RibbonGroup x:Name="rgOrders" Header="ТУ.Отчеты" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Отчеты" HorizontalAlignment="Center" Name="ddOrdersTable"
+                                             LargeImageSource="Images/Print_3232.png" SmallImageSource="Images\Print_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Табель на аванс" Name="btTableForAdvance" Command="hl:AppCommands.BtTableForAdvance"/>
+                        <ribbon:RibbonMenuItem Header="Табель на зарплату" Name="btReportTable" Command="hl:AppCommands.BtReportTable"/>
+                        <ribbon:RibbonMenuItem Header="Отчет по численности" Name="btReportPopul" Command="hl:AppCommands.BtReportPopul"/>
+                        <ribbon:RibbonMenuItem Header="Отработанные часы по заказам" Name="btRepHoursByOrders" Command="hl:AppCommands.BtRepHoursByOrders"/>
+                        <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                        <ribbon:RibbonMenuItem Header="Общий табель" Name="btTableTotal" Command="hl:AppCommands.BtTableTotal"/>
+                        <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                        <ribbon:RibbonMenuItem Header="Табель за период" Name="btTable_By_Period" Command="hl:AppCommands.BtTable_By_Period"/>
+                        <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtCloseTableAdvance"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtCloseTableSalary"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtStart_Approval_Table"/>
+                        <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                        <ribbon:RibbonMenuItem Header="Отчеты по документам и часам" Name="ddOtherTableRep">
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtDocsOnPay_Type"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtLateness"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtWorkOut"/>
+                            <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtHoursOnDegree"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtHoursOnSubdiv"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepHoursOnSubdiv"/>
+                            <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepWorkHol"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepWorkPT"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepMission"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtWorkOrder"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAbsenceOnSubdiv"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Протоколы" Name="ddOtherTableProtocols">
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtProtocolTable"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtErrorGraph"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtProtoсolForAccount"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepFailedOrders"/>
+                        </ribbon:RibbonMenuItem>
+                    </ribbon:RibbonMenuButton>
+                    <ribbon:RibbonMenuButton Label="Приказы" Name="ddPrikTable" HorizontalAlignment="Center"
+                                             LargeImageSource="Images/Order_3232.png" SmallImageSource="Images\Order_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtOrderHoliday"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtViewReplEmpTable"/>
+                    </ribbon:RibbonMenuButton>
+                    <ribbon:RibbonMenuButton Label="Ведомости" Name="ddRegisterAcc" HorizontalAlignment="Center"
+                                             LargeImageSource="Images/Properties_3232.png" SmallImageSource="Images\Properties_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepCalc_Salary"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.R_btProtokolReplSalT"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.R_btCombReplReport"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.R_btMiddleWatterSubdivTbl"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>-->
+                <ribbon:RibbonGroup x:Name="rgSubdivTable" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton Label="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" HorizontalAlignment="Center" 
+                                         Command="hl:AppCommands.BtList_Closing_Table"
+                                         LargeImageSource="Images/project_open_3232.png" SmallImageSource="Images\project_open_1616.png"    
+                                         ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"/>
+                    <ribbon:RibbonMenuButton Label="Отчеты по ТУ" HorizontalAlignment="Center" Name="ddRepForTable"
+                                             LargeImageSource="Images/device_tablet_3232.png" SmallImageSource="Images\device_tablet_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Отчеты для группы ТУ" Name="ddRepForGroupTable">
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtOrderTruancy"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepOnAdministrVac"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepOnHospital"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepOnPregnancy"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepOnChildCare"/>
+                            <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAverage_Number_On_Plant"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAverage_Number_Personnel"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepFailureToAppear"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepLate_Pass"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Отчеты для ЭУ" Name="ddRepForEconDev">
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepLateness"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepWorkOut"/>
+                            <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAverage_Number"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAverage_Number_Consolidated"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepListEmp_Number"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepUseOfWorkTime"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepUseOfWorkTimeOnSub"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepTimeNotWorker"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepTimeNotWorkerOnSub"/>
+                            <ribbon:RibbonSeparator></ribbon:RibbonSeparator>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepHoursByOrdersPlant"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRep_Pay_Type_545"/>
+                            <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepAll_Limits_By_Subdiv"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtRepDocsOnPay_Type"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup>
+                    <ribbon:RibbonMenuButton Label="Лимиты и приказы" Name="ddLimitAndOrder"
+                                             LargeImageSource="Images/MarkAsFinal_3232.png" SmallImageSource="Images\MarkAsFinal_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtLimit"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtLimit303"/>
+                        <ribbon:RibbonMenuItem Header="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}" Command="hl:AppCommands.BtViewOrders"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            <ribbon:RibbonTab x:Name="rpBlank" Header="Бюро пропусков">
+                <ribbon:RibbonGroup x:Name="rgPermit" Header="Учет разрешений" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btPermit" LargeImageSource="Images\lock_3232.png" SmallImageSource="Images\lock_1616.png"  
+                                         Label="Учет разрешений" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtPermit"/>
+                    <ribbon:RibbonButton x:Name="btEditFilterPermit" LargeImageSource="Images\filter_3232.png" SmallImageSource="Images\filter_1616.png"       
+                                         Label="Изменить фильтрацию" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtEditFilterPermit"/>
+                    <ribbon:RibbonButton x:Name="btType_Permit" LargeImageSource="Images\thesaurus_3232.png" SmallImageSource="Images\thesaurus_1616.png"       
+                                         Label="Типы разрешений" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtType_Permit"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgViolators" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btViewViolators" LargeImageSource="Images\violators_3232.png" SmallImageSource="Images\violators_1616.png"       
+                                         Label="Нарушители режима" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtViewViolators"/>                    
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgDismissed_Emp" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Списки для обработки" HorizontalAlignment="Center" Name="ddDismissed_Emp"
+                                             LargeImageSource="Images\icon_administracion_3232.png" SmallImageSource="Images\icon_administracion_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Уволенные сотрудники" Name="btDismissed_Emp" ImageSource="Images\delete_1616.png"
+                                               Command="hl:AppCommands.BtDismissed_Emp"/>
+                        <ribbon:RibbonMenuItem Header="Переведенные сотрудники" Name="btTransfer_Emp" ImageSource="Images\exchange_1616.png"
+                                               Command="hl:AppCommands.BtTransfer_Emp"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgAccess_Template" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Доступ сотрудников" HorizontalAlignment="Center" Name="ddEmployees_Access"
+                                             LargeImageSource="Images/kalarm_disabled_3232.png" SmallImageSource="Images\kalarm_disabled_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Шаблоны доступа" Name="btAccess_Template" ImageSource="Images\kalarm_disabled_1616.png"
+                                               Command="hl:AppCommands.BtAccess_Template"/>
+                        <ribbon:RibbonMenuItem Header="Сотрудники и шаблоны" Name="btList_Emp_With_Template" ImageSource="Images\agt_family_1616.png"
+                                               Command="hl:AppCommands.BtList_Emp_With_Template"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            <ribbon:RibbonTab x:Name="rpFR_Emp" Header="Сторонние сотрудники">
+                <ribbon:RibbonGroup x:Name="rgFR_Emp" Header="Сторонние сотрудники" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btPrevFR_Emp" LargeImageSource="Images\communityhelp_4848.png" SmallImageSource="Images\communityhelp_1616.png"  
+                                         Label="Просмотр списка" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtPrevFR_Emp"/>
+                    <ribbon:RibbonButton x:Name="btReleaseBuffer" LargeImageSource="Images\history_clear_3232.png" SmallImageSource="Images\history_clear_1616.png"  
+                                         Label="Очистить буфер" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtReleaseBuffer"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgFilterFR_Emp" Header="Сортировка, фильтр, поиск" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btFilterFR_Emp" LargeImageSource="Images\filter_3232.png" SmallImageSource="Images\filter_1616.png"       
+                                         Label="Фильтр" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtFilterFR_Emp"/>
+                    <ribbon:RibbonButton x:Name="btFindFR_Emp" LargeImageSource="Images\find_3232.png" SmallImageSource="Images\find_1616.png"       
+                                         Label="Поиск" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtFindFR_Emp"/>
+                    <ribbon:RibbonMenuButton Label="Сортировка" HorizontalAlignment="Center" Name="ddFR_Emp"
+                                             LargeImageSource="Images\Sorter_3232.png" SmallImageSource="Images\Sorter_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="По подразделению" Name="btSubdivSort" Command="hl:AppCommands.BtSubdivSort"/>
+                        <ribbon:RibbonMenuItem Header="По фамилии, имени, отчеству" Name="btFIOSort" Command="hl:AppCommands.BtFIOSort"/>
+                        <ribbon:RibbonMenuItem Header="По подразделению и фамилии, имени, отчеству" Name="btSubdivFIOSort" Command="hl:AppCommands.BtSubdivFIOSort"/>
+                        <ribbon:RibbonMenuItem Header="По наименованию должности" Name="btPositionSort" Command="hl:AppCommands.BtPositionSort"/>
+                        <ribbon:RibbonMenuItem Header="По дате начала работы" Name="btDate_StartSort" Command="hl:AppCommands.BtDate_StartSort"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            <ribbon:RibbonTab x:Name="rpVac" Header="Графики отпусков">
+                <ribbon:RibbonGroup x:Name="rgViewArchivVS" Header="Учет отпусков" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btViewArchivVS" LargeImageSource="Images\calendar_vac.png" SmallImageSource="Images\calendar_vac.png"  
+                                         Label="Архив отпусков" Command="hl:AppCommands.BtViewArchivVS"/>
+                    <ribbon:RibbonSeparator HorizontalAlignment="Center" VerticalAlignment="Stretch"/>
+                    <ribbon:RibbonButton x:Name="btMakeVS" LargeImageSource="Images\calendar_yellow.png" SmallImageSource="Images\calendar_yellow.png"  
+                                         Label="Общий список" Command="hl:AppCommands.BtViewMakeVS"/>
+                    <ribbon:RibbonButton x:Name="btPlanVS" LargeImageSource="Images\confirm_list_4848.png" SmallImageSource="/Images/confirm_list1616.png"  
+                                         Label="Формирование плана" Command="hl:AppCommands.BtConfirmVS"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup >
+                    <ribbon:RibbonButton x:Name="btDiagrammsVS" LargeImageSource="Images\diagram.png" SmallImageSource="Images\diagram.png"  
+                                         Label="Диаграммы" Command="hl:AppCommands.BtDiagramsVS"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgRepVacs" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Отчеты" HorizontalAlignment="Center" 
+                                             LargeImageSource="Images\Print_3232.png" SmallImageSource="Images\Print_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Графики отпусков">
+                            <ribbon:RibbonMenuItem Header="План-график на год" Command="hl:AppCommands.BtPlanOnYearVS"/>
+                            <ribbon:RibbonMenuItem Header="Распределение отпусков по месяцам" Command="hl:AppCommands.Bt_alloc_on_Months_VS"/>
+                            <ribbon:RibbonMenuItem Header="Сводный график отпусков" Command="hl:AppCommands.BtSvodVS"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Отпуска по группам мастера" Command="hl:AppCommands.BtVSByGroupMaster"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Факт по группе/бюро/участку" Command="hl:AppCommands.R_btActualVacByRegion"/>
+                            <ribbon:RibbonMenuItem Header="Сводный отчет по группе/бюро/участку" Command="hl:AppCommands.R_btConsolidVacByRegion"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Неиспользованные отпуска" Command="hl:AppCommands.BtVS_RemainVacs"/>
+                            <ribbon:RibbonMenuItem Header="Список сотрудников для блокировки" Command="hl:AppCommands.BtListVsBlock"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Приказы и уведомление" >
+                            <ribbon:RibbonMenuItem Header="Приказ по заводу" Command="hl:AppCommands.R_btPrikazZavodVS"/>
+                            <ribbon:RibbonMenuItem Header="Приказ по подразделению" Command="hl:AppCommands.R_btSubPrikazVS"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Уведомление об отпуска" Command="hl:AppCommands.TsbtRNoteVacVS"/>
+                            <ribbon:RibbonMenuItem Header="Записка-расчет" Command="hl:AppCommands.BtNoteAccountVS"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Ежеквартальные" >
+                            <ribbon:RibbonMenuItem Header="Фактические дни отпуска" Command="hl:AppCommands.R_btActualDatesByPeriod"/>
+                            <ribbon:RibbonMenuItem Header="Планируемые дни отпуска" Command="hl:AppCommands.R_CountPlanSumDaysVS"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Оценочные обязательства" Command="hl:AppCommands.BtAggReservDataPeriodVS"/>
+                        </ribbon:RibbonMenuItem>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup >
+                    <ribbon:RibbonButton LargeImageSource="Images\view_tree_4848.png" SmallImageSource="Images\view_tree_1616.png"  
+                                         Label="Участки/бюро"
+                                         Command="hl:AppCommands.BtViewEmpLocationVac"/>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+            <ribbon:RibbonTab x:Name="rpRas" Header="АРМ Бухгалтера">
+                <ribbon:RibbonGroup x:Name="rgDataFill" Header="Сотрудники" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btDataFill" LargeImageSource="Images\user_with_book_3232.png" SmallImageSource="Images\user_with_book_1616.png"  
+                                         Label="Список работников" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtDataFill"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgDump_To_IBM" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="bt_sbros_IBM" LargeImageSource="Images\ark2_3232.png" SmallImageSource="Images\ark2_1616.png"  
+                                         Label="Сброс файла на IBM" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.Bt_sbros_IBM"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgFilterRas" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btFilterRas" LargeImageSource="Images\filter_3232.png" SmallImageSource="Images\filter_1616.png"       
+                                         Label="Фильтр" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtFilterRas"/>
+                    <ribbon:RibbonButton x:Name="btFindRas" LargeImageSource="Images\find_3232.png" SmallImageSource="Images\find_1616.png"       
+                                         Label="Поиск" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtFindRas"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgUpdateRas" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btUpdateRas" LargeImageSource="Images\Prepare_Large.png" SmallImageSource="Images\Prepare_Large_1616.png"  
+                                         Label="Редактировать" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtUpdateRas"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgRepAccount" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Отчеты" HorizontalAlignment="Center" Name="ddRepAccount"
+                                             LargeImageSource="Images\Print_3232.png" SmallImageSource="Images\Print_1616.png"                                             
+                                             ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}">
+                        <ribbon:RibbonMenuItem Header="Справочник работающих" Name="btPrintAD" Command="hl:AppCommands.BtPrintAD"/>
+                        <ribbon:RibbonMenuItem Header="Список совместителей" Name="R_btRasCombList" Command="hl:AppCommands.R_btRasCombList"/>
+                        <ribbon:RibbonMenuItem Header="Список работающих инвалидов" Name="R_btRASInvalidEmp" Command="hl:AppCommands.R_btRASInvalidEmp"/>
+                        <ribbon:RibbonMenuItem Header="Отчеты по профсоюзу" Name="ddReportByProfUnion">
+                            <ribbon:RibbonMenuItem Header="Список работников состоящих в профсоюзе" Name="R_btRASProfEmp" Command="hl:AppCommands.R_btRASProfEmp"/>
+                            <ribbon:RibbonMenuItem Header="Список работников не состоящих в профсоюзе" Name="R_btRASNonProfEmp" Command="hl:AppCommands.R_btRASNonProfEmp"/>
+                            <ribbon:RibbonMenuItem Header="Список вступивших в профсоюз" Name="btProfUnion_Entered" Command="hl:AppCommands.BtProfUnion_Entered"/>
+                            <ribbon:RibbonMenuItem Header="Список вышедших из профсоюза" Name="btProfUnion_CameOut" Command="hl:AppCommands.BtProfUnion_CameOut"/>
+                        </ribbon:RibbonMenuItem>
+                        <ribbon:RibbonMenuItem Header="Протокол пустых дат на выслугу лет" Name="btProtocolDump" Command="hl:AppCommands.BtProtocolDump"/>
+                        <ribbon:RibbonMenuItem Header="Протокол переводов в подразделении" Name="btRepTransSub" Command="hl:AppCommands.BtRepTransSub"/>
+                        <ribbon:RibbonMenuItem Header="Список работников со сроком окончания доп.соглашения" Name="btRepEmpContract" Command="hl:AppCommands.BtRepEmpContract"/>
+                        <ribbon:RibbonMenuItem Header="Протокол несоответствия месяца даты движения" Name="btProtocolTr_Date_Order" Command="hl:AppCommands.BtProtocolTr_Date_Order"/>
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgView_All_Transfer" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btView_All_Transfer" LargeImageSource="Images\document_3232.png" SmallImageSource="Images\document_1616.png"  
+                                         Label="Просмотр переводов" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtView_All_Transfer"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup x:Name="rgOutside_Emp" Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton x:Name="btOutside_Emp" LargeImageSource="Images\users_group_3232.png" SmallImageSource="Images\users_group_2424.png"  
+                                         Label="Сторонние сотрудники" ToolTipDescription="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                                         Command="hl:AppCommands.BtOutside_Emp"/>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+
+            <ribbon:RibbonTab x:Name="rpMT" Header="Штатное расписание">
+                <ribbon:RibbonGroup  Header="Штатное расписание" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonButton  LargeImageSource="Images\document2_3232.png" SmallImageSource="Images\calendar_vac.png"  
+                                         Label="Штатное расписание" Command="hl:AppCommands.OpenViewManningTable"/>
+                    <ribbon:RibbonButton  LargeImageSource="Images\calendar_yellow.png" SmallImageSource="Images\calendar_yellow.png"  
+                                         Label="Штатная расстановка" Command="hl:AppCommands.OpenViewManningTableEmp"/>
+                    <ribbon:RibbonButton LargeImageSource="Images\confirm_list_4848.png" SmallImageSource="/Images/confirm_list1616.png"  
+                                         Label="Проекты штатного расписания" Command="hl:AppCommands.OpenViewManningProject"  Visibility="Collapsed"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup Header="Справочники">
+                    <ribbon:RibbonButton  LargeImageSource="Images\view_tree_4848.png" SmallImageSource="Images\view_tree_1616.png"  
+                                         Label="Структура предприятия" Command="hl:AppCommands.ViewSubdivPartition"/>
+                    <ribbon:RibbonButton  LargeImageSource="Images\machine_4848.png" SmallImageSource="Images\machine_4848.png"  
+                                         Label="Рабочие места" Command="hl:AppCommands.ViewWorkPlace"/>
+                    <ribbon:RibbonButton  LargeImageSource="Images\kask_3232.png" SmallImageSource="Images\kask_3232.png"  
+                                         Label="СИЗ" Command="hl:AppCommands.ViewIndividProtectionCatalog"/>
+                </ribbon:RibbonGroup>
+                <ribbon:RibbonGroup  Header="" HorizontalContentAlignment="Center">
+                    <ribbon:RibbonMenuButton Label="Отчеты" HorizontalAlignment="Center" 
+                                             LargeImageSource="Images\Print_3232.png" SmallImageSource="Images\Print_1616.png">
+                        <ribbon:RibbonMenuItem Header="Графики отпусков" Visibility="Collapsed">
+                            <ribbon:RibbonMenuItem Header="План-график на год" Command="hl:AppCommands.BtPlanOnYearVS"/>
+                            <ribbon:RibbonSeparator/>
+                            <ribbon:RibbonMenuItem Header="Отпуска по группам мастера" Command="hl:AppCommands.BtVSByGroupMaster"/>
+                        </ribbon:RibbonMenuItem>
+                        
+                    </ribbon:RibbonMenuButton>
+                </ribbon:RibbonGroup>
+            </ribbon:RibbonTab>
+        </ribbon:Ribbon>
+        <!--<TabControl x:Name="tabsContent" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Source={StaticResource OpenTabs}, Path=OpenTabs}" ItemContainerStyle="{StaticResource ClosedTabItemStyle}" 
+                    Grid.RowSpan="2"  SelectedItem ="{Binding Source={StaticResource OpenTabs}, Path=SelectedTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+        </TabControl>-->
+        <xcad:DockingManager Grid.Row="1" Grid.Column="1" AllowMixedOrientation="True" BorderBrush="Black" BorderThickness="1"
+                             DocumentsSource="{Binding Source={StaticResource OpenTabs}, Path=OpenTabs}" DocumentClosed="DockingManager_DocumentClosed"
+                             ActiveContent="{Binding Source={StaticResource OpenTabs}, Path=SelectedTab, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+            <xcad:DockingManager.Resources>
+                <DataTemplate  DataType="{x:Type vm:ViewTabBase}">
+                    <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Content="{Binding ContentData}"/>
+                </DataTemplate>
+            </xcad:DockingManager.Resources>
+            <xcad:DockingManager.DocumentHeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Content.HeaderIcon}" Margin="3,3,6,3" Width="18"/>
+                        <TextBlock Text="{Binding Content.HeaderText}"  VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </xcad:DockingManager.DocumentHeaderTemplate>
+            <xcad:DockingManager.DocumentPaneMenuItemHeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="{Binding Content.HeaderIcon}" Margin="3,3,6,3" Width="18"/>
+                        <TextBlock Text="{Binding Content.HeaderText}"  VerticalAlignment="Center"/>
+                    </StackPanel>
+                </DataTemplate>
+            </xcad:DockingManager.DocumentPaneMenuItemHeaderTemplate>
+            <xcad:LayoutRoot x:Name="_layoutRoot">
+                <xcad:LayoutPanel Orientation="Horizontal">
+                    <xcad:LayoutDocumentPaneGroup>
+                        <xcad:LayoutDocumentPane>
+                        </xcad:LayoutDocumentPane>
+                    </xcad:LayoutDocumentPaneGroup >
+                </xcad:LayoutPanel>
+            </xcad:LayoutRoot>
+        </xcad:DockingManager>
+    </Grid>
+</Window>

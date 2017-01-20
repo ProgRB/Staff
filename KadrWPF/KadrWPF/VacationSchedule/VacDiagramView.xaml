@@ -1,0 +1,111 @@
+﻿<UserControl x:Class="VacationSchedule.VacDiagramView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:rv="clr-namespace:Microsoft.Reporting.WinForms;assembly=Microsoft.ReportViewer.WinForms"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="VisibilityToBooleanConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <TextBlock Text="Фильтр"/>
+            </Expander.Header>
+            <Grid>
+                <Grid.Resources>
+                    <Style x:Key="EnabledControl" TargetType="Control">
+                        <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="0,2"/>
+                    </Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="HorizontalAlignment" Value="Right"/>
+                        <Setter Property="VerticalAlignment" Value="Center"/>
+                        <Setter Property="Margin" Value="10,2"/>
+                    </Style>
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledControl}"></Style>
+                    <Style TargetType="DatePicker" BasedOn="{StaticResource EnabledControl}"></Style>
+                    <Style TargetType="xctk:CheckComboBox" BasedOn="{StaticResource EnabledControl}"></Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition MaxWidth="230"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition MaxWidth="230"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Подразделение"/>
+                <ComboBox Grid.Column="1" IsReadOnly="True" 
+                          ItemsSource="{Binding SubdivSource}" SelectedValue="{Binding SubdivID, Mode=TwoWay}" TextSearch.TextPath="CodeSubdiv"
+                          SelectedValuePath="SubdivID"
+                          Grid.IsSharedSizeScope="True" Grid.ColumnSpan="2">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="Column11"/>
+                                    <ColumnDefinition SharedSizeGroup="Column12"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding CodeSubdiv}" Margin="5,2" VerticalAlignment="Center"/>
+                                <Border Grid.Column="1" Padding="5,2">
+                                    <TextBlock Text="{Binding SubdivName}"/>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Grid.Row="0" Grid.Column="3" Margin="10,2" HorizontalAlignment="Left" Width="120" Click="Button_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/images/refresh2424.png" Width="18"/>
+                        <TextBlock Text="Обновить"/>
+                    </StackPanel>
+                </Button>
+                <TextBlock Grid.Row="1" Text="Дата начала периода"/>
+                <DatePicker SelectedDate="{Binding DateBegin, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
+                <TextBlock Grid.Row="1" Grid.Column="2" Text="Дата окончания периода"/>
+                <DatePicker SelectedDate="{Binding DateEnd, Mode=TwoWay}" Grid.Row="1" Grid.Column="3"/>
+                <TextBlock Text="Тип отпуска" Grid.Row="2"/>
+                <xctk:CheckComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding TypeVacSource}"
+                      ValueMemberPath="TypeVacID"
+                      SelectedMemberPath="IsChecked"
+                                    DisplayMemberPath="NameVac"
+                      ToolTip="{Binding RelativeSource={RelativeSource Mode=Self}, Path=SelectedItem}"
+                      Delimiter=",">
+                    <xctk:CheckComboBox.Resources>
+                        <Style TargetType="CheckBox">
+                            <Setter Property="LayoutTransform">
+                                <Setter.Value>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="5,2"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </xctk:CheckComboBox.Resources>
+                </xctk:CheckComboBox>
+            </Grid>
+
+        </Expander>
+        <GroupBox Grid.Row="1" Header="Диаграмма">
+            <WindowsFormsHost Visibility="{Binding IsLoadNotBusy, Converter={StaticResource VisibilityToBooleanConverter}}">
+                <rv:ReportViewer x:Name="repViewer"/>
+            </WindowsFormsHost>
+        </GroupBox>
+        <xctk:BusyIndicator IsBusy="{Binding IsLoadBusy}" BusyContent="Формирование данных..." Grid.RowSpan="2"/>
+    </Grid>
+</UserControl>

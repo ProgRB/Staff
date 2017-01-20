@@ -1,0 +1,133 @@
+﻿<Window x:Class="WpfControlLibrary.Table.EditRegDoc"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WpfControlLibrary"
+        Title="Оправдательные документы" Height="220" Width="670" FontSize="12" MinWidth="670" MinHeight="195" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" ResizeMode="NoResize">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveRegDoc" CanExecute="Save_CanExecute" Executed="Save_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <ControlTemplate x:Key="NoValidErrorTemplate">
+            <DockPanel>
+                <TextBlock Foreground="Red" FontSize="15" Text="*" ToolTip="{Binding [0].ErrorContent}"/>
+                <AdornedElementPlaceholder/>
+            </DockPanel>
+        </ControlTemplate>
+        <Style TargetType="Control" x:Key="EnabledTextBox">
+            <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Margin" Value="0,5, 5, 5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Validation.ErrorTemplate" Value="{StaticResource NoValidErrorTemplate}"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}"></Style>
+        <Style TargetType="TextBox" BasedOn="{StaticResource EnabledTextBox}"></Style>
+        <Style TargetType="xctk:MaskedTextBox" BasedOn="{StaticResource EnabledTextBox}"></Style>
+        <Style TargetType="xctk:TimePicker" BasedOn="{StaticResource EnabledTextBox}"/>
+        <Style TargetType="DatePicker" BasedOn="{StaticResource EnabledTextBox}">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="DatePickerTextBox.Text" Value="Введите дату"/>
+         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+        
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" x:Key="PanelGrayBack">
+            <GradientStop Color="#FFFCFCFE" Offset="0" />
+            <GradientStop Color="#FFABAB87" Offset="1" />
+            <GradientStop Color="#FFE7E3DA" Offset="0.512" />
+        </LinearGradientBrush>
+
+        <Style x:Key="ToolBoxLikeStyle" BasedOn="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" TargetType="Button">
+            <Setter Property="Control.Margin" Value="3,3"/>
+            <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"/>
+            <Setter Property="ToolTipService.ShowOnDisabled" Value="True"/>
+        </Style>
+        <Style BasedOn="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" TargetType="Separator"/>
+        
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="№ документа"/>
+        <TextBox Grid.Column="1" Text="{Binding DocNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <TextBlock Grid.Column="2" Text="Дата документа"/>
+        <DatePicker Grid.Column="3" SelectedDate="{Binding DocDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+        <TextBlock Text="Тип документа" Grid.Row="1"/>
+        <ComboBox ItemsSource="{Binding DocListSource}" SelectedValue="{Binding DocListID, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+                  SelectedValuePath="DocListID" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Grid.IsSharedSizeScope="True"
+                  IsEditable="True" IsTextSearchEnabled="True" TextSearch.TextPath="DocName">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" SharedSizeGroup="ColumnAA1"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding DocName}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding DocNote}" VerticalAlignment="Center" Margin="5,2,0,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="ToolTip" Value="{Binding PayTypeID, StringFormat='Вид оплат: {0}'}"/>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <TextBlock Text="Дата и время начала" Grid.Row="2"/>
+        <xctk:MaskedTextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" Value="{Binding DateDocBegin, ValidatesOnDataErrors=True}" 
+                             LostFocus="DateBegin_LostFocus" Width="80" Mask="00-00-0000" IncludeLiteralsInValue="True" IncludePromptInValue="False"
+                             InsertKeyMode="Insert" ValueDataType="{x:Type sys:String}" ToolTip="Дата начала документа"/>
+        <xctk:MaskedTextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" 
+                            Value="{Binding TimeDocBegin, ValidatesOnDataErrors=True, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                            Width="70" Mask="99:99:99" Margin="85, 0, 0, 0"
+                            ValueDataType="{x:Type sys:String}" ToolTip="Время начала документа"
+                            x:Name="dtTimeBegin" InsertKeyMode="Overwrite"/>
+        <TextBlock Text="Дата и время окончания" Grid.Row="2" Grid.Column="2"/>
+        <xctk:MaskedTextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Value="{Binding DateDocEnd, ValidatesOnDataErrors=True}" 
+                             LostFocus="DateBegin_LostFocus" Width="80" Mask="00-00-0000" IncludeLiteralsInValue="True" IncludePromptInValue="False"
+                            ValueDataType="{x:Type sys:String}" ToolTip="Дата окончания документа"
+                            />
+        <xctk:MaskedTextBox Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Value="{Binding TimeDocEnd, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                            Width="70" Mask="99:99:99" Margin="85, 0, 5, 0"
+                            ValueDataType="{x:Type sys:String}" x:Name="dtTimeEnd" ToolTip="Время окончания документа"
+                            InsertKeyMode="Overwrite"/>
+        <TextBlock Text="Местонахождение" Grid.Row="3"/>
+        <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding DocLocation, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Grid.ColumnSpan="3"
+                 VerticalAlignment="Stretch"/>
+        <StackPanel Background="{StaticResource PanelGrayBack}" Grid.Row="4" Grid.ColumnSpan="4" Orientation="Horizontal">
+            <Button Command="local:Wpf_Commands.SaveRegDoc" Content="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Command.Text}"
+                    Style="{StaticResource ToolBoxLikeStyle}" Padding="7,3" IsDefault="True"/>
+            <Separator />
+            <Button Style="{StaticResource ToolBoxLikeStyle}" Content="Выход" Click="btExit_Click"/>
+            <TextBlock Text="{Binding Error, StringFormat='Ошибка ввода данных: {0}'}" Margin="10,0,0,0" Foreground="DarkRed" MaxWidth="450" Width="450"
+                       TextWrapping="Wrap">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Error}" Value="{x:Static sys:String.Empty}">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Window>

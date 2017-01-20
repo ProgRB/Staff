@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Tables>
+  <Table Name="SUBDIV_PART_TYPE" SchemaName="APSTAFF" Comments="Таблица типов подструктур подразделений">
+    <Column Name="SUBDIV_PART_TYPE_ID" Comment="Уникальный год номер типа подструктуры" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="SUBDIV_PART_TYPE_CODE" Comment="Код типа подструктуры" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SUBDIV_PART_TYPE_NAME" Comment="Наименование типа подструктуры" DBType="VARCHAR2" Type="System.String"/>
+  </Table>
+
+  <Table Name="SUBDIV_PARTITION" SchemaName="APSTAFF">
+    <Column Name="SUBDIV_PARTITION_ID" Comment="Уникальный номер подструктуры" DBType="NUMBER"  Type="System.Decimal"/>
+    <Column Name="SUBDIV_PART_TYPE_ID" Comment="Ссылка на уникальный тип структуры подразделения" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="SUBDIV_NUMBER" Comment="Номер подструктуры" DBType="VARCHAR2" Nullable="False" Type="System.String"/>
+    <Column Name="PARENT_SUBDIV_ID" Comment="Ссылка на родительский элемент структуры" DBType="NUMBER" ColumnRef="APSTAFF.SUBDIV_PARTITION.SUBDIV_PARTITION_ID" Type="System.Decimal"/>
+    <Column Name="SUBDIV_ID" Comment="Подразделение которому принадлежит струкутра" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.SUBDIV.SUBDIV_ID" Type="System.Decimal"/>
+    <Column Name="DATE_START_SUBDIV_PART" Comment="Дата начала действия структуры" DBType="DATE" Nullable="False" Type="System.DateTime"/>
+    <Column Name="DATE_END_SUBDIV_PART" Comment="Дата окончания действия структуры" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="SUBDIV_PART_NAME" Comment="Наименование структурного подразделения" DBType="VARCHAR2" Type="System.String" Nullable="False"/>
+  </Table>
+
+  <Table Name="INDIVID_PROTECTION" SchemaName="APSTAFF">
+    <Column Name="INDIVID_PROTECTION_ID" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="CODE_PROTECTION" DBType="VARCHAR2" Nullable="False" Type="System.String"/>
+    <Column Name="NAME_PROTECTION" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="TYPE_INDIVID_PROTECTION_ID" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.TYPE_INDIVID_PROTECTION.TYPE_INDIVID_PROTECTION_ID" Type="System.Decimal"/>
+  </Table>
+  
+  <Table Name="TYPE_INDIVID_PROTECTION" SchemaName="APSTAFF">
+    <Column Name="TYPE_INDIVID_PROTECTION_ID" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="TYPE_PROTECTION_NAME" DBType="VARCHAR2" Nullable="False" Type="System.String"/>
+  </Table>
+
+  <Table Name="WORK_PLACE" SchemaName="APSTAFF" Comments="Рабочее место для штатного расписания">
+    <Column Name="WORK_PLACE_ID" Comment="Уникальный номер рабочего места" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SUBDIV_ID" Comment="Ссылка на структурное деление" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.SUBDIV.SUBDIV_ID" Type="System.Decimal"/>
+    <Column Name="POS_ID" Comment="Ссылка на должность" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.POSITION.POS_ID" Type="System.Decimal"/>
+    <Column Name="WORKER_COUNT" Comment="Кол-во работников на рабочем месте" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="HIGH_SALARY_SIGN" Comment="Признак повышенной оплаты труда" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="ADDITION_VAC_SIGN" Comment="Признак доп. отпуска" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="SHORT_WORK_DAY_SIGN" Comment="Признак сокр. дня работы" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="MILK_SIGN" Comment="Признак молочника" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="MED_CHECKUP_PERIOD" Comment="Период мед. проверки (месяцы)" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="WORK_PLACE_NUM" Comment="Номер карты условий труда" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SIGN_PREFERENTIAL_PENS" Comment="Признак льготного пенсионного обеспечения" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="PRIVILEGED_POSITION_ID" Comment="Ссылка на список льготных профессий" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+  
+  <Table Name="WORK_PLACE_CONDITION" SchemaName="APSTAFF" Comments="Таблица условий труда для рабочего места">
+    <Column Name="WORK_PLACE_CONDITION_ID" Comment="Уникальный номер связи условий труда и места" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="WORK_PLACE_ID" Comment="Ссылка на условия труда" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.WORK_PLACE.WORK_PLACE_ID" Type="System.Decimal"/>
+    <Column Name="TYPE_CONDITION_ID" Comment="Ссылка на тип условий" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.TYPE_CONDITION.TYPE_CONDITION_ID" Type="System.Decimal"/>
+    <Column Name="CONDITIONS_OF_WORK_ID" Comment="Ссылка на значения условий труда" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.CONDITIONS_OF_WORK.CONDITIONS_OF_WORK_ID" Type="System.Decimal"/>
+  </Table>
+  <Table Name="WORK_PLACE_PROTECTION" SchemaName="APSTAFF" Comments="Таблица средств инд. защиты для рабочего места">
+    <Column Name="WORK_PLACE_PROTECTION_ID" Comment="Уникальный номер связи средств защиты и места" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="WORK_PLACE_ID" Comment="Ссылка на условия труда" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.WORK_PLACE.WORK_PLACE_ID" Type="System.Decimal"/>
+    <Column Name="INDIVID_PROTECTION_ID" Comment="Ссылка на тип СИЗ" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.INDIVID_PROTECTION.INDIVID_PROTECTION_ID" Type="System.Decimal"/>
+    <Column Name="PERIOD_FOR_USE" Comment="Период использования СИЗ в мес." DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="PRIVILEGED_POSITION" SchemaName="APSTAFF" Comments="Таблица льготных профессий по подразделениям;">
+    <Column Name="PRIVILEGED_POSITION_ID" Comment="Уникальный идентификатор льготной профессии по подразделению;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="SUBDIV_ID" Comment="Уникальный идентификатор подразделения;" DBType="NUMBER" ColumnRef="APSTAFF.SUBDIV.SUBDIV_ID" Type="System.Decimal"/>
+    <Column Name="POS_ID" Comment="Уникальный идентификатор профессии;" DBType="NUMBER" ColumnRef="APSTAFF.POSITION.POS_ID" Type="System.Decimal"/>
+    <Column Name="SPECIAL_CONDITIONS" Comment="Особые условия;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="KPS" Comment="КПС;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="NUMBER_LIST" Comment="Номер списка;" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="CONDITIONS_OF_WORK" SchemaName="APSTAFF" Comments="Подкласс условий труда;">
+    <Column Name="CONDITIONS_OF_WORK_ID" Comment="Уникальный идентификатор подкласса условий труда;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="SUBCLASS_NUMBER" Comment="Номер подкласса;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SIGN_CALC_PREF_WORK_EXP" Comment="Признак расчета льготного стажа;" DBType="NUMBER" Type="System.Int16"/>
+  </Table>
+
+  <Table Name="TYPE_CONDITION" SchemaName="APSTAFF" Comments="Тип условий труда;">
+    <Column Name="TYPE_CONDITION_ID" Comment="Уникальный идентификатор типа условий труда;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="TYPE_CONDITION_NAME" Comment="Наименование типа условий труда;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="PARENT_ID" Comment="Родитель;" DBType="NUMBER" ColumnRef="APSTAFF.TYPE_CONDITION.TYPE_CONDITION_ID" Type="System.Decimal"/>
+    <Column Name="SIGN_MAIN_TYPE" Comment="Признак главного подкласса;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="ORDER_FOR_CONTRACT" Comment="Порядок сортировки в договоре;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="ORDER_FOR_EDIT" Comment="Порядок сортировки при редактировании;" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="POSITION" SchemaName="APSTAFF" Comments="Справочник должностей;">
+    <Column Name="POS_ID" Comment="Уникальный идентификатор должности;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="CODE_POS" Comment="Код должности; Текущий шифр профессии;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="POS_NAME" Comment="Наименование должности; Текущее наименование профессии;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="POS_ACTUAL_SIGN" Comment="Признак актуальности; Признак актуальности должности (если равен 1, то должность актуальна на данный момент, то есть действительна, а если 0, то нет);" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="POS_DATE_START" Comment="Дата введения должности; Дата введения должности в действие;" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="POS_DATE_END" Comment="Дата окончания действия данной должности;" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="FROM_POS_ID" Comment="Уникальный идентификатор должности;" DBType="NUMBER" ColumnRef="APSTAFF.POSITION.POS_ID" Type="System.Decimal"/>
+    <Column Name="POS_CHIEF_OR_DEPUTY_SIGN" Comment="Признак руководителя или зама;" DBType="NUMBER" Type="System.Int16"/>
+  </Table>
+
+  <Table Name="DEGREE" SchemaName="APSTAFF" Comments="Справочник категорий (сотрудника либо тарифной ставки);">
+    <Column Name="DEGREE_ID" Comment="Уникальный идентификатор категории (сотрудника или тарифной ставки);" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="CODE_DEGREE" Comment="Шифр категории;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="DEGREE_NAME" Comment="Наименование категории; Наименование категории (сотрудника или тарифной ставки);" DBType="VARCHAR2" Type="System.String"/>
+  </Table>
+
+  <Table Name="FORM_OPERATION" SchemaName="APSTAFF" Comments="Вид производства;">
+    <Column Name="FORM_OPERATION_ID" Comment="Уникальный идентификатор вида производства;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="NAME_FORM_OPERATION" Comment="Наименование вида производства;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="CODE_FORM_OPERATION" Comment="Шифр вида производства;" DBType="VARCHAR2" Type="System.String"/>
+  </Table>
+
+  <Table Name="WORKING_TIME" SchemaName="APSTAFF" Comments="Справочник типа продолжительности рабочего времени;">
+    <Column Name="WORKING_TIME_ID" Comment="Уникальный идентификатор типа продолжительности рабочего времени;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="WORKING_TIME_NAME" Comment="Наименование типа продолжительности рабочего времени;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="WORKING_TIME_PATTERN" Comment="Шаблон продолжительности рабочего времени;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SIGN_NUMBER_OF_HOURS" Comment="Признак ввода кол-ва часов;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="NUMBER_FOR_ORDER" Comment="Номер для документов (ТД, Доп.согл.);" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="TYPE_EDU" SchemaName="APSTAFF" Comments="Справочник типов образования;">
+    <Column Name="TYPE_EDU_ID" Comment="Уникальный идентификатор вида образования;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="TE_NAME" Comment="Вид образования; Вид образования (высшее, среднее и т.п.);" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="TE_PRIORITY" Comment="Приоритер вида образования для отчета; Приоритет используется при формировании отчетов;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="TYPE_EDU_PRIOR" Comment="Приоритет вида образования;" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+  
+  <Table Name="BASE_TARIFF" SchemaName="APSTAFF" Comments="Справочник база коэффициента начисления">
+    <Column Name="BASE_TARIFF_ID" Comment="Уникальный идентификатор" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="DATE_BEGIN" Comment="Дата начала действия" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="DATE_END" Comment="Дата окончания действия" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="TARIFF_VALUE" Comment="Размеры базы коэффициента" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="GR_WORK" SchemaName="APSTAFF" Comments="Таблица графиков работы;">
+    <Column Name="GR_WORK_ID" Comment="Уникальный идентификатор графика работы;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="GR_WORK_NAME" Comment="Имя графика работы;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="COUNT_DAY" Comment="Количество дней в графике;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SIGN_HOLIDAY_WORK" Comment="Признак работы графика в выходной день;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="SIGN_COMPACT_DAY_WORK" Comment="Признак работы графика в сокращенный день;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="SIGN_FLOATING" Comment="Признак плавающего графика;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="COMPACT_TIME_ZONE_ID" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="HOLIDAY_TIME_ZONE_ID" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="HOURS_FOR_NORM" Comment="Количество часов по норме;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="HOURS_DINNER" Comment="Часы обеденного перерыва;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SIGN_SUMMARIZE" Comment="Признак суммированного учета времени;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="HOURS_FOR_GRAPH" Comment="Количество часов в день по графику;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="DATE_END_GRAPH" Comment="Дата окончания действия графика;" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="SIGN_SHORTEN" Comment="Признак сокращенного графика; Признак сокр. графика исп. для начисления 246 в.о.;" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="HOURS_NORM_CALENDAR" Comment="Количество часов по норме по календарю;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SIGN_SHIFTMAN" Comment="Признак сменного графика; Признак бла бла бл" DBType="NUMBER" Type="System.Int16"/>
+  </Table>
+
+  <Table Name="TARIFF_GRID_SALARY" SchemaName="APSTAFF" Comments="Представление тарифных сеток с коэффциентам  и тп">
+    <Column Name="TARIFF_GRID_ID" Comment="Уникальный идентификатор тарифной сетки" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="CODE_TARIFF_GRID" Comment="Код тар. сетки" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="TAR_CLASSIF" Comment="Разряд сетки" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="TAR_SAL" Comment="Коэффициент сетки" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TAR_HOUR" Comment="Часовая ставка" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TAR_MONTH" Comment="Оклад за месяц" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TAR_DATE" Comment="Дата начала действия тарифа" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="TARIFF_END_DATE" Comment="Дата окончания действия тарифа" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="CAR_ID" Comment="Коэффициент сетки" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="TYPE_VAC" SchemaName="APSTAFF" Comments="Тип отпуска;">
+    <Column Name="TYPE_VAC_ID" Comment="Уникальный идентификатор типа отпуска;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="NAME_VAC" Comment="Вид отпуска;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="CODE_VAC" Comment="Код отпуска;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SHORT_NAME_VAC" Comment="Краткое наименование;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="COUNT_DAYS_IN_YEAR" Comment="Количество дней положенных в год;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TYPE_VAC_CALC_ID" Comment="Идентификатор тип расчета отпуска;" DBType="NUMBER" ColumnRef="APSTAFF.TYPE_VAC_CALC.TYPE_VAC_CALC_ID" Type="System.Decimal"/>
+    <Column Name="NUMBER_CALC" Comment="Порядковый номер вычисления отпуска" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="CALC_PERIOD_DAYS" Comment="Количество дней для расчета периода" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="NEED_REG_DOC" Comment="Признак сброса оправдательных в табель после закрытия;" DBType="NUMBER" Nullable="False" Type="System.Int16"/>
+    <Column Name="ACCOUNT_NOTE_SIGN" Comment="Признак, показывать ли отдельной запиской-рассчетом отпуск;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="VAC_REASON" Comment="Основание предоставления отпуска;Основание отпуска;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="VAC_GROUP_BITSET" Comment="Битовый набор смежности периодов отпусков;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SIGN_BLOCK_NOTE_ACCOUNT" Comment="Признак печати отпуска в записке рассчет в таблице доп. отпуск;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="SING_PAYMENT" Comment="Признак оплаты - отпуск оплачивается;" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="VAC_GROUP_TYPE" SchemaName="APSTAFF">
+    <Column Name="VAC_GROUP_TYPE_ID" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="GROUP_VAC_NAME" DBType="VARCHAR2" Type="System.String" Comment="Наименование группы отпусков сокращенное"/>
+    <Column Name="TYPE_VAC_CALC_PERIOD_ID" Comment="Уникальный номер метода расчета периода отпусков" DBType="NUMBER" ColumnRef="APSTAFF.TYPE_VAC_CALC_PERIOD.TYPE_VAC_CALC_PERIOD_ID" Type="System.Decimal"/>
+    <Column Name="NEED_PERIOD" Comment="Требуется ли период для типа отпусков" DBType="NUMBER" Type="System.Int16"/>
+    <Column Name="COUNT_PERIOD_DAY" Comment="Кол-во дней для расчета периода за 1 год" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="GROUP_VAC_FULL_NAME" Comment="Полное наименование группы отпуска" DBType="VARCHAR2" Type="System.String"/>
+  </Table>
+
+  <Table Name="STAFF" SchemaName="APSTAFF" Comments="Штатная единица (единицы)">
+    <Column Name="STAFF_ID" Comment="Уникальный ключ;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="POS_ID" Comment="Идентификатор профессии;" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.POSITION.POS_ID" Type="System.Decimal"/>
+    <Column Name="SUBDIV_ID" Comment="Подразделение;" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.SUBDIV.SUBDIV_ID" Type="System.Decimal"/>
+    <Column Name="DEGREE_ID" Comment="Идентификатор категории;" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.DEGREE.DEGREE_ID" Type="System.Decimal"/>
+    <Column Name="COMMENTS" Comment="комментарий к профессии, для 3 отдела;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="ORDER_ID" Comment="Номер заказа;" DBType="NUMBER" ColumnRef="APSTAFF.ORDERS.ORDER_ID" Type="System.Decimal"/>
+    <Column Name="TARIFF_GRID_ID" Comment="Тарифная сетка;" DBType="NUMBER" ColumnRef="APSTAFF.TARIFF_GRID.TARIFF_GRID_ID" Type="System.Decimal"/>
+    <Column Name="TAR_BY_SCHEMA" Comment="Тариф по схеме;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="CLASSIFIC" Comment="Разряд;Разряд штатной единицы;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="STAFF_SECTION_ID" Comment="Раздел штатного расписания" DBType="NUMBER" ColumnRef="APSTAFF.STAFF_SECTION.STAFF_SECTION_ID" Type="System.Decimal"/>
+    <Column Name="SUBDIV_PARTITION_ID" Comment="Структурное подразделение штатной единицы" DBType="NUMBER" ColumnRef="APSTAFF.SUBDIV_PARTITION.SUBDIV_PARTITION_ID" Type="System.Decimal"/>
+    <Column Name="FORM_OPERATION_ID" Comment="Вид производства" Nullable="False" DBType="NUMBER" ColumnRef="APSTAFF.FORM_OPERATION.FORM_OPERATION_ID" Type="System.Decimal"/>
+    <Column Name="POS_NOTE" Comment="Коментарий к профессии" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="STAFF_COUNT" Comment="Количество единиц" Nullable="False" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="WORK_PLACE_ID" Comment="Ссылка на рабочее место (карта условий труда)" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="GR_WORK_ID" Comment="Ссылка на график работы" DBType="NUMBER" ColumnRef="APSTAFF.GR_WORK.GR_WORK_ID" Type="System.Decimal"/>
+    <Column Name="WORKING_TIME_ID" Comment="Ссылка на условия графика работы" DBType="NUMBER" ColumnRef="APSTAFF.WORKING_TIME.WORKING_TIME_ID" Type="System.Decimal"/>
+    <Column Name="SIGN_MAT_RESP_CONTR" Comment="Признак материально ответственного лица" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TYPE_EDU_ID" Comment="Тип образования" DBType="NUMBER" ColumnRef="APSTAFF.TYPE_EDU.TYPE_EDU_ID" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="STAFF_ADDITION" SchemaName="APSTAFF" Comments="Надбавки для штатных единиц">
+    <Column Name="STAFF_ADDITION_ID" Comment="Уникальный номер надбавки штаной единицы" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="STAFF_ID" Comment="ССылка на штатную единицу" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.STAFF.STAFF_ID" Type="System.Decimal"/>
+    <Column Name="TYPE_STAFF_ADDITION_ID" Comment="Ссылка на тип надбавки" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.TYPE_STAFF_ADDITION.TYPE_STAFF_ADDITION_ID" Type="System.Decimal"/>
+    <Column Name="ADDITION_VALUE" Comment="Значение надбавки" DBType="NUMBER" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="TYPE_STAFF_ADDITION" SchemaName="APSTAFF" Comments="Надбавка для штатных единиц;">
+    <Column Name="TYPE_STAFF_ADDITION_ID" Comment="Униккальный номер надбавки;" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="NAME_STAFF_ADD" Comment="Наименование надбавки;" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="SHORT_NAME_STAFF_ADD" Comment="Наименование надбавки сокращенное" DBType="VARCHAR2" Type="System.String"/>
+    <Column Name="PAY_TYPE_ID" Comment="Шифр оплат для надбавки;" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="MAX_VALUE" Comment="Максимальное значение" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="MIN_VALUE" Comment="Минимальное значение" DBType="NUMBER" Type="System.Decimal"/>
+    <Column Name="TYPE_ADD_MEASURE_ID" Comment="Тип измерения надбавки (процент, кф-т)" DBType="NUMBER" ColumnRef="APSTAFF.TYPE_ADD_MEASURE.TYPE_ADD_MEASURE_ID" Type="System.Decimal"/>
+  </Table>
+
+  <Table Name="STAFF_VAC" SchemaName="APSTAFF">
+    <Column Name="STAFF_VAC_ID" Comment="Уникальный номер доп. отпуска для штатной единицы" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="STAFF_ID" Comment="Ссылка на штатную единицу" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.STAFF.STAFF_ID" Type="System.Decimal"/>
+    <Column Name="VAC_GROUP_TYPE_ID" Comment="Ссылка на группу типа отпуска" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.VAC_GROUP_TYPE.VAC_GROUP_TYPE_ID" Type="System.Decimal"/>
+  </Table>
+  
+  <Table Name="EMP_STAFF" SchemaName="APSTAFF">
+    <Column Name="EMP_STAFF_ID" Comment="Уникальный номер расположения сотрудника" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="TRANSFER_ID" Comment="Ссылка на перевод сотрудника" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.TRANSFER.TRANSFER_ID" Type="System.Decimal"/>
+    <Column Name="STAFF_ID" Comment="Ссылка на штатную единицу" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.STAFF.STAFF_ID" Type="System.Decimal"/>
+    <Column Name="WORK_CF" Comment="Ставка на штатную единицу (процент занятости)" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="DATE_START_WORK" Comment="Дата начала работы на штатной единице" DBType="DATE" Nullable="False" Type="System.DateTime"/>
+    <Column Name="DATE_END_WORK" Comment="Дата окончания работы на штатной единице" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="EMP_STAFF_GROUP_ID" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+  </Table>
+  
+  <Table Name="STAFF_PERIOD" SchemaName="APSTAFF" Comments="Таблица периодов существования штатных единиц">
+    <Column Name="STAFF_PERIOD_ID" Comment="Уникальный номер периода штатной единицы" DBType="NUMBER" Nullable="False" Type="System.Decimal"/>
+    <Column Name="DATE_STAFF_BEGIN" Comment="Дата начала действия штатной единицы" DBType="DATE" Nullable="False" Type="System.DateTime"/>
+    <Column Name="DATE_STAFF_END" Comment="Дата окончания действия штатной единицы" DBType="DATE" Type="System.DateTime"/>
+    <Column Name="STAFF_ID" Comment="Ссылка на штатную единицу" DBType="NUMBER" Nullable="False" ColumnRef="APSTAFF.STAFF.STAFF_ID" Type="System.Decimal"/>
+  </Table>
+  
+  
+  
+</Tables>
