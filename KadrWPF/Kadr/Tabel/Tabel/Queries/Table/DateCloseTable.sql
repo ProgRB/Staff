@@ -1,0 +1,1 @@
+select nvl(max(DATE_SALARY),DATE '1000-01-01') from {0}.SUBDIV_FOR_TABLE where SUBDIV_ID = :p_subdiv_id

@@ -1,0 +1,161 @@
+﻿<UserControl x:Class="WpfControlLibrary.Emps_Access.List_Emp_With_Template"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Language="ru-RU" Name="_this"
+             xmlns:local="clr-namespace:WpfControlLibrary" d:DesignWidth="854" d:DesignHeight="464">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:ProjectColor_MultiValueConverter x:Key="ProjectColor_MultiValueConverter"/>
+            <Style x:Key="List_Emp_RowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter>
+                    <Setter.Property>Background</Setter.Property>
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource ProjectColor_MultiValueConverter}">
+                            <Binding Path="SIGN_FULL_APPROVAL"/>
+                            <Binding Path="TR_NUM_ORDER"/>
+                            <Binding Path="SIGN_NO_REGISTRATION"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            
+            <local:IsEnabledAllChkBxConverter x:Key="IsEnabledAllChkBxConverter"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.EditAccess_Templ_By_Emp" CanExecute="EditAccess_Templ_By_Emp_CanExecute" Executed="EditAccess_Templ_By_Emp_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.SetAccess_Template" CanExecute="SetAccess_Template_CanExecute" Executed="SetAccess_Template_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>        
+        <Expander Header="Фильтрация проектов" Grid.Row="0" IsExpanded="True" 
+                Name="exAddFilter" FontSize="12" FontFamily="Tahoma">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Подразделение</TextBlock>
+                <ComboBox Name="cbSubdivNameFilter" Grid.Column="1" Grid.ColumnSpan="7" Margin="4"  VerticalAlignment="Center"
+                          DisplayMemberPath="DISP_SUBDIV" SelectedValuePath="SUBDIV_ID" IsTextSearchEnabled="True" SelectedIndex="0" 
+                          SelectionChanged="cbSubdivNameFilter_SelectionChanged">
+                    <ComboBox.Resources>
+                        <Style TargetType="ComboBoxItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=SUB_ACTUAL_SIGN}" Value="0">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Табельный №</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="tbPer_num" Margin="4" MinWidth="40" MaxLength="5" VerticalAlignment="Center" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="7" VerticalAlignment="Center">Фамилия</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="3" Name="tbEmp_Last_Name" Margin="4" MinWidth="100" CharacterCasing="Upper" VerticalAlignment="Center"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="4" Margin="7" VerticalAlignment="Center">Имя</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="5" Name="tbEmp_First_Name" Margin="4" MinWidth="100" CharacterCasing="Upper" VerticalAlignment="Center"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="6" Margin="7" VerticalAlignment="Center">Отчество</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="7" Name="tbEmp_Middle_Name" Margin="4" MinWidth="100" CharacterCasing="Upper" VerticalAlignment="Center"></TextBox>
+                <!--<TextBlock Grid.Row="2" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Статус проекта</TextBlock>
+                <ComboBox Grid.Row="2" Name="cbPROJECT_PLAN_APPROVAL" Grid.Column="1" Grid.ColumnSpan="5" Margin="4" 
+                          ItemsSource="{Binding}" DisplayMemberPath="Name_Group" 
+                          SelectedValuePath="Array_PPA_ID" IsEditable="True" IsTextSearchEnabled="True" />-->
+                <StackPanel Grid.Row="1" Grid.Column="8" Grid.RowSpan="3" Orientation="Horizontal">
+                    <Button Margin="4,0,0,0" MaxHeight="32" Click="btFilter_Apply_Click" IsDefault="True"
+                                    ToolTip="Применить фильтр" ToolTipService.ShowOnDisabled="True">
+                        <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/filter_add.png" Stretch="Fill" ></Image>
+                    </Button>
+                    <Button Margin="4,0,0,0" MaxHeight="32" Click="btFilter_Clear_Click"
+                                    ToolTip="Отменить фильтр" ToolTipService.ShowOnDisabled="True">
+                        <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/filter_delete.png" Stretch="Fill" ></Image>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Expander>
+        <DataGrid Grid.Row="1" Name="dgList_Emp_With_Template" ItemsSource="{Binding}"
+                  Style="{StaticResource datagridStyle}" SelectedCellsChanged="dgList_Emp_With_Template_SelectedCellsChanged"
+                  CurrentCellChanged="dgList_Emp_With_Template_CurrentCellChanged">
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="chFL" Binding="{Binding Path=FL}" IsReadOnly="False">
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate x:Name="dtAllChkBx">
+                            <CheckBox IsChecked="{Binding Path=AllItemsAreChecked, ElementName=_this}">
+                                <CheckBox.IsEnabled>
+                                    <MultiBinding Converter="{StaticResource IsEnabledAllChkBxConverter}">
+                                        <Binding ElementName="cbSubdivNameFilter" Path="SelectedValue"/>
+                                    </MultiBinding>
+                                </CheckBox.IsEnabled>
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="Подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Таб.№" Binding="{Binding Path=PER_NUM}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=EMP_LAST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=EMP_FIRST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=EMP_MIDDLE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Совм." Binding="{Binding Path=COMB}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата&#13;увольнения" Binding="{Binding Path=DATE_DISMISS, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Шифр&#13;проф." Binding="{Binding Path=CODE_POS}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование профессии" Binding="{Binding Path=POS_NAME}" IsReadOnly="True" MaxWidth="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Идентификатор&#13;карты" Binding="{Binding Path=IDENTIFIER}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование шаблона доступа" Binding="{Binding Path=DISPLAY_NAME}" IsReadOnly="True" MaxWidth="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid Grid.Row="2" Name="dgAccess_Templ_By_Emp" ItemsSource="{Binding}" MinHeight="150" 
+                  Style="{StaticResource datagridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Дата начала&#13;действия шаблона" Binding="{Binding Path=START_DATE_VALID, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата окончания&#13;действия шаблона" Binding="{Binding Path=END_DATE_VALID, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Временный&#13;доступ" Binding="{Binding Path=SIGN_TEMPORARY_SHABLON}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование шаблона доступа" Binding="{Binding Path=DISPLAY_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel Grid.Row="4" Orientation="Horizontal">
+            <Button Name="btRefreshState" Margin="20,7" ToolTip="Обновить список проектов" MaxHeight="24" MaxWidth="24" Click="btRefreshState_Click">
+                <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/refresh2424.png" Stretch="Fill" />
+            </Button>
+            <Button Margin="7" Command="local:Wpf_Commands.EditAccess_Templ_By_Emp" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Name="btEditAccess_Templ_By_Emp" Visibility="Collapsed"/>
+            <Button Margin="7" Command="local:Wpf_Commands.SetAccess_Template" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"/>
+        </WrapPanel>
+    </Grid>
+</UserControl>

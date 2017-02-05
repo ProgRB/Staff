@@ -1,0 +1,174 @@
+﻿<UserControl x:Class="ManningTable.EmpStaffUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ManningTable"
+             xmlns:cmd="clr-namespace:KadrWPF.Helpers"
+             xmlns:kwpf="clr-namespace:KadrWPF"
+             xmlns:lhlp="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:interact="http://schemas.microsoft.com/expression/2010/interactivity"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="800" x:Name="ESUserControl" Background="White">
+    <UserControl.Resources>
+        <kwpf:BooleanToVisibilityConverter True="Collapsed" False="Visible" x:Key="InvertBoolVisibConverter"/>
+        <cmd:CollectionsToSumsConverter SumField="WORK_CF" x:Key="CollectToSumConv"/>
+        <Style TargetType="Separator" BasedOn="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}">
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="15,2,10,2"/>
+            </Style>
+            <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="TextBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+            </Style>
+            <Style TargetType="CheckBox" BasedOn="{StaticResource EnabledTextBox}">
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,2"/>
+                <Setter Property="LayoutTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+        <DockPanel>
+            <WrapPanel DockPanel.Dock="Top" Background="{StaticResource PanelGrayBack}" Visibility="{Binding ElementName=ESUserControl, Path=IsReadOnly, Converter={StaticResource InvertBoolVisibConverter}}">
+                <Button Command="cmd:AppCommands.AddEmpStaff" Style="{StaticResource ToolBoxLikeStyle}">
+                    <Image Source="/Images/new_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                </Button>
+                <Button Command="cmd:AppCommands.DeleteEmpStaff" CommandParameter="{Binding ElementName=dgES, Path=SelectedItem}" Style="{StaticResource ToolBoxLikeStyle}">
+                    <Image Source="/Images/delete_1616.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                </Button>
+                <Separator/>
+                <Button Command="cmd:AppCommands.SaveEmpStaff" Style="{StaticResource ToolBoxLikeStyle}">
+                    <Image Source="/Images/save_3232.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                </Button>
+            </WrapPanel>
+            <WrapPanel DockPanel.Dock="Bottom" Background="LightSkyBlue">
+                <TextBlock Text="Итого занято штатных единиц:" Margin="5,2"/>
+                <TextBlock Margin="5,2" Text="{Binding StaffCountUsed, FallbackValue=0}" ToolTip="Количество единиц фактически занятых на сегодня"/>
+            </WrapPanel>
+            <kwpf:TreeListView ItemsSource="{Binding EmpStaffHierarhicalSource}">
+                <!--<kwpf:TreeListView.Resources>
+                    <Style TargetType="kwpf:TreeListViewItem">
+                        <Setter Property="BorderBrush" Value="LightGray"/>
+                    </Style>
+                </kwpf:TreeListView.Resources>-->
+                <interact:Interaction.Behaviors>
+                    <cmd:BindableSelectedItemBehavior  SelectedItem="{Binding CurrentEmpStaff, Mode=TwoWay}" />
+                </interact:Interaction.Behaviors>
+                <kwpf:TreeListView.Columns>
+                    <GridViewColumn Header="Подразделение" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <kwpf:TreeViewListExpander Template="{StaticResource ToggledTreeListExpander}"/>
+                                    <TextBlock Text="{Binding EmpTransferData.CodeSubdiv}" Margin="10,2"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Таб.№" DisplayMemberBinding="{Binding EmpTransferData.PerNum}" Width="50" />
+                    <GridViewColumn Header="Ф.И.О." DisplayMemberBinding="{Binding EmpTransferData.ShortFIO}"  Width="150"/>
+                    <GridViewColumn Header="Ставка" DisplayMemberBinding="{Binding WorkCf}" Width="50" />
+                    <GridViewColumn Header="Начало работы" DisplayMemberBinding="{Binding DateStartWork}" Width="120" />
+                    <GridViewColumn Header="Окончание работы" DisplayMemberBinding="{Binding DateEndWork}" Width="120">
+                    </GridViewColumn>
+                    
+                </kwpf:TreeListView.Columns>
+                <kwpf:TreeListView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding ChildEmpStaffs}">
+                    </HierarchicalDataTemplate>
+                </kwpf:TreeListView.ItemTemplate>
+            </kwpf:TreeListView>
+            <!-- <DataGrid x:Name="dgES" Style="{StaticResource DataGridSalaryStyle}" ItemsSource="{Binding Source={StaticResource EmpStaffCollectionSource}}" CanUserAddRows="False" CanUserDeleteRows="False"
+                               IsReadOnly="{Binding ElementName=ESUserControl, Path=IsReadOnly}"
+                      SelectedItem="{Binding CurrentEmpStaff}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding WorkCf, UpdateSourceTrigger=PropertyChanged}" Header="Ставка" Width="50"/>
+                    <DataGridTemplateColumn Header="Начало работы" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateStartWork, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding DateStartWork, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Окончание работы" Width="100">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateEndWork, StringFormat={}{0:dd.MM.yyyy}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding DateEndWork, UpdateSourceTrigger=PropertyChanged}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn  Header="Фото" Width="40"  IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding EmpTransferData.Photo}" Stretch="UniformToFill">
+                                    <Image.ToolTip>
+                                        <Image Source="{Binding EmpTransferData.Photo}"/>
+                                    </Image.ToolTip>
+                                </Image>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="Таб.№" Width="80" IsReadOnly="True">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding EmpTransferData.PerNum}"/>
+                                    <Button VerticalAlignment="Top" Grid.Column="1" Content="..." ToolTip="Выбрать сотрудника" Command="local:EmpStaffUserControl.ChooseEmp" Width="29" Height="25" Padding="5,2"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding EmpTransferData.CodeSubdiv}" Header="Подр" Width="40" IsReadOnly=" True"/>
+                    <DataGridTextColumn Binding="{Binding EmpTransferData.ShortFIO}" Header="ФИО" Width="140" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding EmpTransferData.Classific}" Header="Разряд" Width="30" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding EmpTransferData.CodeTariffGrid}" Header="Тар.сетка" Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding EmpTransferData.PosName}" Header="Должность" Width="170" IsReadOnly="True"/>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding }" TextAlignment="Center" TextWrapping="Wrap"/>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        -->
+        </DockPanel>
+    </Grid>
+</UserControl>

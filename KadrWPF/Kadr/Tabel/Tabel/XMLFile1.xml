@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" standalone="yes"?>
+<documentrequest type="staff">
+  <login loginname="BMW12714">
+    <workmode mode="update">
+      <staff last_name="Лобанова" first_name="Анастасия" middle_name="Сергеевна" tabel_id="00598"
+			 id_external="385" id_internal="" subdiv_id="2" appoint_id="3557" graph_id="" subdiv_id_internal=""
+			 appoint_id_internal="" graph_id_internal=""
+			 date_begin="" photo="">
+        <identifiers/>
+      </staff>
+    </workmode>
+  </login>
+</documentrequest>

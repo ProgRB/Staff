@@ -1,0 +1,97 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kadr", "Kadr\Kadr.csproj", "{E17A499B-00B8-41E8-96E1-94E2392CC624}"
+	ProjectSection(ProjectDependencies) = postProject
+		{711A8556-E0E8-4934-99D4-3183B529AB72} = {711A8556-E0E8-4934-99D4-3183B529AB72}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaffReports", "StaffReports\StaffReports.csproj", "{97F691D7-E622-43D8-8760-0185BC087923}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryKadr", "LibraryKadr\LibraryKadr.csproj", "{517A6844-4711-460E-BF17-38480C80D1F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorsLibrary", "EditorsLibrary\EditorsLibrary.csproj", "{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARM_PROP", "ARM_PROP\ARM_PROP.csproj", "{711A8556-E0E8-4934-99D4-3183B529AB72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tabel", "Tabel\Tabel\Tabel.csproj", "{8EE9DBBA-D145-425B-8131-238CB0936580}"
+	ProjectSection(ProjectDependencies) = postProject
+		{237E770F-4BF4-4678-87EC-DAF07B140121} = {237E770F-4BF4-4678-87EC-DAF07B140121}
+		{711A8556-E0E8-4934-99D4-3183B529AB72} = {711A8556-E0E8-4934-99D4-3183B529AB72}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabDayLibrary", "Tabel\TabDayLibrary\TabDayLibrary.csproj", "{237E770F-4BF4-4678-87EC-DAF07B140121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfControlLibrary", "WpfControlLibrary\WpfControlLibrary.csproj", "{64DDA96E-9ED9-467F-BC90-8766183FF0CC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://192.169.100.48:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ARM_PROP\\ARM_PROP.csproj
+		SccProjectName1 = ARM_PROP
+		SccLocalPath1 = ARM_PROP
+		SccProjectUniqueName2 = EditorsLibrary\\EditorsLibrary.csproj
+		SccProjectName2 = EditorsLibrary
+		SccLocalPath2 = EditorsLibrary
+		SccProjectUniqueName3 = Kadr\\Kadr.csproj
+		SccProjectName3 = Kadr
+		SccLocalPath3 = Kadr
+		SccProjectUniqueName4 = LibraryKadr\\LibraryKadr.csproj
+		SccProjectName4 = LibraryKadr
+		SccLocalPath4 = LibraryKadr
+		SccProjectUniqueName5 = StaffReports\\StaffReports.csproj
+		SccProjectName5 = StaffReports
+		SccLocalPath5 = StaffReports
+		SccProjectUniqueName6 = Tabel\\TabDayLibrary\\TabDayLibrary.csproj
+		SccProjectName6 = Tabel/TabDayLibrary
+		SccLocalPath6 = Tabel\\TabDayLibrary
+		SccProjectUniqueName7 = Tabel\\Tabel\\Tabel.csproj
+		SccProjectName7 = Tabel/Tabel
+		SccLocalPath7 = Tabel\\Tabel
+		SccProjectUniqueName8 = WpfControlLibrary\\WpfControlLibrary.csproj
+		SccProjectName8 = WpfControlLibrary
+		SccLocalPath8 = WpfControlLibrary
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E17A499B-00B8-41E8-96E1-94E2392CC624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E17A499B-00B8-41E8-96E1-94E2392CC624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E17A499B-00B8-41E8-96E1-94E2392CC624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E17A499B-00B8-41E8-96E1-94E2392CC624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F691D7-E622-43D8-8760-0185BC087923}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F691D7-E622-43D8-8760-0185BC087923}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F691D7-E622-43D8-8760-0185BC087923}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{711A8556-E0E8-4934-99D4-3183B529AB72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{711A8556-E0E8-4934-99D4-3183B529AB72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{711A8556-E0E8-4934-99D4-3183B529AB72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EE9DBBA-D145-425B-8131-238CB0936580}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EE9DBBA-D145-425B-8131-238CB0936580}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EE9DBBA-D145-425B-8131-238CB0936580}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EE9DBBA-D145-425B-8131-238CB0936580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{237E770F-4BF4-4678-87EC-DAF07B140121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{237E770F-4BF4-4678-87EC-DAF07B140121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{237E770F-4BF4-4678-87EC-DAF07B140121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64DDA96E-9ED9-467F-BC90-8766183FF0CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64DDA96E-9ED9-467F-BC90-8766183FF0CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64DDA96E-9ED9-467F-BC90-8766183FF0CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64DDA96E-9ED9-467F-BC90-8766183FF0CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Kadr.vsmdi
+	EndGlobalSection
+EndGlobal

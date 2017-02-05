@@ -1,0 +1,304 @@
+﻿<UserControl x:Class="VacationSchedule.ViewVacsControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vac="clr-namespace:VacationSchedule"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:staff="clr-namespace:Staff;assembly=LibraryKadr"
+             xmlns:ks="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+             mc:Ignorable="d" 
+             d:DesignHeight="542" d:DesignWidth="1058" FontSize="12">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="vac:ViewVacsViewModel.OpenViewCard" CanExecute="CommandBinding_CanExecute" Executed="ViewOpen_Executed"/>
+        <CommandBinding Command="PrintPreview" CanExecute="CommandBinding_CanExecute" Executed="PrintPreview_Executed"/>
+    </UserControl.CommandBindings>
+    <UserControl.Resources>
+        <Style TargetType="DataGrid" x:Key="DataGridSalaryStyle">
+            <Setter Property="CellStyle">
+                <Setter.Value>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="Padding" Value="5,2"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                                    <Border Padding="{TemplateBinding Padding}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+                                        <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="AutoGenerateColumns" Value="False"/>
+            <Setter Property="DataGridColumnHeader.HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5" x:Key="VerticalSplitterBrush">
+            <GradientStop Color="#FF938686" Offset="0" />
+            <GradientStop Color="White" Offset="1" />
+        </LinearGradientBrush>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" x:Key="HorizontalSplitterBrush">
+            <GradientStop Color="White" Offset="0" />
+            <GradientStop Color="#FFCBCBCB" Offset="0.734" />
+        </LinearGradientBrush>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>    
+        <Expander Grid.Row="0" Header="Фильтр" Grid.IsSharedSizeScope="True" KeyDown="Expander_KeyDown" IsExpanded="True">
+            <Expander.Resources>
+                <Style x:Key="EnabledTextBox" TargetType="Control">
+                    <Setter Property="BorderBrush" Value="LightSteelBlue"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="Margin" Value="15,2,5,2"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource EnabledTextBox}">
+                    <Setter Property="Margin" Value="0,2"/>
+                </Style>
+                <Style TargetType="DatePicker" BasedOn="{StaticResource EnabledTextBox}">
+                    <Setter Property="Margin" Value="0,2"/>
+                </Style>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource EnabledTextBox}">
+                    <Setter Property="Margin" Value="0,2"/>
+                </Style>
+                <Style TargetType="CheckBox" BasedOn="{StaticResource EnabledTextBox}">
+                    <Setter Property="Margin" Value="5,2"/>
+                </Style>
+            </Expander.Resources>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition SharedSizeGroup="columnA"/>
+                    <ColumnDefinition Width="400"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Подразделение"/>
+                <ks:SubdivSelector Grid.Column="1" SubdivId="{Binding SubdivID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ShowPromt="False" AppRoleName="VS_VIEW"
+                                   x:Name="subdivSelector"/>
+                <TextBlock Grid.Row="0" Grid.Column="2" Text="Таб.№"/>
+                <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding PerNum, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="100"/>
+                <TextBlock Grid.Row="0" Grid.Column="3" Margin="140,2,10,2" Text="Текущий год" HorizontalAlignment="Left"/>
+                <TextBox Grid.Column="3" Margin="220,2,10,2" Width="100" HorizontalAlignment="Left" Text="{Binding CurrentYear}"/>
+                <TextBlock Grid.Row="1" Text="ФИО"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding FIOFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                <GroupBox Grid.Row="2" Grid.ColumnSpan="4" Padding="0,2">
+                    <GroupBox.Header>
+                        <CheckBox IsChecked="{Binding IsAddDatesEnabled}" Content=" Фильтр по дате начала отпуска" BorderBrush="LightSteelBlue" BorderThickness="2"
+                                  FontSize="11" Foreground="Blue"/>
+                    </GroupBox.Header>
+                    <Grid Margin="0,0,0,0" IsEnabled="{Binding IsAddDatesEnabled}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="columnA"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Дата начала отпуска c" Grid.Row="1"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2">
+                            <DatePicker SelectedDate="{Binding DateStartFilter, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="150"/>
+                            <TextBlock Text="по" Grid.Row="1"/>
+                            <DatePicker SelectedDate="{Binding DateFinishFilter, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Width="150"/>
+                            <CheckBox IsChecked="{Binding IsActualOnly, UpdateSourceTrigger=PropertyChanged}" Content="  Только фактические отпуска"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+                <TextBlock Grid.Column="2" Grid.Row="1" Text="Категория"/>
+                <ComboBox ItemsSource="{Binding DegreeFilterSource}" SelectedValue="{Binding CurrentCodeDegree, UpdateSourceTrigger=PropertyChanged}"
+                          SelectedValuePath="CodeDegree" IsSynchronizedWithCurrentItem="False" Grid.Column="3" Grid.Row="1"
+                          HorizontalAlignment="Left" MinWidth="250" Grid.IsSharedSizeScope="True">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="{Binding Level}">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition SharedSizeGroup="cbColumn1"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="{Binding CodeDegree}" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Column="1" Text="{Binding DegreeName}" VerticalAlignment="Center" Margin="5,0,0,0"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Text="Группа мастера" Grid.Row="3"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Text="{Binding GroupMasterFilter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                         Width="150" HorizontalAlignment="Left"/>
+                <Button Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Content="Применить фильтр" Margin="170,2,0,2" Width="Auto" HorizontalAlignment="Left" Padding="10,1"
+                        Click="Button_Click">
+                </Button>
+            </Grid>
+        </Expander>
+        <GroupBox Header="Сотрудники" Grid.Row="1">
+            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding EmpVacSource}" Style="{StaticResource DataGridSalaryStyle}"
+                      SelectedItem="{Binding CurrentEmp, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                      staff:DataGridAddition.DoubleClickCommand="vac:ViewVacsViewModel.OpenViewCard">
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding VAC_MONTHS}" Value="1">
+                                <Setter Property="Background" Value="LightGreen"/> 
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.ContextMenu>
+                    <ContextMenu x:Name="ctMenuGrid">
+                        <MenuItem Command="PrintPreview"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CODE_SUBDIV}" Width="50" Header="Подр."/>
+                    <DataGridTextColumn Binding="{Binding POS_NAME}" Width="250" Header="Должность"/>
+                    <DataGridTextColumn Binding="{Binding FIO}" Width="280" Header="ФИО"/>
+                    <DataGridTextColumn Binding="{Binding PER_NUM}" Width="60" Header="Таб.№"/>
+                    <DataGridTextColumn Binding="{Binding SIGN_COMB}" Width="40" Header="Совм."/>
+                    <DataGridTextColumn Binding="{Binding CODE_DEGREE}" Width="40" Header="Категория"/>
+                    <DataGridTextColumn Binding="{Binding NEXT_VAC, StringFormat={}{0:dd.MM.yyyy}}" Width="100" Header="След. отпуск в году"/>
+                    <DataGridTextColumn Binding="{Binding NAME_GROUP_MASTER}" Width="100" Header="Группа мастера"/>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </GroupBox>
+        <xctk:BusyIndicator Grid.Row="1" IsBusy="{Binding IsLoading}" BusyContent="Загрузка данных..." Grid.RowSpan="3"/>
+        <GridSplitter Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="6"/>
+        <GroupBox Grid.Row="3" Header="Отпуска сотрудника">
+            <DataGrid IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding VacSource}" Style="{StaticResource DataGridSalaryStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding PLAN_BEGIN, StringFormat={}{0:dd.MM.yyyy}}" Width="100" Header="Планируемое начало"/>
+                    <DataGridTextColumn Binding="{Binding PLAN_END, StringFormat={}{0:dd.MM.yyyy}}" Width="100" Header="Планируемое окончание"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Плановые дни" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" TextAlignment="Center" VerticalAlignment="Center" Margin="2,0"/>
+                                    <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="3" 
+                                               Grid.ColumnSpan="5" Fill="{StaticResource HorizontalSplitterBrush}"/>
+                                    <TextBlock Text="Календ." Grid.Row="2" Margin="18,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+
+                                    <TextBlock Text="Рабоч." Grid.Row="2" Grid.Column="2" Margin="5,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+
+                                    <TextBlock Text="Прочие" Grid.Row="2" Grid.Column="4" Margin="2,1" TextAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="78"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="79"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding PLAN_CALEND_DAYS}" Grid.Row="2" Margin="2,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+                                    <TextBlock Text="{Binding PLAN_WORK_DAYS}" Grid.Row="2" Grid.Column="2" Margin="2,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+                                    <TextBlock Text="{Binding PLAN_OTHER_DAYS}" Grid.Row="2" Grid.Column="4" Margin="2,1" TextAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                            
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding ACTUAL_BEGIN, StringFormat={}{0:dd.MM.yyyy}}" Width="100" Header="Факт. начало"/>
+                    <DataGridTextColumn Binding="{Binding ACTUAL_END, StringFormat={}{0:dd.MM.yyyy}}" Width="100" Header="Факт. окончание"/>
+                    <DataGridTemplateColumn>
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Фактически дней" Grid.ColumnSpan="5" HorizontalAlignment="Stretch" TextAlignment="Center" VerticalAlignment="Center" Margin="2,0"/>
+                                    <Rectangle Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" Height="3" 
+                                               Grid.ColumnSpan="5" Fill="{StaticResource HorizontalSplitterBrush}"/>
+                                    <TextBlock Text="Календ." Grid.Row="2" Margin="18,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+
+                                    <TextBlock Text="Рабоч." Grid.Row="2" Grid.Column="2" Margin="5,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+
+                                    <TextBlock Text="Прочие" Grid.Row="2" Grid.Column="4" Margin="2,1" TextAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="78"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="79"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="80"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="{Binding CALEND_DAYS}" Grid.Row="2" Margin="2,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+                                    <TextBlock Text="{Binding WORK_DAYS}" Grid.Row="2" Grid.Column="2" Margin="2,1" TextAlignment="Center"/>
+                                    <Rectangle Grid.Row="2" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Stretch" Width="3" Fill="{StaticResource VerticalSplitterBrush}"/>
+                                    <TextBlock Text="{Binding OTHER_DAYS}" Grid.Row="2" Grid.Column="4" Margin="2,1" TextAlignment="Center"/>
+                                </Grid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding VAC_STATE}" Width="100" Header="Состояние"/>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Margin" Value="0"/>
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding}" TextAlignment="Center" Margin="0" Padding="0"></TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </GroupBox>
+    </Grid>
+</UserControl>

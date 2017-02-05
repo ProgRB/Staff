@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{517A6844-4711-460E-BF17-38480C80D1F4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>LibraryKadr</RootNamespace>
+    <AssemblyName>LibraryKadr</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0, processorArchitecture=MSIL" />
+    <Reference Include="Elegant.Ui.Ribbon, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WPFToolkit">
+      <HintPath>..\Kadr\bin\Debug\WPFToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid">
+      <HintPath>..\Kadr\bin\Debug\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\Kadr\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calendar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CellParameter.cs" />
+    <Compile Include="Connect.cs" />
+    <Compile Include="DataGridColumn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GetVersionFramework.cs" />
+    <Compile Include="Helpers\CommandHelper.cs" />
+    <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="HiddenPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ColumnParameter.cs" />
+    <Compile Include="ColumnWidthSaver.cs" />
+    <Compile Include="ConnectionParams.cs" />
+    <Compile Include="Diagram.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Diagram.Designer.cs">
+      <DependentUpon>Diagram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DMLCommands.cs" />
+    <Compile Include="EmployeePhoto.cs" />
+    <Compile Include="Excel.cs" />
+    <Compile Include="ExcelParameter.cs" />
+    <Compile Include="InputBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputBox.Designer.cs">
+      <DependentUpon>InputBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InputDataForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InputDataForm.Designer.cs">
+      <DependentUpon>InputDataForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Library.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="NestedTableDecimal.cs" />
+    <Compile Include="Padeg.cs" />
+    <Compile Include="ParVal.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries.cs" />
+    <Compile Include="ReportViewerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportViewerWindow.Designer.cs">
+      <DependentUpon>ReportViewerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SelectPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectPeriod.Designer.cs">
+      <DependentUpon>SelectPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="Staff_APStaff.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SubStructure.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TempFile.cs" />
+    <Compile Include="TemporaryFiles.cs" />
+    <Compile Include="ToolStripControls.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VisiblePanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PictureParameter.cs" />
+    <Compile Include="WaitDialogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WaitDialogForm.Designer.cs">
+      <DependentUpon>WaitDialogForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WPFCalendar.xaml.cs">
+      <DependentUpon>WPFCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WPFMonthCalendar.xaml.cs">
+      <DependentUpon>WPFMonthCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Wpf_Control_Viewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wpf_Control_Viewer.Designer.cs">
+      <DependentUpon>Wpf_Control_Viewer.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EditorsLibrary\EditorsLibrary.csproj">
+      <Project>{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}</Project>
+      <Name>EditorsLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Diagram.resx">
+      <DependentUpon>Diagram.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputBox.resx">
+      <DependentUpon>InputBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InputDataForm.resx">
+      <DependentUpon>InputDataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportViewerWindow.resx">
+      <DependentUpon>ReportViewerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectPeriod.resx">
+      <DependentUpon>SelectPeriod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WaitDialogForm.resx">
+      <DependentUpon>WaitDialogForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wpf_Control_Viewer.resx">
+      <DependentUpon>Wpf_Control_Viewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\DataRowExtension.cs" />
+    <None Include="Resources\DownArrow1616.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\downarrow1616.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\uparrow1616.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="WPFCalendar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WPFMonthCalendar.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

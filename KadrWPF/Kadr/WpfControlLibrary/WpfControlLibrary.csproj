@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{64DDA96E-9ED9-467F-BC90-8766183FF0CC}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WpfControlLibrary</RootNamespace>
+    <AssemblyName>WpfControlLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Kadr\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EditorsLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\EditorsLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\FOSS Software Inc\Elegant Ribbon\Bin\Elegant.Ui.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Elegant.Ui.Ribbon, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files\FOSS Software Inc\Elegant Ribbon\Bin\Elegant.Ui.Ribbon.dll</HintPath>
+    </Reference>
+    <Reference Include="Kadr, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\Kadr\bin\Debug\Kadr.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="MoonPdfLib, Version=0.2.3.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\MoonPdfLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MouseKeyboardActivityMonitor, Version=3.0.1.29653, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\MouseKeyboardActivityMonitor.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess, Version=10.2.0.100, Culture=neutral, PublicKeyToken=89b483f429c47342">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Tabel, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Tabel.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.8.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Appendix_PDF_Viewer.xaml.cs">
+      <DependentUpon>Appendix_PDF_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\Access_Template_Viewer.xaml.cs">
+      <DependentUpon>Access_Template_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\Access_Templ_By_Emp_Editor.xaml.cs">
+      <DependentUpon>Access_Templ_By_Emp_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\Access_Templ_By_Subdiv.xaml.cs">
+      <DependentUpon>Access_Templ_By_Subdiv.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\SetAccess_Template_Editor.xaml.cs">
+      <DependentUpon>SetAccess_Template_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\Find_Template.xaml.cs">
+      <DependentUpon>Find_Template.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Emps_Access\List_Emp_With_Template.xaml.cs">
+      <DependentUpon>List_Emp_With_Template.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\OracleExceptionHelper.cs" />
+    <Compile Include="Helpers\RepFilterByEmp.xaml.cs">
+      <DependentUpon>RepFilterByEmp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\SubdivSelector.xaml.cs">
+      <DependentUpon>SubdivSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="InputPer_Num.xaml.cs">
+      <DependentUpon>InputPer_Num.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Model\ModelClasses.cs" />
+    <Compile Include="Model\NotificationObject.cs" />
+    <Compile Include="Model\RowEntityBase.cs" />
+    <Compile Include="Table\EditReg_Doc.xaml.cs">
+      <DependentUpon>EditReg_Doc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Table\List_Subdiv_Table_Viewer.xaml.cs">
+      <DependentUpon>List_Subdiv_Table_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Table\List_Transfer_Overtime.xaml.cs">
+      <DependentUpon>List_Transfer_Overtime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Table_Closing_Viewer.xaml.cs">
+      <DependentUpon>Table_Closing_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VacSchedule\VacDiagramView.xaml.cs">
+      <DependentUpon>VacDiagramView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WaitDialogWindow.xaml.cs">
+      <DependentUpon>WaitDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Appendix_Editor.xaml.cs">
+      <DependentUpon>Appendix_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Matching_List_Project_View.xaml.cs">
+      <DependentUpon>Matching_List_Project_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Matching_List_Statement_View.xaml.cs">
+      <DependentUpon>Matching_List_Statement_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Project_Statement_Editor.xaml.cs">
+      <DependentUpon>Project_Statement_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Project_Statement_Viewer.xaml.cs">
+      <DependentUpon>Project_Statement_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Transfer_For_Group_Hire_View.xaml.cs">
+      <DependentUpon>Transfer_For_Group_Hire_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Dismissed_Emp_View.xaml.cs">
+      <DependentUpon>Dismissed_Emp_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Emp_By_Period_For_Table_View.xaml.cs">
+      <DependentUpon>Emp_By_Period_For_Table_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Moon_PDF_Viewer.xaml.cs">
+      <DependentUpon>Moon_PDF_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VacSchedule\VacPeriodForm.xaml.cs">
+      <DependentUpon>VacPeriodForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Dismiss_Emp_Editor.xaml.cs">
+      <DependentUpon>Dismiss_Emp_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Find_Emp.xaml.cs">
+      <DependentUpon>Find_Emp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\SelectFrom_Position_For_Project.xaml.cs">
+      <DependentUpon>SelectFrom_Position_For_Project.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Type_Condition_Viewer.xaml.cs">
+      <DependentUpon>Type_Condition_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\AddEmp.xaml.cs">
+      <DependentUpon>AddEmp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\DataDictionary.cs" />
+    <Compile Include="Вase_Exchange\Transfer_Project_Viewer.xaml.cs">
+      <DependentUpon>Transfer_Project_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\BitmapConvertion.cs" />
+    <Compile Include="Classes\DatePickerCalendar.cs" />
+    <Compile Include="DS_Report.cs">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS_Report.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\InputMonthAndYear.xaml.cs">
+      <DependentUpon>InputMonthAndYear.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Вase_Exchange\Add_New_Emp_Editor.xaml.cs">
+      <DependentUpon>Add_New_Emp_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resume\Edu_Editor.xaml.cs">
+      <DependentUpon>Edu_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Outside_Emp\Outside_Emp_Editor.xaml.cs">
+      <DependentUpon>Outside_Emp_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Outside_Emp\Outside_Emp_Viewer.xaml.cs">
+      <DependentUpon>Outside_Emp_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Violation\Find_Violator.xaml.cs">
+      <DependentUpon>Find_Violator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Violation\List_Violations_Editor.xaml.cs">
+      <DependentUpon>List_Violations_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Violation\Other_Violator.xaml.cs">
+      <DependentUpon>Other_Violator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Violation\Pass_Office_Commands.cs" />
+    <Compile Include="Violation\Violation_View.xaml.cs">
+      <DependentUpon>Violation_View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Violation\SelectViolationByPeriod.xaml.cs">
+      <DependentUpon>SelectViolationByPeriod.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ValidationRules.cs" />
+    <Compile Include="Classes\Wpf_Commands.cs" />
+    <Compile Include="Resume\Prev_Work_Editor.xaml.cs">
+      <DependentUpon>Prev_Work_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resume\Resume_Editor.xaml.cs">
+      <DependentUpon>Resume_Editor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Resume\Resume_Viewer.xaml.cs">
+      <DependentUpon>Resume_Viewer.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Classes\Appendix_PDF_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emps_Access\Access_Template_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emps_Access\Access_Templ_By_Emp_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emps_Access\Access_Templ_By_Subdiv.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emps_Access\SetAccess_Template_Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Emps_Access\Find_Template.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Emps_Access\List_Emp_With_Template.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Helpers\RepFilterByEmp.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Helpers\SubdivSelector.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="InputPer_Num.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table\EditReg_Doc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table\List_Subdiv_Table_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table\List_Transfer_Overtime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table\Table_Closing_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VacSchedule\VacDiagramView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="WaitDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Appendix_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Matching_List_Project_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Matching_List_Statement_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Project_Statement_Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Project_Statement_Viewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Transfer_For_Group_Hire_View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Dismissed_Emp_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Table\Emp_By_Period_For_Table_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\Moon_PDF_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VacSchedule\VacPeriodForm.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Dismiss_Emp_Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Вase_Exchange\Find_Emp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\SelectFrom_Position_For_Project.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Type_Condition_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\AddEmp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Transfer_Project_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Classes\InputMonthAndYear.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Вase_Exchange\Add_New_Emp_Editor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resume\Edu_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Outside_Emp\Outside_Emp_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Outside_Emp\Outside_Emp_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Violation\Find_Violator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Violation\List_Violations_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Violation\Other_Violator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Violation\Violation_View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resume\Prev_Work_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ResourceDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Violation\SelectViolationByPeriod.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resume\Resume_Editor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resume\Resume_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\Converters.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Reports\Add_Agreement.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_VacDiagram.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statement_Matching_List.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Emp_ContractA3.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Emp_Contract.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Order_Dismiss.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Order_Hire.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Order_Transfer.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pattern.rdlc" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepDisciplineDisturbers.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepSummaryData.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepViolationByPeriod.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="DS_Report.xsc">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </None>
+    <None Include="DS_Report.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_Report.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DS_Report.xss">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\left_2424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\right_2424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\LibraryKadr\LibraryKadr.csproj">
+      <Project>{517A6844-4711-460E-BF17-38480C80D1F4}</Project>
+      <Name>LibraryKadr</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\document-close-4.ico" />
+    <Resource Include="Images\document-edit.ico" />
+    <Resource Include="Images\document-new-61.ico" />
+    <Resource Include="Images\document-save.png" />
+    <Resource Include="Images\filter1.png" />
+    <Resource Include="Images\filter_add.png" />
+    <Resource Include="Images\filter_delete.png" />
+    <Resource Include="Images\ID_EDIT_FIND_BIG.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\UndoSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\save_1616.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cancel_1616.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\find_1616.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\folder-saved-search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\NextPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\FirstPage.png" />
+    <Resource Include="Images\LastPage.png" />
+    <Resource Include="Images\PreviousPage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomin_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomin %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomin %283%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomin %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\zoomin_1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\refresh2424.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Queries\PO\SelectAccess_Templ_By_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectList_Emp_With_Template.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\RepApprovalForStatement.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectType_Approval_By_Statement.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\file_upload.ico" />
+    <Resource Include="Images\file_upload.png" />
+    <Resource Include="Images\file_upload_1616.ico" />
+    <Resource Include="Images\daw_Large.png" />
+    <Resource Include="Images\daw_1616.png" />
+    <Resource Include="Images\daw_2222.png" />
+    <Resource Include="Images\daw_2424.png" />
+    <Resource Include="Images\Nodaw_1616.png" />
+    <Resource Include="Images\table-edit.ico" />
+    <Resource Include="Images\folder_tar_1616.png" />
+    <Resource Include="Images\Nodaw.png" />
+    <Resource Include="Images\folder_tar.png" />
+    <Resource Include="Images\edit-findLarge.png" />
+    <Resource Include="Images\edit-findLarge.ico" />
+    <Resource Include="Images\preview204204.ico" />
+    <Resource Include="Images\adept_preview_6331.ico" />
+    <Resource Include="Images\download.png" />
+    <Content Include="Queries\PO\RepDisciplineDisturbers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\RepSummaryData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\RepViolationByPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectAccess_Template.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectAccess_Templ_By_Subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectDismissed_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectFR_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectList_Punishment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectOther_Violator.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectPercent_Punishment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectPunishment.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectStolen_Property.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectSubdiv_For_Access_Template.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectViolation.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PO\SelectViolationByPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Resume\SelectEdu.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Resume\SelectPrev_Work.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Resume\SelectResume.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\RepApprovalForContract.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\RepEmp_Contract.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\RepWorking_Conditions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectEmp_Find_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectListEmpForHire.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectList_Project.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectList_Project_Statement.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectList_Repl_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectList_Transfer_By_Per_Num.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectOrder_Hire_From_Project.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectOrder_Transfer_From_Project.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectProject_Approval.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectProject_List_Repl_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectProject_Statement_Approval.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectProject_Term_Transfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectProject_Working_Conditions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectSign_Open_Approval.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectTerm_Transfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectTransfer_Preview.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectTransfer_Project.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Tp\SelectType_Approval_By_Project.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

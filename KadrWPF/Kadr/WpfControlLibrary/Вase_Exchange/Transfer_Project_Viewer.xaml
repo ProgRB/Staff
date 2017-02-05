@@ -1,0 +1,152 @@
+﻿<UserControl x:Class="WpfControlLibrary.Transfer_Project_Viewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+            xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" Language="ru-RU" 
+             xmlns:local="clr-namespace:WpfControlLibrary" d:DesignWidth="854" d:DesignHeight="464" Unloaded="UserControl_Unloaded">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <local:ProjectColor_MultiValueConverter x:Key="ProjectColor_MultiValueConverter"/>
+
+            <Style x:Key="Project_RowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter>
+                    <Setter.Property>Background</Setter.Property>
+                    <Setter.Value>
+                        <MultiBinding Converter="{StaticResource ProjectColor_MultiValueConverter}">
+                            <Binding Path="SIGN_FULL_APPROVAL"/>
+                            <Binding Path="TR_NUM_ORDER"/>
+                            <Binding Path="SIGN_NO_REGISTRATION"/>
+                        </MultiBinding>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <x:Array x:Key="Type_Transfer_Name" Type="{x:Type sys:String}">
+                <sys:String>Прием</sys:String>
+                <sys:String>Перевод</sys:String>
+                <sys:String>Увольнение</sys:String>
+            </x:Array>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.Make_Hire" CanExecute="Make_Hire_CanExecute" Executed="Make_Hire_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Make_Transfer" CanExecute="Make_Hire_CanExecute" Executed="Make_Transfer_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Make_Dismiss" CanExecute="Make_Hire_CanExecute" Executed="Make_Dismiss_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Edit_Project" CanExecute="Edit_Project_CanExecute" Executed="Edit_Project_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Delete_Project" CanExecute="Edit_Project_CanExecute" Executed="Delete_Project_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="4" Orientation="Horizontal">
+            <Button Name="btRefreshState" Margin="20,7" ToolTip="Обновить список проектов" MaxHeight="24" MaxWidth="24" Click="btRefreshState_Click">
+                <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/refresh2424.png" Stretch="Fill" />
+            </Button>
+            <Button Margin="7" Command="local:Wpf_Commands.Make_Hire" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+            <Button Margin="7" Command="local:Wpf_Commands.Make_Transfer" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+            <Button Margin="7" Command="local:Wpf_Commands.Make_Dismiss" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+            <Button Margin="7" Command="local:Wpf_Commands.Edit_Project" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Name="btEdit_Project"/>
+            <Button Margin="7" Command="local:Wpf_Commands.Delete_Project" Content="{Binding RelativeSource={RelativeSource Self},Path=Command.Text }"
+                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+            <Button Margin="7" Content="Test" Name="btTest" Click="btTest_Click" Visibility="Collapsed"/>
+        </WrapPanel>
+        <Expander Header="Фильтрация проектов" Grid.Row="1" IsExpanded="True" 
+                Name="exAddFilter" FontSize="12" FontFamily="Tahoma">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Подразделение</TextBlock>
+                <ComboBox Name="cbCodeSubdivFilter" Grid.Column="1" Margin="4" MinWidth="50"
+                          DisplayMemberPath="CODE_SUBDIV" SelectedValuePath="SUBDIV_ID" Visibility="Collapsed"/>
+                <ComboBox Name="cbSubdivNameFilter" Grid.Column="1" Grid.ColumnSpan="7" Margin="4" 
+                          DisplayMemberPath="DISP_SUBDIV" SelectedValuePath="SUBDIV_ID" IsEditable="True" IsTextSearchEnabled="True" >
+                    <ComboBox.Resources>
+                        <Style TargetType="ComboBoxItem">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=SUB_ACTUAL_SIGN}" Value="0">
+                                    <Setter Property="Background" Value="LightGray"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Resources>
+                </ComboBox>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Табельный №</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="1" Name="tbPer_num" Margin="4" MinWidth="40" MaxLength="5" />
+                <TextBlock Grid.Row="1" Grid.Column="2" Margin="7" VerticalAlignment="Center">Фамилия</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="3" Name="tbEmp_Last_Name" Margin="4" MinWidth="100" CharacterCasing="Upper"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="4" Margin="7" VerticalAlignment="Center">Имя</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="5" Name="tbEmp_First_Name" Margin="4" MinWidth="100" CharacterCasing="Upper"></TextBox>
+                <TextBlock Grid.Row="1" Grid.Column="6" Margin="7" VerticalAlignment="Center">Отчество</TextBlock>
+                <TextBox Grid.Row="1" Grid.Column="7" Name="tbEmp_Middle_Name" Margin="4" MinWidth="100" CharacterCasing="Upper"></TextBox>
+                <TextBlock Grid.Row="2" Grid.Column="0" Margin="20,7,7,7" VerticalAlignment="Center">Статус проекта</TextBlock>
+                <ComboBox Grid.Row="2" Name="cbPROJECT_PLAN_APPROVAL" Grid.Column="1" Grid.ColumnSpan="5" Margin="4" 
+                          ItemsSource="{Binding}" DisplayMemberPath="Name_Group" 
+                          SelectedValuePath="Array_PPA_ID" IsEditable="True" IsTextSearchEnabled="True" />
+                <TextBlock Grid.Row="2" Grid.Column="6" Margin="7" VerticalAlignment="Center">Тип проекта</TextBlock>
+                <ComboBox Grid.Row="2" Name="cbTYPE_TRANSFER_ID" Grid.Column="7" Margin="4" 
+                          ItemsSource="{Binding Source={StaticResource Type_Transfer_Name}}" IsEditable="True" IsTextSearchEnabled="True" />
+                <StackPanel Grid.Row="0" Grid.Column="8" Grid.RowSpan="3">
+                    <Button MaxHeight="38" Click="btFilter_Apply_Click" IsDefault="True"
+                                    ToolTip="Применить фильтр" ToolTipService.ShowOnDisabled="True">
+                        <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/filter_add.png" Stretch="Fill" ></Image>
+                    </Button>
+                    <Button Margin="0,8,0,0" MaxHeight="38" Click="btFilter_Clear_Click"
+                                    ToolTip="Отменить фильтр" ToolTipService.ShowOnDisabled="True">
+                        <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/filter_delete.png" Stretch="Fill" ></Image>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Expander>
+        <DataGrid Grid.Row="2" Name="dgTransfer_Project" ItemsSource="{Binding}" MinHeight="200" 
+                  Style="{StaticResource datagridStyle}" RowStyle="{StaticResource Project_RowStyle}" SelectionUnit="CellOrRowHeader"
+                  MouseDoubleClick="dgBase_Exchange_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Тип проекта" Binding="{Binding Path=TYPE_TRANSFER_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Из подр." Binding="{Binding Path=PREV_CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="В подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Таб.№" Binding="{Binding Path=VISUAL_PER_NUM}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=EMP_LAST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=EMP_FIRST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=EMP_MIDDLE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата рождения" Binding="{Binding Path=EMP_BIRTH_DATE, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Совм." Binding="{Binding Path=COMB}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Шифр проф." Binding="{Binding Path=CODE_POS}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование профессии" Binding="{Binding Path=POS_NAME}" IsReadOnly="True"/>
+                <DataGridComboBoxColumn Header="Статус проекта" x:Name="dcPROJECT_PLAN_PRIOR" DisplayMemberPath="NOTE_ROLE_APPROVAL" SelectedValuePath="PROJECT_PLAN_APPROVAL_ID" 
+                                        SelectedValueBinding="{Binding Path=PROJECT_PLAN_APPROVAL_ID}" IsReadOnly="True"/>                    
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
+

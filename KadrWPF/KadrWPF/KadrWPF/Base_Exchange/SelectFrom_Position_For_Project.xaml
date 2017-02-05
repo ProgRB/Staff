@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfControlLibrary.Вase_Exchange.SelectFrom_Position_For_Project"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ResizeMode="CanMinimize" Name="_this" ShowInTaskbar="False" Language="ru-RU"
+        xmlns:local="clr-namespace:WpfControlLibrary" WindowStartupLocation="CenterScreen"
+        Title="Список переводов" MinHeight="300" MinWidth="300" MaxHeight="600" MaxWidth="800" mc:Ignorable="d" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        d:DesignHeight="348" d:DesignWidth="713">
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:Transfer_Id_From_PositionColor_ValueConverter x:Key="Transfer_Id_Color_ValueConverter"/>
+            
+            <Style x:Key="ListTransfer_RowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter>
+                    <Setter.Property>Background</Setter.Property>
+                    <Setter.Value>
+                        <Binding Converter="{StaticResource Transfer_Id_Color_ValueConverter}" Path="TRANSFER_ID_FROM_POSITION"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Pass_Office_Commands.SelectEmp" CanExecute="SelectEmp_CanExecute" Executed="SelectEmp_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="1" Name="dgEmp" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" SelectionUnit="FullRow"
+                  RowStyle="{StaticResource ListTransfer_RowStyle}"
+                  SelectionMode="Single" MouseDoubleClick="dgEmp_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Таб.№" Binding="{Binding Path=PER_NUM}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Path=EMP_LAST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding Path=EMP_FIRST_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Path=EMP_MIDDLE_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="С." Binding="{Binding Path=COMB}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата перевода" Binding="{Binding Path=DATE_TRANSFER, StringFormat={}{0:d}}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Тип перевода" Binding="{Binding Path=TYPE_TRANSFER_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Path=POS_NAME}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="3" LastChildFill="False">
+            <Button TabIndex="1" Name="btExit" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" DockPanel.Dock="Right" IsCancel="True"/>
+            <Button TabIndex="1" Margin="4,4,20,4" Command="local:Pass_Office_Commands.SelectEmp" 
+                    Content="{ Binding RelativeSource={RelativeSource Self},Path=Command.Text }" DockPanel.Dock="Right" IsCancel="True"/>
+        </DockPanel>
+    </Grid>
+</Window>

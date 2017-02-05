@@ -1,0 +1,45 @@
+﻿<Window x:Class="WpfControlLibrary.Appendix_Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        Title="Редактор приложений" ShowInTaskbar="False" WindowStartupLocation="CenterScreen"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:mpp="clr-namespace:MoonPdfLib;assembly=MoonPdfLib"
+        Name="_this"
+        xmlns:l="Kad"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:WpfControlLibrary" SizeToContent="WidthAndHeight" ResizeMode="CanMinimize">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveProject_Appendix" CanExecute="SaveProject_Appendix_CanExecute" Executed="SaveProject_Appendix_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.SearchFileAppendix" CanExecute="SearchFileAppendix_CanExecute" Executed="SearchFileAppendix_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Описание документа"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Margin="4" MinWidth="400" MaxWidth="400"
+                 Text="{Binding Path=NOTE_DOCUMENT, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="0" Grid.Column="2" Margin="7" Text="Файл"/>
+        <Button Grid.Row="0" Grid.Column="3" Margin="4" Command="local:Wpf_Commands.SearchFileAppendix"
+                ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+            <Image Source="/Images/folder_saved_search_3232.png" MaxHeight="16"/>
+        </Button>
+        <local:Moon_PDF_Viewer x:Name="moonPdfPanel" MaxHeight="550" MaxWidth="650" Grid.Row="1" Grid.ColumnSpan="5" ></local:Moon_PDF_Viewer>
+        <DockPanel Grid.Row="3" Grid.ColumnSpan="5" LastChildFill="False">
+            <Button TabIndex="1" Name="btExit" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" DockPanel.Dock="Right" IsCancel="True"/>
+            <Button TabIndex="0" Name="btSave" Margin="4" Command="local:Wpf_Commands.SaveProject_Appendix" 
+                    Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" DockPanel.Dock="Right"/>
+        </DockPanel>
+    </Grid>
+</Window>

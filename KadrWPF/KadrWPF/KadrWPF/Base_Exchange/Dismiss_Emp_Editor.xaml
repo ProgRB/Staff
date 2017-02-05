@@ -1,0 +1,498 @@
+﻿<Window x:Class="WpfControlLibrary.Dismiss_Emp_Editor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xceed="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+        Title="Редактирование данных сотрудника" ShowInTaskbar="False" WindowStartupLocation="CenterScreen"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:WpfControlLibrary" ResizeMode="CanMinimize" Name="_this" Language="ru-RU"
+        mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" Closing="_this_Closing"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" SizeToContent="WidthAndHeight">
+    <Window.Resources>
+        <ResourceDictionary>
+
+            <local:MainConditionConverter x:Key="MainConditionConverter"/>
+            <local:IsEnabledInputSalary_Converter x:Key="IsEnabledInputSalary_Converter"/>
+            <local:Tariff_RateMultiValueConverter x:Key="Tariff_RateMultiValueConverter"/>
+            <local:Project_ApprovalConverter x:Key="Project_ApprovalConverter"/>
+            <local:HeaderTab_Converter x:Key="HeaderTab_Converter"/>
+            
+            <Style x:Key="Work_Condition_RowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter Property="Background" Value="{Binding SIGN_MAIN_TYPE, Converter={StaticResource MainConditionConverter}}" />
+            </Style>
+            
+            <Style x:Key="textBoxSalaryStyle" TargetType="{x:Type TextBox}">
+                <Style.Triggers>
+                    <Trigger Property="IsReadOnly" Value="True">
+                        <Setter Property="Background" Value="#FFF8FCFF"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="groupBox_Term_HireStyle" TargetType="{x:Type GroupBox}" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=TYPE_TRANSFER_ID}" Value="2">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            
+            <Style x:Key="groupBox_Term_TransferStyle" TargetType="{x:Type GroupBox}" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=TYPE_TRANSFER_ID}" Value="1">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="grid_HireOrderStyle" TargetType="{x:Type Grid}" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=TYPE_TRANSFER_ID}" Value="2">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="grid_TransferOrderStyle" TargetType="{x:Type Grid}" >
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=TYPE_TRANSFER_ID}" Value="1">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.SaveDismiss_Project" CanExecute="SaveDismiss_Project_CanExecute" Executed="SaveDismiss_Project_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.AddProject_Appendix" CanExecute="AddProject_Appendix_CanExecute" Executed="AddProject_Appendix_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditProject_Appendix" CanExecute="EditProject_Appendix_CanExecute" Executed="EditProject_Appendix_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.DeleteProject_Appendix" CanExecute="EditProject_Appendix_CanExecute" Executed="DeleteProject_Appendix_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Save_Project_Approval" CanExecute="Save_Project_Approval_CanExecute" Executed="Save_Project_Approval_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Form_Order_Project" CanExecute="Form_Order_Project_CanExecute" Executed="Form_Order_Project_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Project_Order_Dismiss" CanExecute="Project_Order_Dismiss_CanExecute" Executed="Project_Order_Dismiss_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Project_To_Transfer" CanExecute="Project_To_Transfer_CanExecute" Executed="Project_To_Transfer_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Registration_Project" CanExecute="Registration_Project_CanExecute" Executed="Registration_Project_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Annul_Project" CanExecute="Annul_Project_CanExecute" Executed="Annul_Project_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.ViewProject_Appendix" CanExecute="EditProject_Appendix_CanExecute" Executed="ViewProject_Appendix_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Matching_List" CanExecute="Matching_List_CanExecute" Executed="Matching_List_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DockPanel LastChildFill="False" HorizontalAlignment="Center" Name="dpStatusProject">
+            <Label Content="Статус проекта - " Foreground="Red" />
+            <Label Name="lbStatusProject" 
+                   Content="{Binding Path=PROJECT_PLAN_APPROVAL_ID, Converter={StaticResource Project_ApprovalConverter}, Mode=OneWay}"/>
+        </DockPanel>
+        <TabControl Grid.Row="1">
+            <TabControl.Items>
+                <TabItem Header="Данные сотрудника">
+                    <Grid Grid.IsSharedSizeScope="True">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <GroupBox Grid.Row="0" Grid.Column="0" Header="Фото сотрудника">
+                            <Image Name="imPhoto"  Margin="7,4,4,4"
+                                   Source="{Binding Path=PHOTO}" MinHeight="133" MaxHeight="133" MinWidth="100" MaxWidth="100"></Image>
+                        </GroupBox>
+                        <GroupBox Grid.Row="0" Grid.Column="1" Header="Персональные данные" Name="gbPerson_Data">
+                            <AdornerDecorator>
+                                <Grid Name="grPerson_Data">
+                                    <Grid.Resources>
+                                        <x:Array x:Key="Emp_Sexs" Type="{x:Type sys:String}">
+                                            <sys:String>М</sys:String>
+                                            <sys:String>Ж</sys:String>
+                                        </x:Array>
+                                    </Grid.Resources>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="10"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Фамилия" ></TextBlock>
+                                    <TextBox Grid.Row="0" Grid.Column="1" Margin="4" MinWidth="150" IsReadOnly="True" Background="#F8FCFF">
+                                        <TextBox.Text>
+                                            <Binding Path="EMP_LAST_NAME">
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Имя"></TextBlock>
+                                    <TextBox Grid.Row="1" Grid.Column="1" Margin="4" IsReadOnly="True" Background="#F8FCFF">
+                                        <TextBox.Text>
+                                            <Binding Path="EMP_FIRST_NAME">
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="7" Text="Отчество" VerticalAlignment="Center"></TextBlock>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Margin="4" VerticalAlignment="Center" IsReadOnly="True" Background="#F8FCFF">
+                                        <TextBox.Text>
+                                            <Binding Path="EMP_MIDDLE_NAME">
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Margin="7" Text="Табельный №" HorizontalAlignment="Right" ></TextBlock>
+                                    <TextBox Grid.Row="0" Grid.Column="3" Margin="4" Text="{Binding Path=VISUAL_PER_NUM}" IsReadOnly="True" Background="#F8FCFF"/>
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Margin="7" Text="Пол" HorizontalAlignment="Right" ></TextBlock>
+                                    <ComboBox Grid.Row="1" Grid.Column="3" Margin="4" ItemsSource="{Binding Source={StaticResource Emp_Sexs}}" SelectedItem="EMP_SEX"
+                                              IsEnabled="False">
+                                        <ComboBox.Text>
+                                            <Binding Path="EMP_SEX" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                            </Binding>
+                                        </ComboBox.Text>
+                                    </ComboBox>
+                                    <TextBlock Grid.Row="3" Grid.Column="2" Margin="7" Text="Дата рождения" HorizontalAlignment="Right" VerticalAlignment="Center"></TextBlock>
+                                    <DatePicker Margin="4" Grid.Row="3" Grid.Column="3" IsEnabled="False" Background="#F8FCFF">
+                                        <DatePicker.SelectedDate>
+                                            <Binding Path="EMP_BIRTH_DATE">
+                                            </Binding>
+                                        </DatePicker.SelectedDate>
+                                    </DatePicker>
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Margin="7" Text="Подразделение"
+                                                   VerticalAlignment="Center"></TextBlock>
+                                    <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="3" Margin="4" VerticalAlignment="Center" MaxWidth="400"
+                                                  Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" IsEnabled="False"
+                                                  ItemsSource="{Binding}" Name="cbSubdiv" DisplayMemberPath="DISP_SUBDIV" 
+                                                  SelectedValuePath="SUBDIV_ID" SelectedValue="{Binding Path=PREV_SUBDIV_ID}"/>
+                                </Grid>
+                            </AdornerDecorator>
+                        </GroupBox>
+                        <GroupBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" BorderBrush="CadetBlue"  BorderThickness="2" Header="Информация об увольнении">
+                            <Grid Name="gridDismiss">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="PersCol1"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="PersCol2"/>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="PersCol3"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Причина увольнения"/>
+                                <ComboBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="4" Margin="4" VerticalAlignment="Center" MaxWidth="500" 
+                                        Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" IsEditable="True" IsTextSearchEnabled="True"
+                                        ItemsSource="{Binding}" Name="cbREASON_ID" DisplayMemberPath="REASON_NAME" SelectedValuePath="REASON_ID">
+                                    <ComboBox.SelectedValue>
+                                        <Binding Path="REASON_ID" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedValue>
+                                </ComboBox>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Основание" VerticalAlignment="Center"/>
+                                <ComboBox Grid.Row="1" Grid.Column="1" Margin="4" Grid.ColumnSpan="2" VerticalAlignment="Center"
+                                        Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}" MinWidth="200"
+                                        ItemsSource="{Binding}" Name="cbBASE_DOC_ID" DisplayMemberPath="BASE_DOC_NAME" SelectedValuePath="BASE_DOC_ID"
+                                           IsEditable="True" IsTextSearchEnabled="True">
+                                    <ComboBox.SelectedValue>
+                                        <Binding Path="BASE_DOC_ID" Mode="TwoWay" UpdateSourceTrigger="PropertyChanged">
+                                            <Binding.ValidationRules>
+                                                <local:ValidationNullRule ValidatesOnTargetUpdated="True"/>
+                                            </Binding.ValidationRules>
+                                        </Binding>
+                                    </ComboBox.SelectedValue>
+                                </ComboBox>
+                                <TextBlock Grid.Row="1" Grid.Column="3" Margin="7" Text="Примечание" VerticalAlignment="Center"/>
+                                <TextBox Grid.Row="1" Grid.Column="4" Margin="4" Text="{Binding Path=BASE_DOC_NOTE}" MaxWidth="300" TextWrapping="Wrap"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Margin="7" Text="Дата увольнения" VerticalAlignment="Center"></TextBlock>
+                                <DatePicker Margin="4" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left"
+                                                    Validation.ErrorTemplate="{StaticResource NotNullErrorTemplate}">
+                                    <DatePicker.SelectedDate>
+                                        <Binding Path="DATE_TRANSFER">
+                                        </Binding>
+                                    </DatePicker.SelectedDate>
+                                </DatePicker>
+                                <GroupBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="5" Header="Информация по приказу об увольнении">
+                                    <StackPanel Orientation="Horizontal">
+                                        <CheckBox Margin="14,4,4,4" Content="" Visibility="Collapsed"
+                                              IsChecked="{Binding Path=CHAN_SIGN}" VerticalAlignment="Center">
+                                        </CheckBox>
+                                        <TextBlock Margin="0" Text=" Признак&#13; канцелярии" VerticalAlignment="Center" Visibility="Collapsed"/>
+                                        <TextBlock Margin="7" Text="№ приказа             " VerticalAlignment="Center" />
+                                        <TextBox Margin="4" MinWidth="80" Text="{Binding Path=TR_NUM_ORDER}" VerticalAlignment="Center" IsReadOnly="True"/>
+                                        <TextBlock Margin="7" Text="Дата приказа" VerticalAlignment="Center" />
+                                        <DatePicker Margin="4" SelectedDate="{Binding Path=TR_DATE_ORDER}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
+                        </GroupBox>
+                        <GroupBox Grid.Row="2" Grid.ColumnSpan="2" BorderThickness="2" Header="Информация о текущей работе">
+                            <Grid >
+                                                                                                <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" SharedSizeGroup="PersCol1"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="10"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Трудовой договор №" VerticalAlignment="Center" />
+                                <TextBox Grid.Row="0" Grid.Column="1" Margin="4" MinWidth="80" 
+                                         Text="{Binding Path=CONTR_EMP}" VerticalAlignment="Center" IsReadOnly="True" Background="#F8FCFF"/>
+                                <TextBlock Grid.Row="0" Grid.Column="4" Margin="7" Text="Дата трудового договора" VerticalAlignment="Center" />
+                                <DatePicker Grid.Row="0" Grid.Column="5" Margin="4" SelectedDate="{Binding Path=DATE_CONTR}" 
+                                            IsEnabled="False" VerticalAlignment="Center"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Margin="7" Text="Должность"/>
+                                <ComboBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="5" Margin="4" Name="cbPosition"
+                                                        DisplayMemberPath="DISP_POSITION" SelectedValuePath="POS_ID"
+                                                        MaxWidth="500" IsEnabled="False"
+                                                        SelectedValue="{Binding Path=POS_ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                        IsEditable="True" IsTextSearchEnabled="True">
+                                    <ComboBox.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <VirtualizingStackPanel></VirtualizingStackPanel>
+                                        </ItemsPanelTemplate>
+                                    </ComboBox.ItemsPanel>
+                                </ComboBox>
+                                <TextBlock Grid.Row="3" Grid.Column="0" Margin="7" Text="Примечание&#13;к должности"/>
+                                <TextBox Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="5" Grid.RowSpan="1" Margin="4" Text="{Binding Path=POS_NOTE}" 
+                                        TextWrapping="Wrap" MaxWidth="500" IsReadOnly="True" Background="#F8FCFF"/>
+                                <TextBlock Grid.Row="4" Grid.Column="0" Margin="7" Text="Категория"/>
+                                <ComboBox Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="5" Margin="4" Name="cbDegree" IsEnabled="False"
+                                        DisplayMemberPath="DISP_DEGREE" SelectedValuePath="DEGREE_ID"
+                                        SelectedValue="{Binding Path=DEGREE_ID, UpdateSourceTrigger=PropertyChanged}" 
+                                        SelectionChanged="cbDegree_SelectionChanged"
+                                        IsEditable="True" IsTextSearchEnabled="True"/>
+                                <TextBlock Grid.Row="5" Grid.Column="0" Margin="7" Text="Форма оплаты"/>
+                                <ComboBox Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="3" Margin="4" Name="cbFormPay" IsEnabled="False"
+                                            DisplayMemberPath="NAME_FORM_PAY" SelectedValuePath="FORM_PAY"
+                                            SelectedValue="{Binding Path=FORM_PAY}"
+                                            IsEditable="True" IsTextSearchEnabled="True"/>
+                                <Grid Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource grid_HireOrderStyle}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ColBase1"/>
+                                        <ColumnDefinition Width="Auto" SharedSizeGroup="ColBase2"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Margin="7" Text="Испыт. срок"/>
+                                    <TextBox Grid.Row="3" Grid.Column="1" Margin="4" MinWidth="50" HorizontalContentAlignment="Center"
+                                              IsReadOnly="True" Background="#F8FCFF">
+                                        <TextBox.Text>
+                                            <Binding Path="PROBA_PERIOD" TargetNullValue="{x:Static sys:String.Empty}" UpdateSourceTrigger="PropertyChanged"
+                                                                NotifyOnValidationError="True">
+                                            </Binding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </Grid>
+                                <TextBlock Grid.Row="6" Grid.Column="0" Margin="7" Text="Вид производства"/>
+                                <ComboBox Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="5" Margin="4" Name="cbForm_Operation"
+                                            DisplayMemberPath="DISP_FORM_OPERATION" SelectedValuePath="FORM_OPERATION_ID"
+                                            SelectedValue="{Binding Path=FORM_OPERATION_ID}" MaxWidth="500"
+                                            IsEnabled="False"/>
+                                <TextBlock Grid.Row="7" Grid.Column="0" Margin="7" Text="Разряд"/>
+                                <TextBox Grid.Row="7" Grid.Column="1" Margin="4" MinWidth="30" HorizontalContentAlignment="Center" 
+                                         IsReadOnly="True" Background="#F8FCFF"
+                                            Text="{Binding Path=CLASSIFIC, StringFormat=F0, TargetNullValue={x:Static sys:String.Empty}}"/>
+                                <TextBlock Grid.Row="7" Grid.Column="2" Margin="7" Text="Сетка"/>
+                                <ComboBox Grid.Row="7" Grid.Column="3" Margin="4" MinWidth="50" Name="cbTariff_Grid"
+                                        DisplayMemberPath="CODE_TARIFF_GRID" SelectedValuePath="TARIFF_GRID_ID"
+                                        SelectedValue="{Binding Path=TARIFF_GRID_ID, UpdateSourceTrigger=PropertyChanged}"
+                                        IsEnabled="False"/>
+                                <TextBlock Grid.Row="7" Grid.Column="4" Margin="7" Text="Тарифный коэффициент"/>
+                                <StackPanel Grid.Row="7" Grid.Column="5" Orientation="Horizontal">
+                                    <TextBox Margin="4" MinWidth="30" Name="tbSalary" HorizontalContentAlignment="Right"
+                                            Text="{Binding Path=SALARY, StringFormat=F2, TargetNullValue={x:Static sys:String.Empty}, 
+                                                        Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnValidationError=True}" 
+                                             IsReadOnly="True" Background="#F8FCFF"/>
+                                    <TextBox Margin="4" MinWidth="50" IsReadOnly="True" Background="#FFF8FCFF" HorizontalContentAlignment="Right">
+                                        <TextBox.Text>
+                                            <MultiBinding Mode="TwoWay" UpdateSourceTrigger="PropertyChanged" 
+                                                                            Converter="{StaticResource SalaryMultiValueConverter}"
+                                                                            StringFormat="F2">
+                                                <Binding Path="DATE_TRANSFER" Mode="OneWay"/>
+                                                <Binding Path="SALARY" Mode="OneWay"/>
+                                                <Binding Path="TARIFF_GRID_ID" Mode="OneWay"/>
+                                                <Binding Path="CLASSIFIC" Mode="OneWay"/>
+                                            </MultiBinding>
+                                        </TextBox.Text>
+                                    </TextBox>
+                                </StackPanel>
+                            </Grid>
+                        </GroupBox>
+                        <DockPanel Grid.Row="3" Grid.ColumnSpan="2" LastChildFill="False" HorizontalAlignment="Right">
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.Registration_Project"
+                                    Content="Убрано из ШР"
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.Project_To_Transfer"
+                                    Content="Уволить из Основной базы"
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.Matching_List"
+                                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" 
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.Project_Order_Dismiss"
+                                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" 
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.Form_Order_Project"
+                                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" 
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button TabIndex="0" Margin="4" Command="local:Wpf_Commands.SaveDismiss_Project"
+                                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+                            <Button TabIndex="1" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" IsCancel="True"/>
+                        </DockPanel>
+                    </Grid>
+                </TabItem>                
+                <TabItem Header="Согласование">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <DataGrid Grid.Row="0" Name="dgProject_Approval" MinHeight="350" MaxHeight="350" MinWidth="600" MaxWidth="600" 
+                                  ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" 
+                                  CanUserResizeRows="True" >
+                            <DataGrid.Columns>
+                                <DataGridComboBoxColumn x:Name="dcPROJECT_PLAN_APPROVAL_ID" Header="Роль" IsReadOnly="True" CanUserSort="False"
+                                                        SelectedValuePath="PROJECT_PLAN_APPROVAL_ID" DisplayMemberPath="NOTE_ROLE_NAME"
+                                                        SelectedValueBinding="{Binding Path=PROJECT_PLAN_APPROVAL_ID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                                <DataGridTextColumn Header="Пользователь" Binding="{Binding Path=USER_FIO}" IsReadOnly="True" MaxWidth="150" CanUserSort="False">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Решение" Binding="{Binding Path=TYPE_APPROVAL_NAME}" IsReadOnly="True" CanUserSort="False"/>
+                                <!--<DataGridComboBoxColumn x:Name="dcTYPE_APPROVAL_ID" Header="Решение" IsReadOnly="True" 
+                                                        SelectedValuePath="TYPE_APPROVAL_ID" DisplayMemberPath="TYPE_APPROVAL_NAME"
+                                                        SelectedValueBinding="{Binding Path=TYPE_APPROVAL_ID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                                <DataGridTextColumn Header="Дата" Binding="{Binding Path=DATE_APPROVAL, StringFormat={}{0:G}}" IsReadOnly="True" CanUserSort="False" 
+                                                    MaxWidth="80">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Примечание" Binding="{Binding Path=NOTE_APPROVAL}" IsReadOnly="True" CanUserSort="False" MaxWidth="200">
+                                    <DataGridTextColumn.ElementStyle>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                                        </Style>
+                                    </DataGridTextColumn.ElementStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Border Grid.Row="1" BorderBrush="AliceBlue" BorderThickness="2" CornerRadius="4">
+                            <Grid Name="gridApproval">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7,13,7,7" Text="Решение"/>
+                                <ComboBox Grid.Column="1" Margin="4,10,4,4" Name="cbTYPE_APPROVAL_ID" IsEditable="True" IsTextSearchEnabled="True"
+                                          DisplayMemberPath="TYPE_APPROVAL_NAME" SelectedValuePath="TYPE_APPROVAL_ID" Width="500" 
+                                          IsEnabled="{Binding ElementName=_this, Path=Fl_Add_Approval, Mode=OneWay}"/>
+                                <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Примечание"/>
+                                <TextBox Grid.Row="1" Grid.Column="1" Margin="4" Name="tbNOTE_APPROVAL" TextWrapping="Wrap" MaxWidth="500" 
+                                         Text="{Binding ElementName=dgProject_Approval, Path=SelectedItem.NOTE_APPROVAL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                                         IsEnabled="{Binding ElementName=_this, Path=Fl_Add_Approval, Mode=OneWay}"/>
+                            </Grid>
+                        </Border>
+                        <DockPanel Grid.Row="2" HorizontalAlignment="Right" LastChildFill="False">
+                            <Button Command="local:Wpf_Commands.Annul_Project" ToolTipService.ShowOnDisabled="True"
+                                    Margin="4" Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"
+                                    Visibility="{Binding RelativeSource={RelativeSource Self}, Path=IsEnabled, Converter={StaticResource BoolToVisConverter}}"/>
+                            <Button Command="local:Wpf_Commands.Save_Project_Approval" ToolTipService.ShowOnDisabled="True"
+                                    Margin="4"
+                                    Content="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}"/>
+                            <Button TabIndex="1" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" IsCancel="True"/>
+                        </DockPanel>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Приложения">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <DataGrid Name="dgAppendix" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}"  SelectionUnit="FullRow"
+                                      Height="{Binding ElementName=tbtAppendix, Path=ActualHeight}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="Описание документа" Binding="{Binding Path=NOTE_DOCUMENT}" IsReadOnly="True"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <ToolBarTray Grid.Column="1" Orientation="Vertical" IsLocked="True" Name="tbtAppendix">
+                                <ToolBar>
+                                    <Button Command="local:Wpf_Commands.AddProject_Appendix" ToolTipService.ShowOnDisabled="True"
+                                                                    ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                        <Image Source="/Images/document_new_1616.ico"/>
+                                    </Button>
+                                    <Button Command="local:Wpf_Commands.EditProject_Appendix" ToolTipService.ShowOnDisabled="True"
+                                                                    ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                        <Image Source="/Images/document_edit_1616.ico"/>
+                                    </Button>
+                                    <Button Command="local:Wpf_Commands.DeleteProject_Appendix" ToolTipService.ShowOnDisabled="True"
+                                                                    ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                        <Image Source="/Images/document_close_1616.ico"/>
+                                    </Button>
+                                    <Button Command="local:Wpf_Commands.ViewProject_Appendix" ToolTipService.ShowOnDisabled="True" MaxHeight="24"
+                                            ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                                        <Image Source="/Images/adept_preview_3232.ico"/>
+                                    </Button>
+                                </ToolBar>
+                            </ToolBarTray>
+                        </Grid>
+                    </Grid>
+                    
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+    </Grid>
+</Window>

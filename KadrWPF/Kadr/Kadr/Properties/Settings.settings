@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Kadr.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="AppSet_panel_for_VS_filter" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">351, 68</Value>
+    </Setting>
+    <Setting Name="AppSubSelDropDownSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">304, 220</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

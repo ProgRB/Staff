@@ -1,0 +1,57 @@
+﻿<Window x:Class="WpfControlLibrary.Type_Condition_Viewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        xmlns:local="clr-namespace:WpfControlLibrary" Name="_this" Language="ru-RU"
+        MaxHeight="500" MaxWidth="600" Title="Справочник типов условий труда"
+        MinHeight="500" MinWidth="600" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" Closing="_this_Closing" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.Save_Type_Condition" CanExecute="Save_Type_Condition_CanExecute" Executed="Save_Type_Condition_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Cancel_Type_Condition" CanExecute="Cancel_Type_Condition_CanExecute" Executed="Cancel_Type_Condition_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Delete_Type_Condition" CanExecute="Delete_Type_Condition_CanExecute" Executed="Delete_Type_Condition_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.Add_Type_Condition" CanExecute="Add_Type_Condition_CanExecute" Executed="Add_Type_Condition_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Grid.Column="0" Name="dgType_Condition" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" 
+                  SelectionUnit="CellOrRowHeader" SelectedCellsChanged="dgType_Condition_SelectedCellsChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Наименование типа условий труда" Binding="{Binding Path=TYPE_CONDITION_NAME}"/>
+                <DataGridComboBoxColumn x:Name="dcPARENT_ID" DisplayMemberPath="TYPE_CONDITION_NAME" SelectedValuePath="TYPE_CONDITION_ID" 
+                                        SelectedValueBinding="{Binding Path=PARENT_ID, UpdateSourceTrigger=PropertyChanged,
+                                                                        Mode=TwoWay}" 
+                                        Header="Подчиняется" >
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="IsEditable" Value="True"/>
+                            <Setter Property="Cursor" Value="Hand"></Setter>
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="2" LastChildFill="False" HorizontalAlignment="Right">
+            <Button Margin="4" Command="local:Wpf_Commands.Add_Type_Condition"
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+            <Button Margin="4" Command="local:Wpf_Commands.Delete_Type_Condition"
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+            <Button Margin="4" Command="local:Wpf_Commands.Save_Type_Condition"
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+            <Button Margin="4" Command="local:Wpf_Commands.Cancel_Type_Condition"
+                    Content="{ Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+            <Button Name="btExit" Margin="4,4,20,4" Content="Выход" IsCancel="True"/>
+        </DockPanel>
+    </Grid>
+</Window>

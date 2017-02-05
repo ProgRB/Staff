@@ -1,0 +1,50 @@
+﻿<Window x:Class="WpfControlLibrary.Table.List_Subdiv_Table_Viewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="520" Width="780"
+        Title="Редактирование списка подразделений" MinHeight="350" WindowStartupLocation="CenterScreen"
+        ShowInTaskbar="False" ResizeMode="CanMinimize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <DataGrid Grid.Column="0" Name="dgSubdiv" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" 
+                      DockPanel.Dock="Left" MinHeight="100" MaxWidth="400" MouseDoubleClick="dgSubdiv_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Наименование подразделения" Binding="{Binding Path=SUBDIV_NAME}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <WrapPanel Grid.Column="1" Orientation="Vertical">
+                <Button Name="btAddSubdiv" Margin="4,24,4,4" Background="{StaticResource RightImage}" Height="24" Click="btAddSubdiv_Click"/>
+                <Button Name="btDeleteSubdiv" Margin="4,10,4,4" Background="{StaticResource LeftImage}" Height="24" Width="20" Click="btDeleteSubdiv_Click"/>
+            </WrapPanel>
+            <DataGrid Grid.Column="2" Name="dgSubdivFT" ItemsSource="{Binding}" 
+                      Style="{StaticResource datagridStyle}" MouseDoubleClick="dgSubdivFT_MouseDoubleClick">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Наименование подразделения" Binding="{Binding Path=SUBDIV_NAME}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <WrapPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btSave" Margin="4" Click="btSave_Click">Сохранить</Button>
+            <Button Name="btExit" Margin="4,4,20,4" Click="btExit_Click">Выход</Button>
+        </WrapPanel>
+    </Grid>
+</Window>

@@ -1,0 +1,44 @@
+﻿<Window x:Class="KadrWPF.Table.Hours_By_Period"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KadrWPF.Table" 
+        mc:Ignorable="d" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow"
+        Title="Итоги за период" Height="300" Width="600">
+    <Grid>
+        <DataGrid Name="dgHoursCalc" ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" IsReadOnly="True"
+                  MinHeight="100">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Вид оплат" Binding="{Binding Path=NOTE}"/>
+                <DataGridTextColumn Header="Часы/Дни" Binding="{Binding Path=TIME, StringFormat=F2}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="dcSum_Salary_Calc" Header="Сумма" Binding="{Binding Path=SUM, StringFormat=N2}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Заказ" Binding="{Binding Path=ORDER_NAME}"/>
+                <DataGridTextColumn Header="ГМ" Binding="{Binding Path=GROUP_MASTER}"/>
+                <DataGridTextColumn Header="Я/Н" Binding="{Binding Path=COUNT_YN}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextAlignment" Value="Right"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="КТ" Binding="{Binding Path=CODE_DEGREE}"/>
+                <DataGridTextColumn Header="Зам-я" Binding="{Binding Path=REPL_SIGN}"/>
+                <DataGridTextColumn Header="Сброс на ЗП" Binding="{Binding Path=SIGN_ACCOUNT_VIS}"/>
+                <DataGridTextColumn Header="Сброс в Числ-ть" Binding="{Binding Path=SIGN_APPENDIX_VIS}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

@@ -1,0 +1,190 @@
+﻿namespace Kadr.Vacation_schedule
+{
+    partial class AdditionalVacs
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.gridAddVac = new System.Windows.Forms.ListBox();
+            this.grid = new System.Windows.Forms.DataGridView();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbtAddVacAddPeriod = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtDelVacAddPeriod = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbtSaveVacAddPeriod = new System.Windows.Forms.ToolStripButton();
+            this.formFrameSkinner1 = new Elegant.Ui.FormFrameSkinner();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).BeginInit();
+            this.toolStrip1.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.gridAddVac);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.grid);
+            this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
+            this.splitContainer1.Size = new System.Drawing.Size(629, 399);
+            this.splitContainer1.SplitterDistance = 268;
+            this.splitContainer1.TabIndex = 0;
+            // 
+            // gridAddVac
+            // 
+            this.gridAddVac.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gridAddVac.FormattingEnabled = true;
+            this.gridAddVac.Location = new System.Drawing.Point(0, 0);
+            this.gridAddVac.Name = "gridAddVac";
+            this.gridAddVac.Size = new System.Drawing.Size(268, 399);
+            this.gridAddVac.TabIndex = 0;
+            // 
+            // grid
+            // 
+            this.grid.AllowUserToAddRows = false;
+            this.grid.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.LightYellow;
+            this.grid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.grid.BackgroundColor = System.Drawing.Color.White;
+            this.grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grid.Location = new System.Drawing.Point(32, 0);
+            this.grid.MultiSelect = false;
+            this.grid.Name = "grid";
+            this.grid.Size = new System.Drawing.Size(325, 399);
+            this.grid.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbtAddVacAddPeriod,
+            this.toolStripSeparator2,
+            this.tsbtDelVacAddPeriod,
+            this.toolStripSeparator1,
+            this.tsbtSaveVacAddPeriod});
+            this.toolStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(32, 399);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // tsbtAddVacAddPeriod
+            // 
+            this.tsbtAddVacAddPeriod.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtAddVacAddPeriod.Image = global::Kadr.Properties.Resources.TrackChanges_Small;
+            this.tsbtAddVacAddPeriod.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtAddVacAddPeriod.Name = "tsbtAddVacAddPeriod";
+            this.tsbtAddVacAddPeriod.Size = new System.Drawing.Size(29, 20);
+            this.tsbtAddVacAddPeriod.Text = "Добавить строку";
+            this.tsbtAddVacAddPeriod.Click += new System.EventHandler(this.tsbtAddVacAddPeriod_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(29, 6);
+            // 
+            // tsbtDelVacAddPeriod
+            // 
+            this.tsbtDelVacAddPeriod.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtDelVacAddPeriod.Image = global::Kadr.Properties.Resources.Remove;
+            this.tsbtDelVacAddPeriod.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtDelVacAddPeriod.Name = "tsbtDelVacAddPeriod";
+            this.tsbtDelVacAddPeriod.Size = new System.Drawing.Size(29, 20);
+            this.tsbtDelVacAddPeriod.Text = "Удалить текущую строку";
+            this.tsbtDelVacAddPeriod.Click += new System.EventHandler(this.tsbtDelVacAddPeriod_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(29, 6);
+            // 
+            // tsbtSaveVacAddPeriod
+            // 
+            this.tsbtSaveVacAddPeriod.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbtSaveVacAddPeriod.Image = global::Kadr.Properties.Resources.document_save;
+            this.tsbtSaveVacAddPeriod.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbtSaveVacAddPeriod.Name = "tsbtSaveVacAddPeriod";
+            this.tsbtSaveVacAddPeriod.Size = new System.Drawing.Size(29, 20);
+            this.tsbtSaveVacAddPeriod.Text = "Сохранить текущие изменения";
+            this.tsbtSaveVacAddPeriod.Click += new System.EventHandler(this.SavePeriods);
+            // 
+            // formFrameSkinner1
+            // 
+            this.formFrameSkinner1.Form = this;
+            // 
+            // AdditionalVacs
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.ClientSize = new System.Drawing.Size(629, 399);
+            this.Controls.Add(this.splitContainer1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "AdditionalVacs";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Дополнительные отпуска сотрудника";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AdditionalVacs_FormClosing);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.grid)).EndInit();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
+            this.ResumeLayout(false);
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.DataGridView grid;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton tsbtAddVacAddPeriod;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsbtDelVacAddPeriod;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripButton tsbtSaveVacAddPeriod;
+        private Elegant.Ui.FormFrameSkinner formFrameSkinner1;
+        private System.Windows.Forms.ListBox gridAddVac;
+    }
+}

@@ -1,0 +1,10 @@
+select E.PER_NUM, DOC.DOC_NAME ,to_char(RE.DOC_BEGIN, 'dd.mm.yyyy') as DOC_BEGIN,to_char(RE.DOC_END, 'dd.mm.yyyy') as DOC_END, 
+DOC.DOC_NOTE, TS.TYPE_SUBDIV_ID 
+from {0}.emp e 
+left join {0}.transfer tr on (E.PER_NUM=TR.per_num)  
+left join {0}.subdiv sub on (TR.SUBDIV_ID = SUB.SUBDIV_ID) 
+left join {0}.type_subdiv ts on (TS.TYPE_SUBDIV_ID = SUB.TYPE_SUBDIV_ID) 
+left join {0}.reg_doc re on (E.PER_NUM = RE.PER_NUM) 
+left join {0}.doc_list doc on (RE.DOC_LIST_ID = DOC.DOC_LIST_ID) 
+where DOC.DOC_NOTE = 'сд'  and TR.SIGN_CUR_WORK=1 and  E.PER_NUM = :p_per_num
+    and :p_date between RE.DOC_BEGIN and RE.DOC_END

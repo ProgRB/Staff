@@ -1,0 +1,1267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{8EE9DBBA-D145-425B-8131-238CB0936580}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tabel</RootNamespace>
+    <AssemblyName>Tabel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\Kadr\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CalendarControls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Elegant.Ui.Ribbon, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Kadr, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\..\Kadr\bin\Debug\Kadr.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Kadr\bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Kadr\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Kadr\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="TabDayLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\TabDayLibrary\bin\Debug\TabDayLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Calendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calendar.Designer.cs">
+      <DependentUpon>Calendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepOnHospital.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepOnHospital.Designer.cs">
+      <DependentUpon>RepOnHospital.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepOnAdministrVac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepOnAdministrVac.Designer.cs">
+      <DependentUpon>RepOnAdministrVac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DS_Report.cs">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DS_Report.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Limit\ViewLimit303.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Limit\ViewLimit303.Designer.cs">
+      <DependentUpon>ViewLimit303.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportClasses.cs" />
+    <Compile Include="ReportForEconDev.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportForEconDev.Designer.cs">
+      <DependentUpon>ReportForEconDev.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportDocsOnPay_Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportDocsOnPay_Type.Designer.cs">
+      <DependentUpon>ReportDocsOnPay_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectDegree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectDegree.Designer.cs">
+      <DependentUpon>SelectDegree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubdivFT\EditDateSubdivFT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubdivFT\EditDateSubdivFT.Designer.cs">
+      <DependentUpon>EditDateSubdivFT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubdivFT\EditSubdivFT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubdivFT\EditSubdivFT.Designer.cs">
+      <DependentUpon>EditSubdivFT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\AddAbsence.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\AddAbsence.Designer.cs">
+      <DependentUpon>AddAbsence.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\HoursEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\HoursEmp.Designer.cs">
+      <DependentUpon>HoursEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersHoliday\Date_For_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdersHoliday\Date_For_Order.Designer.cs">
+      <DependentUpon>Date_For_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DayOfCalendar.cs" />
+    <Compile Include="PersonalCard\EditEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\EditEmp.designer.cs">
+      <DependentUpon>EditEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\EditGr_Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\EditGr_Work.Designer.cs">
+      <DependentUpon>EditGr_Work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Limit\EditLimit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Limit\EditLimit.Designer.cs">
+      <DependentUpon>EditLimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\EditOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\EditOrder.Designer.cs">
+      <DependentUpon>EditOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Edit_Group_Master.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Edit_Group_Master.Designer.cs">
+      <DependentUpon>Edit_Group_Master.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\Time_Zone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\Time_Zone.Designer.cs">
+      <DependentUpon>Time_Zone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\EditGr_Work_Day.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\EditGr_Work_Day.Designer.cs">
+      <DependentUpon>EditGr_Work_Day.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Find_EmpTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\Find_EmpTable.designer.cs">
+      <DependentUpon>Find_EmpTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\EditReg_Doc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\EditReg_Doc.Designer.cs">
+      <DependentUpon>EditReg_Doc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\Gr_Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\Gr_Work.Designer.cs">
+      <DependentUpon>Gr_Work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersHoliday\OrderHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdersHoliday\OrderHoliday.Designer.cs">
+      <DependentUpon>OrderHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrdersHoliday\OrdersOnHoliday.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrdersHoliday\OrdersOnHoliday.designer.cs">
+      <DependentUpon>OrdersOnHoliday.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderTruancy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderTruancy.Designer.cs">
+      <DependentUpon>OrderTruancy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTable.Designer.cs">
+      <DependentUpon>ReportTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SubdivFT\Subdiv_for_table.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubdivFT\Subdiv_for_table.Designer.cs">
+      <DependentUpon>Subdiv_for_table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\Gr_Work_Day.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\Gr_Work_Day.Designer.cs">
+      <DependentUpon>Gr_Work_Day.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Table.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\Table.Designer.cs">
+      <DependentUpon>Table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filter.Designer.cs">
+      <DependentUpon>Filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Calendar.resx">
+      <DependentUpon>Calendar.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepOnHospital.resx">
+      <DependentUpon>RepOnHospital.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepOnAdministrVac.resx">
+      <DependentUpon>RepOnAdministrVac.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Limit\ViewLimit303.resx">
+      <DependentUpon>ViewLimit303.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepAverage_Number_Consolidated.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepAll_Limits_By_Subdiv.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepFailedOrders.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepFailureToAppear.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ActualVacByRegions.rdlc" />
+    <EmbeddedResource Include="Reports\RepAverage_Number_Personnel.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepAverage_Number.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportForEconDev.resx">
+      <DependentUpon>ReportForEconDev.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportDocsOnPay_Type.resx">
+      <DependentUpon>ReportDocsOnPay_Type.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepConsolidVacByRegion.rdlc" />
+    <EmbeddedResource Include="Reports\RepCount_Number.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepLate_Pass.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepPay_Type_545.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepProvisionVacByMonth.rdlc" />
+    <EmbeddedResource Include="Reports\RepUseOfWorkTime.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepUseOfWorkTimeOnSub.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTable_By_Period.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectDegree.resx">
+      <DependentUpon>SelectDegree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubdivFT\EditDateSubdivFT.resx">
+      <DependentUpon>EditDateSubdivFT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubdivFT\EditSubdivFT.resx">
+      <DependentUpon>EditSubdivFT.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\AddAbsence.resx">
+      <DependentUpon>AddAbsence.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\HoursEmp.resx">
+      <DependentUpon>HoursEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdersHoliday\Date_For_Order.resx">
+      <DependentUpon>Date_For_Order.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\EditEmp.resx">
+      <DependentUpon>EditEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\EditGr_Work.resx">
+      <DependentUpon>EditGr_Work.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Limit\EditLimit.resx">
+      <DependentUpon>EditLimit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\EditOrder.resx">
+      <DependentUpon>EditOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Edit_Group_Master.resx">
+      <DependentUpon>Edit_Group_Master.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\Time_Zone.resx">
+      <DependentUpon>Time_Zone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\EditGr_Work_Day.resx">
+      <DependentUpon>EditGr_Work_Day.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Find_EmpTable.resx">
+      <DependentUpon>Find_EmpTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\EditReg_Doc.resx">
+      <DependentUpon>EditReg_Doc.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\Gr_Work.resx">
+      <DependentUpon>Gr_Work.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdersHoliday\OrderHoliday.resx">
+      <DependentUpon>OrderHoliday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderTruancy.resx">
+      <DependentUpon>OrderTruancy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrdersHoliday\OrdersOnHoliday.resx">
+      <DependentUpon>OrdersOnHoliday.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportTable.resx">
+      <DependentUpon>ReportTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubdivFT\Subdiv_for_table.resx">
+      <DependentUpon>Subdiv_for_table.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\Gr_Work_Day.resx">
+      <DependentUpon>Gr_Work_Day.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Table.resx">
+      <DependentUpon>Table.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filter.resx">
+      <DependentUpon>Filter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\EditTime_Interval.resx">
+      <DependentUpon>EditTime_Interval.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\EditTime_Zone.resx">
+      <DependentUpon>EditTime_Zone.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\EditWork_Pay_Type.resx">
+      <DependentUpon>EditWork_Pay_Type.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Table\Work_Pay_Type.resx">
+      <DependentUpon>Work_Pay_Type.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Limit\ViewLimit.resx">
+      <DependentUpon>ViewLimit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gr_Work\Access_Gr_Subdiv.resx">
+      <DependentUpon>Access_Gr_Subdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="DS_Report.xsc">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </None>
+    <None Include="DS_Report.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DS_Report.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DS_Report.xss">
+      <DependentUpon>DS_Report.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Gr_Work\EditTime_Interval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\EditTime_Interval.designer.cs">
+      <DependentUpon>EditTime_Interval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\EditTime_Zone.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\EditTime_Zone.Designer.cs">
+      <DependentUpon>EditTime_Zone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\EditWork_Pay_Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\EditWork_Pay_Type.designer.cs">
+      <DependentUpon>EditWork_Pay_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Table\Work_Pay_Type.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Table\Work_Pay_Type.designer.cs">
+      <DependentUpon>Work_Pay_Type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Limit\ViewLimit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Limit\ViewLimit.Designer.cs">
+      <DependentUpon>ViewLimit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gr_Work\Access_Gr_Subdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gr_Work\Access_Gr_Subdiv.Designer.cs">
+      <DependentUpon>Access_Gr_Subdiv.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PrintSmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UndoLarge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueTheme_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ClearDrawing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Exit %284%29.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete .bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Resources\Benchmark.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\EditorsLibrary\EditorsLibrary.csproj">
+      <Project>{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}</Project>
+      <Name>EditorsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\LibraryKadr\LibraryKadr.csproj">
+      <Project>{517A6844-4711-460E-BF17-38480C80D1F4}</Project>
+      <Name>LibraryKadr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\WpfControlLibrary\WpfControlLibrary.csproj">
+      <Project>{64DDA96E-9ED9-467F-BC90-8766183FF0CC}</Project>
+      <Name>WpfControlLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users 1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thesaurus_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Remove1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ID_BLANK_PAGE_SMALL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Users 2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitWindow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitApp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitAppsmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitWindowsmall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitAppsmal2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Queries\Table\Access_GR_Subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Access_SubdivGR.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Add_For_Base_Order_Holiday.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Caption_For_Order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepAverage_Number_Consolidated.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Count102.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\CountRowForPT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\CountRowsDocsForLimit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\CountWorkHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\DateCloseTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\DaysInMonth.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\DaysWithError.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Days_Calendar.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\ErrorInDays.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\INSERTINTOPN_TMP.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\LimitCalcDoc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\LimitOnDegree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\LimitOnDegreeCalc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\LimitOnDegreeCalcOrder.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\LimitOnSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Lock_Add_303.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\MergeChange_Harmful.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\MergeEmp_Waybill.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\MergeWork_Pay_Type.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\New_Salary.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\New_TotalHours.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\NextHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\OrderOnTruancyFio.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\OrderOnTruancyPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\OrdersOnHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Per_num_and_FIO.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Reg_doc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepAll_Limits_By_Subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepAverage_Number.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepAverage_Number_On_Subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepAverage_Number_Personnel.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepCount_Number.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepFailureToAppear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepFailureToAppearOnDoc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepFailureTotalBySubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepLate_Entry_Chief.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepLate_Pass.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepLate_Pass_Holiday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Report_Pregnant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepPay_Type_By_Period.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepTimeNotWorker.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepTimeNotWorkerOnSub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepUseOfWorkTime.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\RepUseOfWorkTimeOnSub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Rep_ClosedOrders.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Salary_Calc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Salary_Kept.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectAbsence.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectAbsenceOnSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectAccessButtonTimePass.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectAppendix.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectAppendixDump.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectApprovalForTableClosing.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectClosedTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectCountComb_By_Month.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectCountDocs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectCountEmp_On_Doc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectCoupons.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectDate_for_Order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectDocsOnPayType.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectEmpTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectEmp_By_Period_For_Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectEmp_for_order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectEmp_Order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectEmp_Pass_Event.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectErrorGraph.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectForAdvance.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectForPay.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectGR_WORK.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectGR_WORK_DAY.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectGr_Work_For_Time_Zone.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHistoryGM.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHistoryGraph.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHolidayForTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHolidaysForPerco.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHoursForTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHoursOnDegree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectHoursOnSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectListSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectList_Emp_For_Table.sql" />
+    <Content Include="Queries\Table\SelectList_Transfer_Overtime.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectOvertimeLeave.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectPassWithDoc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectPayType153Rep.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectPermitNotRegistrPass.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectProtocol.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectProtocolForAccount.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRegDocData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepCalc_Salary.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepCalc_SalaryPrint.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepHoursByOrders.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepHoursByOrdersPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepLateness.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepMission.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnAdministrVac.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnAdministrVacFio.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnChildCare.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnHospital.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnHospitalFio.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepOnPregnancy.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepPay_Type.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepTransSub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRepWorkHol.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectRole_Edit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectSignClosingOrder.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectSubdiv_for_table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTable_Approval.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTable_Closing.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTimeBeginReg_Doc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTimeClosingTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTimeLeave.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTimeNotLeave.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTime_Interval.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTime_Zone.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTotalForPer_Num.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectTotalHours.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectType_Approval_By_Table.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWayBill.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWorked_Day.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWorkHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWorkOrder.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWorkOut.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWorkOutPer_Num.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SelectWork_Pay_Type.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SignDeleteWPT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Sign_Order_Accessibility.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SubdivFT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SubdivFTEdit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\SubQuaryEmp_For_Order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Transfer_With_Harmful.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateGroup_Master.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateGr_Work.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateOrder.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateOrderForPT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateSubdivFT.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\UpdateWork_Pay_Type.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\ViewLimitDegree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\ViewLimitForDegree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\ViewLimitForDoc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\WorkHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Table\Work_Pay_Type_For_Day.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\adept_preview_6331.ico" />
+    <Content Include="Resources\application-exit-2.ico" />
+    <Content Include="Resources\excel.ico" />
+    <Content Include="Resources\user-red.ico" />
+    <Content Include="Resources\user-suit1.ico" />
+    <Content Include="Resources\view-calendar1.ico" />
+    <Content Include="Resources\view-calendar2.ico" />
+    <Content Include="Resources\view-list-text-21.ico" />
+    <Content Include="Resources\view-list-tree-4.ico" />
+    <Content Include="Resources\view-list-tree-41.ico" />
+    <Content Include="Resources\view-pim-contacts1.ico" />
+    <Content Include="Resources\zoom-in-4.ico" />
+    <Content Include="Resources\zoom-in-41.ico" />
+    <Content Include="Resources\zoom-out-4.ico" />
+    <Content Include="Resources\zoom-out-41.ico" />
+    <Content Include="Resources\авиазавод2.jpg" />
+    <Content Include="XMLFile1.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Resources\application-exit-21.ico" />
+    <None Include="Resources\arrow_refresh_mini.png" />
+    <None Include="Resources\ClearFormatting_Small.png" />
+    <None Include="Resources\cal_small.png" />
+    <None Include="Resources\cal.png" />
+    <Content Include="Resources\CopyHS.png" />
+    <None Include="Resources\daw_Large.png" />
+    <Content Include="Resources\dialog-apply.ico" />
+    <None Include="Resources\dialog-apply1.ico" />
+    <Content Include="Resources\dialog-more.ico" />
+    <None Include="Resources\dialog-more1.ico" />
+    <Content Include="Resources\dialog-ok-3.ico" />
+    <None Include="Resources\dialog-ok-31.ico" />
+    <Content Include="Resources\document-close-4.ico" />
+    <None Include="Resources\document-close-41.ico" />
+    <Content Include="Resources\document-edit.ico" />
+    <None Include="Resources\document-edit1.ico" />
+    <Content Include="Resources\document-new-3.ico" />
+    <None Include="Resources\document-new-31.ico" />
+    <Content Include="Resources\document-new-6.ico" />
+    <Content Include="Resources\document-new-61.ico" />
+    <None Include="Resources\document-new-62.ico" />
+    <None Include="Resources\document-new-611.ico" />
+    <Content Include="Resources\document-new.ico" />
+    <None Include="Resources\document-new1.ico" />
+    <None Include="Resources\document-open.png" />
+    <None Include="Resources\document-open1.png" />
+    <None Include="Resources\document-openLarge.png" />
+    <None Include="Resources\document-openSmall.png" />
+    <None Include="Resources\document-save.png" />
+    <Content Include="Resources\documentation.ico" />
+    <None Include="Resources\documentation1.ico" />
+    <None Include="Resources\documentation2.ico" />
+    <None Include="Resources\editpasteLarge.png" />
+    <None Include="Resources\editpasteSmall.png" />
+    <None Include="Resources\edit-findLarge.png" />
+    <None Include="Resources\edit.png" />
+    <Content Include="Resources\emblem-important-3.ico" />
+    <None Include="Resources\emblem-important-31.ico" />
+    <None Include="Resources\ExitWindow1.png" />
+    <None Include="Resources\GRAPH01.BMP" />
+    <None Include="Resources\GraphHH.bmp" />
+    <None Include="Resources\ExtractTo %288%29.bmp" />
+    <None Include="Resources\exitLarge.png" />
+    <None Include="Resources\exitSmall.png" />
+    <None Include="Resources\FindLarge.png" />
+    <None Include="Resources\exitSmall1.png" />
+    <None Include="Resources\FindSmall.png" />
+    <None Include="Resources\gnome-calculator.png" />
+    <None Include="Resources\folder_documents.png" />
+    <None Include="Resources\folder_tar.png" />
+    <None Include="Resources\excel.PNG" />
+    <None Include="Resources\filter1.png" />
+    <Content Include="Resources\group.ico" />
+    <None Include="Resources\group1.ico" />
+    <None Include="Resources\ID_INSERT_CHART_LARGE.png" />
+    <None Include="Resources\id_insert_chart_small_pensil.png" />
+    <None Include="Resources\gtk-refresh.png" />
+    <None Include="Resources\id_insert_bookmark_large_green.png" />
+    <None Include="Resources\ID_INSERT_BOOKMARK_LARGE.png" />
+    <Content Include="Resources\Journal.png" />
+    <None Include="Resources\Knob Cancel.ico" />
+    <Content Include="Resources\minus.png" />
+    <None Include="Resources\minus1.png" />
+    <None Include="Resources\monitor.png" />
+    <None Include="Resources\No_daw_Large2.png" />
+    <None Include="Resources\Nodaw_Large1.png" />
+    <None Include="Resources\Nodaw.png" />
+    <None Include="Resources\NextChanges_Small.png" />
+    <Content Include="Resources\plus.png" />
+    <None Include="Resources\plus1.png" />
+    <None Include="Resources\plus2.png" />
+    <None Include="Resources\RefreshDocViewHS.png" />
+    <None Include="Resources\PrintSmall1.png" />
+    <None Include="Resources\Save_Large.png" />
+    <None Include="Resources\Properties_Large.png" />
+    <None Include="Resources\search_mini.png" />
+    <None Include="Resources\Save_Small.png" />
+    <Content Include="Resources\selecttext.gif" />
+    <Content Include="Resources\selecttext.png" />
+    <None Include="Resources\selecttext1.gif" />
+    <None Include="Resources\selecttext2.gif" />
+    <None Include="Resources\selecttext1.png" />
+    <None Include="Resources\stop.png" />
+    <None Include="Resources\stock_refresh.png" />
+    <None Include="Resources\Sort_Large.png" />
+    <None Include="Resources\Sort_Small.png" />
+    <None Include="Resources\SetNumberingValue_Small.png" />
+    <Content Include="Resources\system-search-3.ico" />
+    <None Include="Resources\system-search-31.ico" />
+    <Content Include="Resources\system-switch-user-3.ico" />
+    <None Include="Resources\system-switch-user-31.ico" />
+    <Content Include="Resources\tab-new-2.ico" />
+    <None Include="Resources\tab-new-21.ico" />
+    <Content Include="Resources\table-add.ico" />
+    <None Include="Resources\table-add1.ico" />
+    <Content Include="Resources\table-delete.ico" />
+    <None Include="Resources\table-delete1.ico" />
+    <Content Include="Resources\table-edit.ico" />
+    <None Include="Resources\table-edit1.ico" />
+    <None Include="Resources\Thesaurus_Small.png" />
+    <None Include="Resources\TextHightlightColor.png" />
+    <None Include="Resources\Users 11.ico" />
+    <None Include="Resources\Users 21.ico" />
+    <Content Include="Resources\user-group-new-2.ico" />
+    <Content Include="Resources\user-orange.ico" />
+    <Content Include="Resources\user-orange1.ico" />
+    <Content Include="Resources\user-red1.ico" />
+    <Content Include="Resources\user-suit.ico" />
+    <Content Include="Resources\user_group_new_21.ico" />
+    <Content Include="Resources\Users_1.ico" />
+    <Content Include="Resources\Users_2.ico" />
+    <None Include="Resources\WebRefreshHH.bmp" />
+    <None Include="Resources\WebRefreshHH1.bmp" />
+    <Content Include="Resources\view-calendar-day-2.ico" />
+    <Content Include="Resources\view-calendar-timeline.ico" />
+    <Content Include="Resources\view-calendar-upcoming-events.ico" />
+    <Content Include="Resources\view-calendar.ico" />
+    <Content Include="Resources\view-list-text-2.ico" />
+    <Content Include="Resources\view-pim-contacts.ico" />
+    <Content Include="Resources\window-new-2.ico" />
+    <None Include="Resources\window-new-21.ico" />
+    <Content Include="Resources\window-new-5.ico" />
+    <None Include="Resources\window-new-51.ico" />
+    <Content Include="Resources\window-new.ico" />
+    <None Include="Resources\window-new1.ico" />
+    <None Include="Resources\window-new2.ico" />
+    <Content Include="Resources\window-suppressed.ico" />
+    <None Include="Resources\window-suppressed1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReportClasses\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

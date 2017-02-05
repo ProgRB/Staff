@@ -1,0 +1,1 @@
+select {2}, substr({3},1,1), substr({4},1,1) from {0}.{1} where {5} = (select {5} from {0}.{6} where {7} = '{8}')

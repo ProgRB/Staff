@@ -1,0 +1,113 @@
+﻿<UserControl x:Class="WpfControlLibrary.Table.Table_Closing_Viewer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:cm="clr-namespace:System.ComponentModel;assembly=System"
+             mc:Ignorable="d" Language="ru-RU" 
+        xmlns:local="clr-namespace:WpfControlLibrary"
+        Height="439" Width="740" Unloaded="UserControl_Unloaded" Name="_this">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <local:Table_Closing_Color_ValueConverter x:Key="Table_Closing_Color_ValueConverter"/>
+
+            <Style x:Key="Table_Closing_RowStyle" TargetType="{x:Type DataGridRow}">
+                <Setter>
+                    <Setter.Property>Background</Setter.Property>
+                    <Setter.Value>
+                        <Binding Path="COLOR_ROW_TABLE" Converter="{StaticResource Table_Closing_Color_ValueConverter}"/>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <cm:BackgroundWorker x:Key="bw"
+                                 WorkerReportsProgress="True" WorkerSupportsCancellation="True"
+                                 DoWork="bw_DoWork" ProgressChanged="bw_ProgressChanged" 
+                                 RunWorkerCompleted="bw_RunWorkerCompleted"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="local:Wpf_Commands.UnloadTable_To_Salary" CanExecute="UnloadTable_To_Salary_CanExecute" Executed="UnloadTable_To_Salary_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditList_Subdiv_Table" CanExecute="UnloadTable_To_Salary_CanExecute" Executed="EditList_Subdiv_Table_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.SetSign_Processing" CanExecute="UnloadTable_To_Salary_CanExecute" Executed="SetSign_Processing_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.ClearSing_Processing" CanExecute="UnloadTable_To_Salary_CanExecute" Executed="ClearSing_Processing_Executed"/>
+        <CommandBinding Command="local:Wpf_Commands.EditTable_Closing" CanExecute="EditTable_Closing_CanExecute" Executed="EditTable_Closing_Executed"/>
+    </UserControl.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Grid.Row="0" Orientation="Horizontal" IsLocked="True">
+            <ToolBar>
+                <Button MaxHeight="26" Command="local:Wpf_Commands.UnloadTable_To_Salary" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/folder_tar.png" />
+                </Button>
+                <Button Command="local:Wpf_Commands.EditList_Subdiv_Table" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/table-edit.ico" />
+                </Button>
+                <Button MaxHeight="26" Command="local:Wpf_Commands.SetSign_Processing" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/daw_Large.png" />
+                </Button>
+                <Button MaxHeight="26" Command="local:Wpf_Commands.ClearSing_Processing" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/Nodaw.png" />
+                </Button>
+                <Separator></Separator>
+                <Button Margin="2" Command="local:Wpf_Commands.EditTable_Closing" ToolTipService.ShowOnDisabled="True"
+                        ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}">
+                    <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/document-edit.ico" />
+                </Button>
+            </ToolBar>
+        </ToolBarTray>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="White">
+            <TextBlock Margin="20, 7, 7, 7" VerticalAlignment="Center" Text="Табель за период"/>
+            <DatePicker Margin="2" Name="dpSelectedDate" SelectedDate="{Binding Path=SelectedDate, ElementName=_this}"  VerticalAlignment="Center"
+                        local:DatePickerCalendar.IsMonthYear="True" local:DatePickerDateFormat.DateFormat="MMMM yyyy"/>
+            <TextBlock Margin="7" VerticalAlignment="Center" Text="Тип табеля"/>
+            <ComboBox Name="cbTYPE_TABLE" VerticalAlignment="Center" MinWidth="100" ItemsSource="{Binding}"
+                      SelectedValuePath="TYPE_TABLE_ID" DisplayMemberPath="TYPE_TABLE_NAME"></ComboBox>
+            <Button Name="btRefreshState" Margin="7" ToolTip="Обновить список проектов" MaxHeight="24" MaxWidth="24" Click="btRefreshState_Click">
+                <Image Source="pack://application:,,,/WpfControlLibrary;component/Images/refresh2424.png" Stretch="Fill" />
+            </Button>
+        </StackPanel>
+        <DataGrid Grid.Row="2" Style="{StaticResource datagridStyle}" Name="dgTable_Closing" 
+                  ItemsSource="{Binding}" SelectionUnit="CellOrRowHeader"
+                  RowStyle="{StaticResource Table_Closing_RowStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Шифр" Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Наименование подразделения" Binding="{Binding Path=SUBDIV_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Дата закрытия" Binding="{Binding Path=TIME_CLOSING, StringFormat='dd.MM.yyyy HH:mm'}" IsReadOnly="True"/>
+                <DataGridComboBoxColumn Header="Статус согласования" x:Name="dcTABLE_PLAN_APPROVAL" DisplayMemberPath="NOTE_ROLE_APPROVAL" SelectedValuePath="TABLE_PLAN_APPROVAL_ID" 
+                                        SelectedValueBinding="{Binding Path=TABLE_PLAN_APPROVAL_ID}" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Header="Признак обработки" Binding="{Binding Path=SIGN_PROCESSING}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+            <DataGrid.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Показать табель" Click="miViewTable_Click"/>
+                </ContextMenu>
+            </DataGrid.ContextMenu>
+        </DataGrid>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Background="White">
+            <TextBlock Margin="7" Text="Количество подразделений - "/>
+            <TextBlock Margin="0,7" Name="tbCount_Subdiv" Text="{Binding ElementName=_this, Path=CountSubdiv, Mode=OneWay, NotifyOnSourceUpdated=True}"/>
+            <TextBlock Margin="7" Text="Подразделений закрыто -"/>
+            <TextBlock Margin="0,7" Name="tbCount_Subdiv_Closing" Text="{Binding ElementName=_this, Path=CountClosingSubdiv, Mode=OneWay, NotifyOnSourceUpdated=True}"/>
+            <TextBlock Margin="7" Text="Подразделений обработано -"/>
+            <TextBlock Margin="0,7" Name="tbCount_Subdiv_Processing" Text="{Binding ElementName=_this, Path=CountProcessingSubdiv, Mode=OneWay, NotifyOnSourceUpdated=True}"/>
+        </StackPanel>
+        <ProgressBar Name="progressBar" Grid.Row="4" Margin="5" VerticalAlignment="Bottom" 
+                     MinHeight="20" Minimum="0" Maximum="100" Height="20"/>
+    </Grid>
+</UserControl>

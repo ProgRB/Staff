@@ -1,0 +1,1 @@
+select * from {0}.vac_group_type where TYPE_VAC_CALC_PERIOD_ID=2

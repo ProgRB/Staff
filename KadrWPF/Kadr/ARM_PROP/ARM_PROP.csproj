@@ -1,0 +1,302 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{711A8556-E0E8-4934-99D4-3183B529AB72}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ARM_PROP</RootNamespace>
+    <AssemblyName>ARM_PROP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Kadr\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Elegant.Ui.Ribbon, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Kadr, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <ExecutableExtension>.exe</ExecutableExtension>
+      <HintPath>..\Kadr\bin\Debug\Kadr.exe</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddForm.Designer.cs">
+      <DependentUpon>AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permit\EditPermit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Permit\EditPermit.Designer.cs">
+      <DependentUpon>EditPermit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permit\FilterForPermit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Permit\FilterForPermit.Designer.cs">
+      <DependentUpon>FilterForPermit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FiltrJurn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FiltrJurn.Designer.cs">
+      <DependentUpon>FiltrJurn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FindJurnal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FindJurnal.Designer.cs">
+      <DependentUpon>FindJurnal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InsertNarush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InsertNarush.Designer.cs">
+      <DependentUpon>InsertNarush.cs</DependentUpon>
+    </Compile>
+    <Compile Include="JurnalFiltr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="JurnalFiltr.Designer.cs">
+      <DependentUpon>JurnalFiltr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="KolvoNarush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="KolvoNarush.Designer.cs">
+      <DependentUpon>KolvoNarush.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Group.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Group.Designer.cs">
+      <DependentUpon>Group.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Permit\ListPermit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Permit\ListPermit.Designer.cs">
+      <DependentUpon>ListPermit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Narushiteli.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Narushiteli.Designer.cs">
+      <DependentUpon>Narushiteli.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintJurnal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintJurnal.Designer.cs">
+      <DependentUpon>PrintJurnal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrintNarush.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PrintNarush.Designer.cs">
+      <DependentUpon>PrintNarush.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddForm.resx">
+      <DependentUpon>AddForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Permit\EditPermit.resx">
+      <DependentUpon>EditPermit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Permit\FilterForPermit.resx">
+      <DependentUpon>FilterForPermit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FiltrJurn.resx">
+      <DependentUpon>FiltrJurn.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FindJurnal.resx">
+      <DependentUpon>FindJurnal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InsertNarush.resx">
+      <DependentUpon>InsertNarush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="JurnalFiltr.resx">
+      <DependentUpon>JurnalFiltr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="KolvoNarush.resx">
+      <DependentUpon>KolvoNarush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Group.resx">
+      <DependentUpon>Group.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Permit\ListPermit.resx">
+      <DependentUpon>ListPermit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Narushiteli.resx">
+      <DependentUpon>Narushiteli.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintJurnal.resx">
+      <DependentUpon>PrintJurnal.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PrintNarush.resx">
+      <DependentUpon>PrintNarush.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SotZavod.resx">
+      <DependentUpon>SotZavod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="StrSotr.resx">
+      <DependentUpon>StrSotr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZurnNaruRe.resx">
+      <DependentUpon>ZurnNaruRe.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SotZavod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SotZavod.Designer.cs">
+      <DependentUpon>SotZavod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="StrSotr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StrSotr.Designer.cs">
+      <DependentUpon>StrSotr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZurnNaruRe.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZurnNaruRe.Designer.cs">
+      <DependentUpon>ZurnNaruRe.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Thesaurus_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\FILTER.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Print_Large.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ExitWindow1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EditorsLibrary\EditorsLibrary.csproj">
+      <Project>{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}</Project>
+      <Name>EditorsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryKadr\LibraryKadr.csproj">
+      <Project>{517A6844-4711-460E-BF17-38480C80D1F4}</Project>
+      <Name>LibraryKadr</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ID_BLANK_PAGE_SMALL.png" />
+    <Content Include="Resources\Remove_Small.png" />
+    <Content Include="Resources\TrackChanges_Small.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

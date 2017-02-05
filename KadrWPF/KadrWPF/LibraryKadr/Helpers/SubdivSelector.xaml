@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="LibraryKadr.Helpers.SubdivSelector"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hlp="clr-namespace:LibraryKadr.Helpers"
+             mc:Ignorable="d" 
+             Height="Auto" d:DesignHeight="24" d:DesignWidth="361" x:Name="_this">
+    <UserControl.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+    </UserControl.Resources>
+    <Grid HorizontalAlignment="Stretch" Grid.IsSharedSizeScope="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition SharedSizeGroup="ColumnA" Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Label HorizontalAlignment="Right" Margin="0,0,3,0" VerticalAlignment="Center" Visibility="{Binding ElementName=_this, Path=ShowPromt, Converter={StaticResource BoolToVisibilityConverter}}">Подразделение</Label>
+        <ComboBox Grid.Column="1" x:Name="CODE_SUBDIV" MinWidth="60" IsEditable="True" DisplayMemberPath="CODE_SUBDIV" SelectedValuePath="SUBDIV_ID"
+                  ItemsSource="{Binding ElementName=_this, Path=SubdivView}" Margin="0,0,0,0" VerticalAlignment="Center" IsSynchronizedWithCurrentItem="True"
+                  SelectedValue="{hlp:DelayBinding ElementName=_this, Path=SubdivId, Delay='00:00:00.800'}">
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  RelativeSource={RelativeSource Mode=Self}, Path=SelectedItem.SUB_ACTUAL_SIGN}" Value="0">
+                            <Setter Property="Background" Value="LightGray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SUB_ACTUAL_SIGN}" Value="0">
+                            <Setter Property="Background" Value="LightGray"/>
+                            <Setter Property="ToolTip" Value="Неактуальное подразделение"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+        <ComboBox Grid.Column="2" x:Name="SUBDIV_NAME" MinWidth="100" IsEditable="True" TextSearch.TextPath="SUBDIV_NAME" SelectedValuePath="SUBDIV_ID" 
+                  SelectedValue="{hlp:DelayBinding ElementName=_this, Path=SubdivId, Delay='00:00:00.800'}"
+                  ItemsSource="{Binding ElementName=_this, Path=SubdivView}" Margin="5,0,0,0" VerticalAlignment="Center" IsSynchronizedWithCurrentItem="True"
+                  Grid.IsSharedSizeScope="True">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition SharedSizeGroup="cl1"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding CODE_SUBDIV}" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Text="{Binding SUBDIV_NAME}" VerticalAlignment="Center" Margin="10,2,2,2"/>
+                    </Grid>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+            <ComboBox.Style>
+                <Style TargetType="ComboBox">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding  RelativeSource={RelativeSource Mode=Self}, Path=SelectedItem.SUB_ACTUAL_SIGN}" Value="0">
+                            <Setter Property="Background" Value="LightGray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.Style>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SUB_ACTUAL_SIGN}" Value="0">
+                            <Setter Property="Background" Value="LightGray"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </ComboBox.ItemContainerStyle>
+        </ComboBox>
+    </Grid>
+</UserControl>

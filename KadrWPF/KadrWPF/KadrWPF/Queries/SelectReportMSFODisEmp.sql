@@ -1,0 +1,31 @@
+select V.PER_NUM, V.EMP_BIRTH_DATE, V.EMP_SEX, V.DATE_HIRE, V.DATE_DIS, V.DIS_TYPE, V.CODE_DISM, V.INV,
+    CASE WHEN V.INV is not null 
+    THEN (SELECT DISTINCT round(FIRST_VALUE(nvl(AD.SALARY,0)) OVER (PARTITION BY AD.TRANSFER_ID ORDER BY AD.CHANGE_DATE DESC)*
+                (select B.TARIFF FROM (SELECT BT.TARIFF, BT.BDATE, LEAD(BT.BDATE-1/86400,1,DATE '3000-01-01') OVER(ORDER BY BT.BDATE) EDATE 
+                                        FROM {0}.BASE_TARIFF BT) B
+                WHERE V.DATE_DIS between B.BDATE AND B.EDATE)) SALARY            
+            FROM {0}.ACCOUNT_DATA AD 
+            WHERE AD.TRANSFER_ID = FROM_POSITION)
+        END INV_SAL 
+from 
+(   
+    SELECT Tbl.PER_NUM, Tbl.EMP_BIRTH_DATE, Tbl.EMP_SEX, DATE_HIRE, Trunc(Tbl.DATE_TRANSFER) as DATE_DIS,
+        (SELECT REASON_NAME FROM {0}.REASON_DISMISS WHERE REASON_ID = Tbl.REASON_ID) as DIS_TYPE,
+        '' as CODE_DISM,
+        CASE WHEN EXISTS(SELECT null FROM {0}.EMP_PRIV EP 
+                JOIN {0}.TYPE_PRIV TP USING(TYPE_PRIV_ID)
+                WHERE EP.PER_NUM = Tbl.PER_NUM and TP.SIGN_INVALID = 1 AND 
+                    Tbl.DATE_TRANSFER between EP.DATE_START_PRIV and nvl(EP.DATE_END_PRIV,DATE '3000-01-01'))
+        THEN 'ÄÀ' END INV, Tbl.FROM_POSITION
+    FROM ( 
+        SELECT E.PER_NUM, E.EMP_BIRTH_DATE, E.EMP_SEX, T9.DATE_TRANSFER, T9.REASON_ID, T9.FROM_POSITION, T9.DATE_HIRE
+        FROM {0}.Emp E
+        JOIN (
+            SELECT PER_NUM, DATE_HIRE, DATE_TRANSFER, REASON_ID, T0.FROM_POSITION
+            FROM {0}.Transfer T0
+            WHERE T0.TYPE_TRANSFER_ID = 3 and T0.SIGN_COMB = 0 and T0.DATE_TRANSFER <= :p_date_end and
+                Extract(Year from T0.DATE_TRANSFER) = Extract(Year from :p_date_end)                    
+            ) T9 ON E.PER_NUM = T9.PER_NUM 
+    ) Tbl
+) V
+ORDER BY V.PER_NUM

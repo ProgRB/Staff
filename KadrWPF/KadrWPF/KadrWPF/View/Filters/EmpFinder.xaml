@@ -1,0 +1,108 @@
+﻿<Window x:Class="KadrWPF.EmpFinder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KadrWPF"
+        xmlns:lc="clr-namespace:Staff;assembly=LibraryKadr"
+        xmlns:lkh="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+        mc:Ignorable="d"
+        Title="Поиск сотрудника" Height="400" Width="700" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <Window.CommandBindings>
+        <CommandBinding Command="local:EmpFinder.SelectEmp" CanExecute="CommandBinding_CanExecute" Executed="CommandBinding_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <GroupBox Header="Фильтр" KeyDown="Group_KeyDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Подразделение" Margin="5,2" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <lkh:SubdivSelector Grid.Column="1" SubdivId="{Binding EmpFilter.SubdivID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="0,2" 
+                                    VerticalAlignment="Center" HorizontalAlignment="Stretch" ShowPromt="False" AppRoleName="APSTAFF.SUBDIV"/>
+                <TextBlock Grid.Row="1" Text="ФИО" Margin="5,2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EmpFilter.FIO, UpdateSourceTrigger=PropertyChanged}" Margin="0,2" 
+                         Style="{StaticResource EnabledTextBox}" />
+                <TextBlock Grid.Row="2" Text="Таб. №" Margin="5,2" Grid.RowSpan="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EmpFilter.PerNum, UpdateSourceTrigger=PropertyChanged}" Margin="0,2,0,2" 
+                         Style="{StaticResource EnabledTextBox}" 
+                         MinWidth="100" HorizontalAlignment="Left" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Margin="125,2,10,2" Text="На дату" VerticalAlignment="Center" HorizontalAlignment="Left" Width="50">
+                </TextBlock>
+                <DatePicker Grid.Row="2" Grid.Column="1" Margin="175,2,0,2" SelectedDate="{Binding EmpFilter.SelectedDate, UpdateSourceTrigger=PropertyChanged}" 
+                            HorizontalAlignment="Left" Width="140"
+                            Style="{StaticResource EnabledTextBox}"/>
+                <Button Grid.Row="2" Grid.Column="1"  Click="btFind_Click" Margin="325,2,0,2" HorizontalAlignment="Left" Height="21" Width="25" Grid.RowSpan="2" 
+                        VerticalAlignment="Center" ToolTip="Применить фильтр">
+                    <Image Source="/Images/filter_3232.png" VerticalAlignment="Center" />
+                </Button>
+            </Grid>
+        </GroupBox>
+        <DataGrid Grid.Row="1" x:Name="dgEmps" IsReadOnly="True" AutoGenerateColumns="False" lc:DataGridAddition.DoubleClickCommand="local:EmpFinder.SelectEmp"
+                  SelectedItem="{Binding SelectedRow, UpdateSourceTrigger=PropertyChanged}"
+                  Style="{StaticResource DataGridSalaryStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Подр." Binding="{Binding CODE_SUBDIV}" Width="50"/>
+                <DataGridTextColumn Header="Таб.№" Binding="{Binding PER_NUM}"/>
+                <DataGridTextColumn  Binding="{Binding SIGN_COMB}" Width="30">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="Совм.">
+                            <TextBlock.LayoutTransform>
+                                <RotateTransform Angle="-90"/>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding EMP_LAST_NAME}" Width="120"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding EMP_FIRST_NAME}" Width="100"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding EMP_MIDDLE_NAME}" Width="100"/>
+                <DataGridTextColumn Binding="{Binding DATE_TRANSFER, StringFormat={}{0:dd/MM/yyyy}}" Width="80">
+                    <DataGridTextColumn.Header>
+                        <TextBlock TextWrapping="Wrap" Text="Дата движения" TextAlignment="Center"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding CLASSIFIC}" Width="30">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="Разряд">
+                            <TextBlock.LayoutTransform>
+                                <RotateTransform Angle="-90"/>
+                            </TextBlock.LayoutTransform>
+                        </TextBlock>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding CODE_TARIFF_GRID}" Width="50">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="Тар. сетка" TextWrapping="Wrap"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding POS_NAME}" Header="Должность" Width="200"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Background="{StaticResource PanelGrayBack}" >
+            <Button Content="Выбрать" Width="Auto" HorizontalAlignment="Center" Margin="5,3" Padding="15,2" 
+                    Command="local:EmpFinder.SelectEmp" Style="{StaticResource ToolBoxLikeStyle}"/>
+            <Separator Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+            <Button Content="Закрыть" Width="Auto" Margin="5,3" Padding="15,2" Click="Button_Click" Style="{StaticResource ToolBoxLikeStyle}"/>
+        </StackPanel>
+    </Grid>
+</Window>

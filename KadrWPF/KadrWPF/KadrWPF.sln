@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KadrWPF", "KadrWPF\KadrWPF.csproj", "{3EA91016-AF61-4256-9D56-100C4C7F0CF8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryKadr", "LibraryKadr\LibraryKadr.csproj", "{517A6844-4711-460E-BF17-38480C80D1F4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3EA91016-AF61-4256-9D56-100C4C7F0CF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3EA91016-AF61-4256-9D56-100C4C7F0CF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3EA91016-AF61-4256-9D56-100C4C7F0CF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3EA91016-AF61-4256-9D56-100C4C7F0CF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{517A6844-4711-460E-BF17-38480C80D1F4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://win7:8080/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = KadrWPF\\KadrWPF.csproj
+		SccProjectName1 = KadrWPF
+		SccLocalPath1 = KadrWPF
+		SccProjectUniqueName2 = LibraryKadr\\LibraryKadr.csproj
+		SccProjectName2 = LibraryKadr
+		SccLocalPath2 = LibraryKadr
+	EndGlobalSection
+EndGlobal

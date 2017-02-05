@@ -1,0 +1,977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <InteractiveHeight>29.7cm</InteractiveHeight>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>21cm</InteractiveWidth>
+  <rd:GridSpacing>0.1cm</rd:GridSpacing>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <RightMargin>0.5cm</RightMargin>
+  <LeftMargin>2.2cm</LeftMargin>
+  <BottomMargin>1cm</BottomMargin>
+  <rd:ReportID>1b7c84bb-b5c1-4c9c-b968-fdb0a3bfd2ba</rd:ReportID>
+  <PageWidth>21cm</PageWidth>
+  <Width>17.92063cm</Width>
+  <Body>
+    <ColumnSpacing>1cm</ColumnSpacing>
+    <ReportItems>
+      <Textbox Name="textbox21">
+        <Top>14.7cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>54</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.52645cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox54">
+        <Top>24cm</Top>
+        <Width>4.47619cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>53</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.62381cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Баракин А.В.</Value>
+      </Textbox>
+      <Textbox Name="textbox67">
+        <Top>25.9cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>52</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>15.24286cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox62">
+        <Top>22.6cm</Top>
+        <Width>10.9cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>51</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.3cm</Left>
+        <Height>0.54709cm</Height>
+        <Value>от "____" ____________ _____ г. № ______</Value>
+      </Textbox>
+      <Textbox Name="textbox39">
+        <Top>16.2cm</Top>
+        <Width>1.02646cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>50</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.2cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox40">
+        <Top>16.3cm</Top>
+        <Width>3.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+        </Style>
+        <ZIndex>49</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Разряд ____</Value>
+      </Textbox>
+      <Textbox Name="textbox32">
+        <Top>14cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>48</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.45cm</Height>
+        <Value>наименование структурного подразделения</Value>
+      </Textbox>
+      <Textbox Name="textbox30">
+        <Top>13.3471cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>47</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.52645cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox36">
+        <Top>14.8cm</Top>
+        <Width>17.27354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>46</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox33">
+        <Top>12.5cm</Top>
+        <Width>2.07937cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>45</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>5.42063cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox34">
+        <Top>12.59418cm</Top>
+        <Width>7.4cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>44</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Шифр подразделения ________</Value>
+      </Textbox>
+      <Textbox Name="textbox31">
+        <Top>13.46773cm</Top>
+        <Width>17.27354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>43</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox24">
+        <Top>11.27354cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>42</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox25">
+        <Top>11.39418cm</Top>
+        <Width>17.27354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>41</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <Top>11.87355cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>40</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.45cm</Height>
+        <Value>фамилия, имя, отчество</Value>
+      </Textbox>
+      <Textbox Name="textbox45">
+        <Top>17.2cm</Top>
+        <Width>9.2cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>39</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.82646cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox46">
+        <Top>17.29418cm</Top>
+        <Width>11.8cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>38</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Категория __________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox47">
+        <Top>17.19418cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>37</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>15.92646cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox48">
+        <Top>17.28836cm</Top>
+        <Width>5.2cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>36</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.22646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Шифр категории ____</Value>
+      </Textbox>
+      <Textbox Name="textbox49">
+        <Top>18.4cm</Top>
+        <Width>7.2cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>35</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6cm</Left>
+        <Height>0.5cm</Height>
+        <Value>СЛУЖЕБНАЯ ЗАПИСКА</Value>
+      </Textbox>
+      <Textbox Name="textbox50">
+        <Top>18.49418cm</Top>
+        <Width>12.87354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>34</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Основание увольнения: __________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox53">
+        <Top>21.58888cm</Top>
+        <Width>7.47354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>33</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.32646cm</Left>
+        <Height>1.01112cm</Height>
+        <Value>Решение профсоюзного органа о согласии на увольнение</Value>
+      </Textbox>
+      <Textbox Name="textbox57">
+        <Top>24.1cm</Top>
+        <Width>8.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>32</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>9.4cm</Left>
+        <Height>0.54709cm</Height>
+        <Value>__________ ___________________</Value>
+      </Textbox>
+      <Textbox Name="textbox63">
+        <Top>24.52712cm</Top>
+        <Width>2.71534cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>31</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>9.4cm</Left>
+        <Height>0.45cm</Height>
+        <Value>подпись</Value>
+      </Textbox>
+      <Textbox Name="textbox64">
+        <Top>24.52712cm</Top>
+        <Width>5.19629cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>30</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>12.3cm</Left>
+        <Height>0.45cm</Height>
+        <Value>расшифровка подписи</Value>
+      </Textbox>
+      <Textbox Name="textbox65">
+        <Top>25.98109cm</Top>
+        <Width>16.99841cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>29</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.38836cm</Left>
+        <Height>0.54709cm</Height>
+        <Value>С приказом ознакомлен ________________ "____" __________      г.</Value>
+      </Textbox>
+      <Textbox Name="textbox66">
+        <Top>26.46681cm</Top>
+        <Width>4.20158cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>28</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>6.19842cm</Left>
+        <Height>0.45cm</Height>
+        <Value>подпись работника</Value>
+      </Textbox>
+      <Textbox Name="textbox72">
+        <Top>15.32645cm</Top>
+        <Width>16.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>27</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.4cm</Left>
+        <Height>0.45cm</Height>
+        <Value>наименование профессии (должности)</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Top>19.01164cm</Top>
+        <Width>17.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>26</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.2cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox23">
+        <Top>19.51165cm</Top>
+        <Width>17.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>25</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.2cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox35">
+        <Top>20.01165cm</Top>
+        <Width>17.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>24</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.2cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox37">
+        <Top>20.51165cm</Top>
+        <Width>17.1cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>23</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.2cm</Left>
+        <Height>0.5cm</Height>
+        <Value>_______________________________________________________________</Value>
+      </Textbox>
+      <Textbox Name="textbox10">
+        <Top>24.09996cm</Top>
+        <Width>8.8cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Left</TextAlign>
+        </Style>
+        <ZIndex>22</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.3cm</Left>
+        <Height>0.49996cm</Height>
+        <Value>Начальник отдела кадров</Value>
+      </Textbox>
+      <Textbox Name="textbox42">
+        <Top>9.6cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>21</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>7.22063cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox43">
+        <Top>9.6cm</Top>
+        <Width>2.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>20</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>4.54709cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox44">
+        <Top>9.60582cm</Top>
+        <Width>1.05291cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>19</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.96773cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox71">
+        <Top>9.70582cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+        </Style>
+        <ZIndex>18</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.57937cm</Left>
+        <Height>0.54709cm</Height>
+        <Value>Уволить "____" __________      года</Value>
+      </Textbox>
+      <Rectangle Name="rectangle2">
+        <Left>12.29418cm</Left>
+        <ZIndex>17</ZIndex>
+        <ReportItems>
+          <Line Name="line5">
+            <Top>0.87354cm</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <ZIndex>2</ZIndex>
+            <Height>0cm</Height>
+          </Line>
+          <Textbox Name="textbox68">
+            <Top>0.17354cm</Top>
+            <Width>2cm</Width>
+            <Style>
+              <FontFamily>Courier New</FontFamily>
+              <FontSize>12pt</FontSize>
+              <TextAlign>Center</TextAlign>
+            </Style>
+            <ZIndex>1</ZIndex>
+            <CanGrow>true</CanGrow>
+            <Left>0.2cm</Left>
+            <Height>0.5cm</Height>
+            <Value>номер</Value>
+          </Textbox>
+          <Textbox Name="textbox69">
+            <Top>1.07355cm</Top>
+            <Width>2cm</Width>
+            <Style>
+              <FontFamily>Courier New</FontFamily>
+              <FontSize>12pt</FontSize>
+              <TextAlign>Center</TextAlign>
+            </Style>
+            <CanGrow>true</CanGrow>
+            <Left>0.2cm</Left>
+            <Height>0.5cm</Height>
+            <Value>дата</Value>
+          </Textbox>
+        </ReportItems>
+        <Top>7.6cm</Top>
+        <Width>2.5cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <Height>1.73cm</Height>
+      </Rectangle>
+      <Textbox Name="textbox29">
+        <Top>2.9619cm</Top>
+        <Width>1.55873cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>16</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>8.53492cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox28">
+        <Top>2.9619cm</Top>
+        <Width>1.5cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>15</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>5.64709cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox27">
+        <Top>2.9619cm</Top>
+        <Width>2.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>14</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>2.97354cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox18">
+        <Top>10.4cm</Top>
+        <Width>2.2cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>13</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>15.19418cm</Left>
+        <Height>0.47936cm</Height>
+        <Value />
+      </Textbox>
+      <Rectangle Name="rectangle1">
+        <Left>14.79418cm</Left>
+        <ZIndex>12</ZIndex>
+        <ReportItems>
+          <Textbox Name="textbox9">
+            <Top>0.24709cm</Top>
+            <Width>2.56243cm</Width>
+            <Style>
+              <FontFamily>Courier New</FontFamily>
+              <FontSize>12pt</FontSize>
+              <TextAlign>Center</TextAlign>
+            </Style>
+            <ZIndex>6</ZIndex>
+            <CanGrow>true</CanGrow>
+            <Left>0.27354cm</Left>
+            <Height>0.5cm</Height>
+            <Value>Код</Value>
+          </Textbox>
+          <Textbox Name="textbox13">
+            <Top>1.19418cm</Top>
+            <Width>2.56243cm</Width>
+            <Style>
+              <FontFamily>Courier New</FontFamily>
+              <FontSize>12pt</FontSize>
+              <TextAlign>Center</TextAlign>
+            </Style>
+            <ZIndex>5</ZIndex>
+            <CanGrow>true</CanGrow>
+            <Left>0.27354cm</Left>
+            <Height>0.5cm</Height>
+            <Value>0301006</Value>
+          </Textbox>
+          <Textbox Name="textbox14">
+            <Top>2.08836cm</Top>
+            <Width>2.56243cm</Width>
+            <Style>
+              <FontFamily>Courier New</FontFamily>
+              <FontSize>12pt</FontSize>
+              <TextAlign>Center</TextAlign>
+            </Style>
+            <ZIndex>4</ZIndex>
+            <CanGrow>true</CanGrow>
+            <Left>0.27354cm</Left>
+            <Height>0.5cm</Height>
+            <Value>07511318</Value>
+          </Textbox>
+          <Line Name="line1">
+            <Top>0.97354cm</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <ZIndex>3</ZIndex>
+            <Height>0cm</Height>
+          </Line>
+          <Line Name="line2">
+            <Top>1.9176cm</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <ZIndex>2</ZIndex>
+            <Height>0cm</Height>
+          </Line>
+          <Line Name="line3">
+            <Top>2.80279cm</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <ZIndex>1</ZIndex>
+            <Left>0.01164cm</Left>
+            <Height>0cm</Height>
+          </Line>
+          <Line Name="line4">
+            <Top>3.67633cm</Top>
+            <Style>
+              <BorderStyle>
+                <Default>Solid</Default>
+              </BorderStyle>
+            </Style>
+            <Height>0cm</Height>
+          </Line>
+        </ReportItems>
+        <Top>4.81747cm</Top>
+        <Width>3.1cm</Width>
+        <Style>
+          <BorderStyle>
+            <Default>Solid</Default>
+          </BorderStyle>
+        </Style>
+        <Height>4.50899cm</Height>
+      </Rectangle>
+      <Textbox Name="textbox2">
+        <rd:DefaultName>textbox2</rd:DefaultName>
+        <Top>2.96772cm</Top>
+        <Width>1.02645cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+        <ZIndex>11</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>1.39418cm</Left>
+        <Height>0.5cm</Height>
+        <Value />
+      </Textbox>
+      <Textbox Name="textbox3">
+        <rd:DefaultName>textbox3</rd:DefaultName>
+        <Top>1.5cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>10</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15291cm</Left>
+        <Height>0.5cm</Height>
+        <Value>ОТКРЫТОЕ АКЦИОНЕРНОЕ ОБЩЕСТВО</Value>
+      </Textbox>
+      <Textbox Name="textbox4">
+        <Top>2.02063cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>9</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15291cm</Left>
+        <Height>0.5cm</Height>
+        <Value>УЛАН-УДЭНСКИЙ АВИАЦИОННЫЙ ЗАВОД</Value>
+      </Textbox>
+      <Textbox Name="textbox5">
+        <Top>2.56773cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>8</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15291cm</Left>
+        <Height>0.42645cm</Height>
+        <Value>ПРИКАЗ</Value>
+      </Textbox>
+      <Textbox Name="textbox6">
+        <Top>3.06772cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>7</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15291cm</Left>
+        <Height>0.54709cm</Height>
+        <Value>"____" __________      г. № ______</Value>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <Top>3.6619cm</Top>
+        <Width>10.97354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>6</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.15291cm</Left>
+        <Height>0.47937cm</Height>
+        <Value>г.Улан-Удэ</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <Top>0cm</Top>
+        <Width>7.3cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <ZIndex>5</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.49417cm</Left>
+        <Height>1.1cm</Height>
+        <Value>Форма 05-125                                  Унифицированная форма № Т-8             </Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <Top>4.53545cm</Top>
+        <Width>14.57354cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Center</TextAlign>
+        </Style>
+        <ZIndex>4</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>0.09418cm</Left>
+        <Height>0.5cm</Height>
+        <Value>О прекращении действия трудового договора с работником</Value>
+      </Textbox>
+      <Textbox Name="textbox15">
+        <Top>5.97937cm</Top>
+        <Width>3.7cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <ZIndex>3</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.95291cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Форма по ОКУД</Value>
+      </Textbox>
+      <Textbox Name="textbox16">
+        <Top>6.90001cm</Top>
+        <Width>3.7cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <ZIndex>2</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>10.95291cm</Left>
+        <Height>0.5cm</Height>
+        <Value>по ОКПО</Value>
+      </Textbox>
+      <Textbox Name="textbox17">
+        <Top>10.5cm</Top>
+        <Width>9.8cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <ZIndex>1</ZIndex>
+        <CanGrow>true</CanGrow>
+        <Left>7.59417cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Табельный номер   ________</Value>
+      </Textbox>
+      <Textbox Name="textbox70">
+        <Top>7.82646cm</Top>
+        <Width>4.6cm</Width>
+        <Style>
+          <FontFamily>Courier New</FontFamily>
+          <FontSize>12pt</FontSize>
+          <TextAlign>Right</TextAlign>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Left>7.58941cm</Left>
+        <Height>0.5cm</Height>
+        <Value>Трудовой договор</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>27.50004cm</Height>
+  </Body>
+  <Language>ru-RU</Language>
+  <TopMargin>1cm</TopMargin>
+  <PageHeight>29.7cm</PageHeight>
+</Report>

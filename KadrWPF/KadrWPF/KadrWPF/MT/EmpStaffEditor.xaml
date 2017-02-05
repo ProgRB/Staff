@@ -1,0 +1,24 @@
+﻿<Window x:Class="ManningTable.EmpStaffEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ManningTable"
+        xmlns:cmd="clr-namespace:KadrWPF.Helpers"
+        mc:Ignorable="d"
+        Title="Редактор штатной расстановки" Height="401" Width="809" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:AppCommands.SaveEmpStaff" CanExecute="Save_CanExecute" Executed="Save_CanExecuted"/>
+        <CommandBinding Command="cmd:AppCommands.AddEmpStaff" CanExecute="Add_CanExcute" Executed="Add_Executed"/>
+        <CommandBinding Command="cmd:AppCommands.DeleteEmpStaff" CanExecute="Delete_CanExecute" Executed="Delete_Executed"/>
+        <CommandBinding Command="local:EmpStaffUserControl.ChooseEmp" CanExecute="ChooseEmp_CanExecute" Executed="ChooseEmp_CanExecuted"/>
+    </Window.CommandBindings>
+    <DockPanel>
+        <WrapPanel Background="{StaticResource PanelGrayBack}" DockPanel.Dock="Bottom">
+            <Button Command="cmd:AppCommands.SaveEmpStaff" Style="{StaticResource ToolBoxLikeStyle}" Content="Сохранить" Padding="15,2"></Button>
+            <Separator Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+            <Button Style="{StaticResource ToolBoxLikeStyle}" Content="Закрыть" Padding="15,2" Click="Close_Click"></Button>
+        </WrapPanel>
+        <local:EmpStaffUserControl/>
+    </DockPanel>
+</Window>

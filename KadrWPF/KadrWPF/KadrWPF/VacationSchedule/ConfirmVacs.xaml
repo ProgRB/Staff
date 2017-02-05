@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="VacationSchedule.ConfirmVacs"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:VacationSchedule"
+             xmlns:hlp="clr-namespace:KadrWPF.Helpers"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:staff="clr-namespace:Staff;assembly=LibraryKadr"
+             xmlns:lhpl="clr-namespace:LibraryKadr.Helpers;assembly=LibraryKadr"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="900" Background="White">
+    <UserControl.CommandBindings>
+        <CommandBinding Command="hlp:AppCommands.AddNewVacCommand" CanExecute="Add_CanExecute" Executed="Add_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.EditVacCommand" CanExecute="Edit_CanExecute" Executed="Edit_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.BtPrivateKardVS" CanExecute="Add_CanExecute" Executed="KardVac_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.ConfirmVSCommand" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.BtCancelConfirmVS" CanExecute="Confirm_CanExecute" Executed="CancelConfirm_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.AllSubdivVacConfirmStatistic" CanExecute="Menu_CanExecute" Executed="AllStat_Executed"/>
+        <CommandBinding Command="hlp:AppCommands.RecheckVacs" CanExecute="Recheck_CanExecute" Executed="Recheck_Executed"/>
+        <CommandBinding Command="local:ConfirmVacs.CancelCheck" CanExecute="CancelCheck_CanExecute" Executed="CancelCheck_Executed"/>
+    </UserControl.CommandBindings>
+    <DockPanel>
+        <GroupBox DockPanel.Dock="Top" Header="Фильтр" KeyDown="GroupBox_KeyDown">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <lhpl:SubdivSelector Name="subdivSelector1" SubdivId="{Binding SubdivID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" AppRoleName="VS_VIEW" HorizontalAlignment="Left" MinWidth="400"/>
+                <TextBlock Grid.Column="1" Text="Отчетный год" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15,2,10,2"/>
+                <TextBox Grid.Column="2" Text="{Binding CurrentYear}" VerticalAlignment="Center" Style="{StaticResource EnabledTextBox}" HorizontalAlignment="Left"
+                         Width="100"/>
+                <Button Grid.Column="2" Margin="120,2,0,2" Click="Refresh_Click" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="/Images/refresh2424.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                        <TextBlock Text="Обновить" Margin="5,2" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </GroupBox>
+        <WrapPanel Background="{StaticResource PanelGrayBack}" DockPanel.Dock="Top">
+            <WrapPanel.Resources>
+                <Style TargetType="Separator" BasedOn="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+            </WrapPanel.Resources>
+            <Button Command="hlp:AppCommands.AddNewVacCommand" Style="{StaticResource ToolBoxLikeStyle}">
+                <Image Source="/Images/document_new_1616.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+            </Button>
+            <Button Command="hlp:AppCommands.EditVacCommand" Style="{StaticResource ToolBoxLikeStyle}">
+                <Image Source="/Images/document_edit_1616.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+            </Button>
+            <Separator/>
+            <Button Command="hlp:AppCommands.BtPrivateKardVS" Style="{StaticResource ToolBoxLikeStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/user_edit_3535.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                    <TextBlock Text="Личная карточка" Margin="5,2" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="hlp:AppCommands.ConfirmVSCommand" Style="{StaticResource ToolBoxLikeStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/confirm1616.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+                    <TextBlock Text="Согласовать отмеченные" Margin="5,2" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Button Command="hlp:AppCommands.BtCancelConfirmVS" Style="{StaticResource ToolBoxLikeStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/document_edit_1616.ico" Style="{StaticResource ToolBoxImageStyle}"/>
+                    <TextBlock Text="Отменить согласование" Margin="5,2" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button Command="hlp:AppCommands.AllSubdivVacConfirmStatistic" Style="{StaticResource ToolBoxLikeStyle}">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="/Images/confirm_list_4848.png" Style="{StaticResource ToolBoxImageStyle}"/>
+                    <TextBlock Text="Статистика согласования" Margin="5,2" VerticalAlignment="Center"/>
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Проверка отпусков:" VerticalAlignment="Center" Margin="5,2,0,2"/>
+                <CheckBox IsChecked="{Binding AutoCheck}" VerticalAlignment="Center" Margin="5,2,10,2" ToolTip="Автоматически запускать проверку"/>
+                <ProgressBar Value="{Binding CheckProgress}" Width="200" VerticalAlignment="Center" Height="17"/>
+                <Label Content="{Binding CheckProgress}" ContentStringFormat="{}{0:N2}%"/>
+                <Button Command="hlp:AppCommands.RecheckVacs" Style="{StaticResource ToolBoxLikeStyle}">
+                        <TextBlock Text="Запустить проверку заново" Margin="5,2" VerticalAlignment="Center"/>
+                </Button>
+                <Separator/>
+                <Button Command="local:ConfirmVacs.CancelCheck" Style="{StaticResource ToolBoxLikeStyle}">
+                        <TextBlock Text="Прервать проверку" Margin="5,2" VerticalAlignment="Center"/>
+                </Button>
+                
+            </StackPanel>
+        </WrapPanel>
+        <GroupBox Header="Список сотрудников">
+            <DataGrid Style="{StaticResource DataGridSalaryStyle}" IsReadOnly="False" ItemsSource="{Binding ConfirmEmpSource}" SelectedItem="{Binding CurrentWorker, UpdateSourceTrigger=PropertyChanged}"
+                      staff:DataGridAddition.DoubleClickCommand="hlp:AppCommands.BtPrivateKardVS">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="40">
+                        <DataGridTemplateColumn.Header>
+                            <CheckBox Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" ToolTip="Отметить/снять все" HorizontalAlignment="Center">
+                                <CheckBox.LayoutTransform>
+                                    <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                </CheckBox.LayoutTransform>
+                            </CheckBox>
+                        </DataGridTemplateColumn.Header>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding FL, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                                    <CheckBox.LayoutTransform>
+                                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                                    </CheckBox.LayoutTransform>
+                                </CheckBox>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding PER_NUM}" Header="Таб.№" Width="70" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding FIO}" Header="ФИО" Width="180" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding SIGN_COMB}" Header="Совм." Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding CODE_DEGREE}" Header="Катег." Width="60" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding LAST_VAC, StringFormat={}{0:dd.MM.yyyy}}" Header="Последний отпуск" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding LAST_PERIOD, StringFormat={}{0:dd.MM.yyyy}}" Header="Использован по" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding NEXT_VAC, StringFormat={}{0:dd.MM.yyyy}}" Header="Следующий отпуск" Width="90" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding PLAN_BEGIN, StringFormat={}{0:dd.MM.yyyy}}" Header="Запланирован отпуск на тек. год" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding TO_BE_PERIOD, StringFormat={}{0:dd.MM.yyyy}}" Header="Будет использован по" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Binding="{Binding FL_CHECK}" Header="Статус проверки на ошибки" Width="200" IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="Background" Value="LightCoral"/>
+                                <Style.Triggers>
+                                    <DataTrigger   Binding="{Binding FL_CHECK}" Value="{x:Static sys:String.Empty}">
+                                        <Setter Property="Background" Value="LightGreen"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+                <DataGrid.Resources>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
+                    </Style>
+                    <Style TargetType="DataGridRow">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding CONFIRM_SIGN}" Value="1">
+                                <Setter Property="Background" Value="LightGreen"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.Resources>
+            </DataGrid>
+        </GroupBox>
+    </DockPanel>
+            
+    
+</UserControl>

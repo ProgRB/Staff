@@ -1,0 +1,2223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E17A499B-00B8-41E8-96E1-94E2392CC624}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Kadr</RootNamespace>
+    <AssemblyName>Kadr</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>Contacts.ico</ApplicationIcon>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ARM_PROP">
+      <HintPath>..\ARM_PROP\bin\Debug\ARM_PROP.dll</HintPath>
+    </Reference>
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Elegant.Ui.Ribbon, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="Interop.PERCo_S20_1C, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.PERCo_S20_1C.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.PERCo_S20_SDK, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <HintPath>bin\Debug\Interop.PERCo_S20_SDK.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.Office.Interop.Word, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tabel, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Tabel.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+    <Reference Include="WpfControlLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\WpfControlLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddEmp.Designer.cs">
+      <DependentUpon>AddEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AddFindEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFindEmp.Designer.cs">
+      <DependentUpon>AddFindEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PercoClass\Holidays.cs" />
+    <Compile Include="PercoClass\Graph_Work.cs" />
+    <Compile Include="PersonalCard\Violation_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Violation_Emp.Designer.cs">
+      <DependentUpon>Violation_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelectSubdiv_And_Date.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectSubdiv_And_Date.Designer.cs">
+      <DependentUpon>SelectSubdiv_And_Date.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Order_Dismiss_Project.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Order_Dismiss_Project.Designer.cs">
+      <DependentUpon>Order_Dismiss_Project.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Address_None_Kladr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Address_None_Kladr.Designer.cs">
+      <DependentUpon>Address_None_Kladr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AppCloseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AppCloseForm.Designer.cs">
+      <DependentUpon>AppCloseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ApplicationCommands1.cs" />
+    <Compile Include="Authorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Authorization.Designer.cs">
+      <DependentUpon>Authorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ControlSubStructure.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\SubdivSelector.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Classes\SubdivSelector.designer.cs">
+      <DependentUpon>SubdivSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connect_To_AD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Connect_To_AD.Designer.cs">
+      <DependentUpon>Connect_To_AD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FilterBirthDateTray.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FilterBirthDateTray.Designer.cs">
+      <DependentUpon>FilterBirthDateTray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListEmpConditionWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListEmpConditionWork.Designer.cs">
+      <DependentUpon>ListEmpConditionWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HBConditionWork.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HBConditionWork.Designer.cs">
+      <DependentUpon>HBConditionWork.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\EditSignPrivPos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\EditSignPrivPos.Designer.cs">
+      <DependentUpon>EditSignPrivPos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\PrintAccount_data.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\PrintAccount_data.Designer.cs">
+      <DependentUpon>PrintAccount_data.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\AccountSertificate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\AccountSertificate.Designer.cs">
+      <DependentUpon>AccountSertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\AvgViewData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\AvgViewData.designer.cs">
+      <DependentUpon>AvgViewData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\filter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\filter.designer.cs">
+      <DependentUpon>filter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Filter_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Filter_Emp.Designer.cs">
+      <DependentUpon>Filter_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Find_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Find_Emp.Designer.cs">
+      <DependentUpon>Find_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\find_spr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\find_spr.Designer.cs">
+      <DependentUpon>find_spr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\grid_ras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\grid_ras.Designer.cs">
+      <DependentUpon>grid_ras.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HBType_Permit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HBType_Permit.designer.cs">
+      <DependentUpon>HBType_Permit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HBPrivileged_Position.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HBPrivileged_Position.Designer.cs">
+      <DependentUpon>HBPrivileged_Position.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListComb.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListComb.Designer.cs">
+      <DependentUpon>ListComb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FR_Emp\FR_Emp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FR_Emp\FR_Emp.Designer.cs">
+      <DependentUpon>FR_Emp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpAdd.Designer.cs">
+      <DependentUpon>FR_EmpAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpFilter.Designer.cs">
+      <DependentUpon>FR_EmpFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpFind.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FR_Emp\FR_EmpFind.Designer.cs">
+      <DependentUpon>FR_EmpFind.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HandBookInstit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HandBookInstit.Designer.cs">
+      <DependentUpon>HandBookInstit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HandBookSpec.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HandBookSpec.Designer.cs">
+      <DependentUpon>HandBookSpec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HBSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HBSubdiv.Designer.cs">
+      <DependentUpon>HBSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RerortDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RerortDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Transfers\Hire_Order.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfers\Hire_Order.Designer.cs">
+      <DependentUpon>Hire_Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListEmp.Designer.cs">
+      <DependentUpon>ListEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoadEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadEmp.Designer.cs">
+      <DependentUpon>LoadEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Foreign_Passport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Foreign_Passport.Designer.cs">
+      <DependentUpon>Foreign_Passport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\RasLib.cs" />
+    <Compile Include="Ras\red.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\red.Designer.cs">
+      <DependentUpon>red.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReopenConnect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReopenConnect.Designer.cs">
+      <DependentUpon>ReopenConnect.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PercoClass\Employee.cs" />
+    <Compile Include="PercoClass\Position.cs" />
+    <Compile Include="PercoClass\Subdiv.cs" />
+    <Compile Include="PersonalCard\Address.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Address.Designer.cs">
+      <DependentUpon>Address.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Attest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Attest.Designer.cs">
+      <DependentUpon>Attest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Edu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Edu.Designer.cs">
+      <DependentUpon>Edu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Emp_Priv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Emp_Priv.Designer.cs">
+      <DependentUpon>Emp_Priv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Relative.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Relative.Designer.cs">
+      <DependentUpon>Relative.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HandBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HandBook.Designer.cs">
+      <DependentUpon>HandBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListEmpTemp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListEmpTemp.Designer.cs">
+      <DependentUpon>ListEmpTemp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Know_Lang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Know_Lang.Designer.cs">
+      <DependentUpon>Know_Lang.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\PersonalCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\PersonalCard.Designer.cs">
+      <DependentUpon>PersonalCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\PostG_Study.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\PostG_Study.Designer.cs">
+      <DependentUpon>PostG_Study.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Prev_Work.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Prev_Work.Designer.cs">
+      <DependentUpon>Prev_Work.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Prof_Train.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Prof_Train.Designer.cs">
+      <DependentUpon>Prof_Train.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Per_Num_Book.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Per_Num_Book.Designer.cs">
+      <DependentUpon>Per_Num_Book.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HBPosition.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HBPosition.Designer.cs">
+      <DependentUpon>HBPosition.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vacation_schedule\ViewVacsControl.xaml.cs">
+      <DependentUpon>ViewVacsControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View_All_Transfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View_All_Transfer.Designer.cs">
+      <DependentUpon>View_All_Transfer.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AddEmp.resx">
+      <DependentUpon>AddEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AddFindEmp.resx">
+      <DependentUpon>AddFindEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Violation_Emp.resx">
+      <DependentUpon>Violation_Emp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Add_Agreement_Short.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Add_Agreement_ShortDay.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Add_Agreement_For_Emp.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Notification_Early_Ending.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Notification_Late_Start.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Notification_Short_Week.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderOnEncouraging_ManyEmps.rdlc" />
+    <EmbeddedResource Include="Reports\Reference_Pregnancy.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Reference_Child_Care_Leave.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Notice_Expiry_Add_Agreement.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Notice_Expiry_Contract.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Reference_On_Place_Requirements.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepChild_Realing_Leave.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepViolations_By_Period.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_ListBlockEmpVS.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_RemainPeriodVacs.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_VacListPrint.rdlc" />
+    <EmbeddedResource Include="Reports\Rep_VacNotification.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_VSNoteAccount.rdlc" />
+    <EmbeddedResource Include="SelectSubdiv_And_Date.resx">
+      <DependentUpon>SelectSubdiv_And_Date.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Order_Dismiss_Project.resx">
+      <DependentUpon>Order_Dismiss_Project.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Address_None_Kladr.resx">
+      <DependentUpon>Address_None_Kladr.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AppCloseForm.resx">
+      <DependentUpon>AppCloseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Authorization.resx">
+      <DependentUpon>Authorization.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Classes\SubdivSelector.resx">
+      <DependentUpon>SubdivSelector.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Connect_To_AD.resx">
+      <DependentUpon>Connect_To_AD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FilterBirthDateTray.resx">
+      <DependentUpon>FilterBirthDateTray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEmpConditionWork.resx">
+      <DependentUpon>ListEmpConditionWork.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HBConditionWork.resx">
+      <DependentUpon>HBConditionWork.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\EditSignPrivPos.resx">
+      <DependentUpon>EditSignPrivPos.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\PrintAccount_data.resx">
+      <DependentUpon>PrintAccount_data.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\AccountSertificate.resx">
+      <DependentUpon>AccountSertificate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\AvgViewData.resx">
+      <DependentUpon>AvgViewData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\filter.resx">
+      <DependentUpon>filter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Filter_Emp.resx">
+      <DependentUpon>Filter_Emp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Find_Emp.resx">
+      <DependentUpon>Find_Emp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\find_spr.resx">
+      <DependentUpon>find_spr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FR_Emp\FR_Emp.resx">
+      <DependentUpon>FR_Emp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FR_Emp\FR_EmpAdd.resx">
+      <DependentUpon>FR_EmpAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FR_Emp\FR_EmpFilter.resx">
+      <DependentUpon>FR_EmpFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FR_Emp\FR_EmpFind.resx">
+      <DependentUpon>FR_EmpFind.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\grid_ras.resx">
+      <DependentUpon>grid_ras.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HandBookInstit.resx">
+      <DependentUpon>HandBookInstit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HandBookSpec.resx">
+      <DependentUpon>HandBookSpec.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HBSubdiv.resx">
+      <DependentUpon>HBSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HBType_Permit.resx">
+      <DependentUpon>HBType_Permit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HBPrivileged_Position.resx">
+      <DependentUpon>HBPrivileged_Position.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ReportDismissal.rdlc" />
+    <EmbeddedResource Include="Reports\ReportDismissalR.rdlc" />
+    <EmbeddedResource Include="Reports\ReportHire_order.rdlc" />
+    <EmbeddedResource Include="Reports\ReportTransfer.rdlc" />
+    <EmbeddedResource Include="Reports\Rep_ReplOrderPlant.rdlc" />
+    <EmbeddedResource Include="Reports\Rep_ReplOrderSubdiv.rdlc" />
+    <EmbeddedResource Include="Reports\Rep_ServiceNoteReplEmp.rdlc" />
+    <EmbeddedResource Include="Reports\Rep_VS_plan_year.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepProtocolTr_Date_Order.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepYoung_Specialist.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfers\Hire_Order.resx">
+      <DependentUpon>Hire_Order.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListComb.resx">
+      <DependentUpon>ListComb.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEmp.resx">
+      <DependentUpon>ListEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoadEmp.resx">
+      <DependentUpon>LoadEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Foreign_Passport.resx">
+      <DependentUpon>Foreign_Passport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\red.resx">
+      <DependentUpon>red.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReopenConnect.resx">
+      <DependentUpon>ReopenConnect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfers\OldTransfer.resx">
+      <DependentUpon>OldTransfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Address.resx">
+      <DependentUpon>Address.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Attest.resx">
+      <DependentUpon>Attest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Edu.resx">
+      <DependentUpon>Edu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Emp_Priv.resx">
+      <DependentUpon>Emp_Priv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Relative.resx">
+      <DependentUpon>Relative.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HandBook.resx">
+      <DependentUpon>HandBook.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListEmpTemp.resx">
+      <DependentUpon>ListEmpTemp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Know_Lang.resx">
+      <DependentUpon>Know_Lang.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\PersonalCard.resx">
+      <DependentUpon>PersonalCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Per_Num_Book.resx">
+      <DependentUpon>Per_Num_Book.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\PostG_Study.resx">
+      <DependentUpon>PostG_Study.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Prev_Work.resx">
+      <DependentUpon>Prev_Work.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Prof_Train.resx">
+      <DependentUpon>Prof_Train.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HBPosition.resx">
+      <DependentUpon>HBPosition.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Rewards.resx">
+      <DependentUpon>Rewards.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PersonalCard\Rise_Qual.resx">
+      <DependentUpon>Rise_Qual.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelPeriod_Subdiv.resx">
+      <DependentUpon>SelPeriod_Subdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\AddSubdivToTree.resx">
+      <DependentUpon>AddSubdivToTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\AddToTreeEmp.resx">
+      <DependentUpon>AddToTreeEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\Add_Edit_staff.resx">
+      <DependentUpon>Add_Edit_staff.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\DropStaff_id.resx">
+      <DependentUpon>DropStaff_id.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\FindEmpSingle.resx">
+      <DependentUpon>FindEmpSingle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\FindPosCode.resx">
+      <DependentUpon>FindPosCode.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\FindStaffEd.resx">
+      <DependentUpon>FindStaffEd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\PadegException.resx">
+      <DependentUpon>PadegException.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ReplEmpAdd.resx">
+      <DependentUpon>ReplEmpAdd.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ReplEmpForm.resx">
+      <DependentUpon>ReplEmpForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ReportFilter.resx">
+      <DependentUpon>ReportFilter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ReportsReplEmp.resx">
+      <DependentUpon>ReportsReplEmp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\SelectInterval.resx">
+      <DependentUpon>SelectInterval.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\SelectPeriod.resx">
+      <DependentUpon>SelectPeriod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\SelectSubdivFromTree.resx">
+      <DependentUpon>SelectSubdivFromTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\TreeStaffEdit.resx">
+      <DependentUpon>TreeStaffEdit.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\VIEW.resx">
+      <DependentUpon>VIEW.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ViewArchiv.resx">
+      <DependentUpon>ViewArchiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Shtat\ViewVacancy.resx">
+      <DependentUpon>ViewVacancy.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\spis_nolog.resx">
+      <DependentUpon>spis_nolog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ras\spr_tariff.resx">
+      <DependentUpon>spr_tariff.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimeExecute.resx">
+      <DependentUpon>TimeExecute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfers\Transfer.resx">
+      <DependentUpon>Transfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfers\TransferToFR.resx">
+      <DependentUpon>TransferToFR.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transfers\PrevTransfer.resx">
+      <DependentUpon>PrevTransfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListCombTransfer.resx">
+      <DependentUpon>ListCombTransfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListCombDismiss.resx">
+      <DependentUpon>ListCombDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HandBook\HandBookReward.resx">
+      <DependentUpon>HandBookReward.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\AdditionalVacs.resx">
+      <DependentUpon>AdditionalVacs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\ArchivVac.resx">
+      <DependentUpon>ArchivVac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\ConfirmPercentView.resx">
+      <DependentUpon>ConfirmPercentView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\ConfirmVS.resx">
+      <DependentUpon>ConfirmVS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\DiagramVacS.resx">
+      <DependentUpon>DiagramVacS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\EditVac.resx">
+      <DependentUpon>EditVac.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\EmpSubLocation.resx">
+      <DependentUpon>EmpSubLocation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\GetPeriod.resx">
+      <DependentUpon>GetPeriod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\MakeVS.resx">
+      <DependentUpon>MakeVS.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\NumericInput.resx">
+      <DependentUpon>NumericInput.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\ReCalcPeriods.resx">
+      <DependentUpon>ReCalcPeriods.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\Reminder.resx">
+      <DependentUpon>Reminder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\Signes.resx">
+      <DependentUpon>Signes.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Vacation_schedule\ViewCard.resx">
+      <DependentUpon>ViewCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View_All_Transfer.resx">
+      <DependentUpon>View_All_Transfer.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Connect.ini" />
+    <None Include="Params.ini" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="PersonalCard\Rewards.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Rewards.Designer.cs">
+      <DependentUpon>Rewards.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PersonalCard\Rise_Qual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PersonalCard\Rise_Qual.Designer.cs">
+      <DependentUpon>Rise_Qual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SelPeriod_Subdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelPeriod_Subdiv.Designer.cs">
+      <DependentUpon>SelPeriod_Subdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\AddSubdivToTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\AddSubdivToTree.Designer.cs">
+      <DependentUpon>AddSubdivToTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\AddToTreeEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\AddToTreeEmp.Designer.cs">
+      <DependentUpon>AddToTreeEmp.cs</DependentUpon>
+    </Compile>
+    <None Include="Reports\RerortDataset.xsc">
+      <DependentUpon>RerortDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\RerortDataset.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>RerortDataset.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\RerortDataset.xss">
+      <DependentUpon>RerortDataset.xsd</DependentUpon>
+    </None>
+    <None Include="Shtat\Add_Edit_staff.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\Add_Edit_staff.Designer.cs">
+      <DependentUpon>Add_Edit_staff.cs</DependentUpon>
+    </None>
+    <None Include="Shtat\DropStaff_id.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\DropStaff_id.Designer.cs">
+      <DependentUpon>DropStaff_id.cs</DependentUpon>
+    </None>
+    <Compile Include="Shtat\FindEmpSingle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\FindEmpSingle.Designer.cs">
+      <DependentUpon>FindEmpSingle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\FindPosCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\FindPosCode.Designer.cs">
+      <DependentUpon>FindPosCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\FindStaffEd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\FindStaffEd.Designer.cs">
+      <DependentUpon>FindStaffEd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\PadegException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\PadegException.Designer.cs">
+      <DependentUpon>PadegException.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\ReplEmpAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\ReplEmpAdd.Designer.cs">
+      <DependentUpon>ReplEmpAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\ReplEmpForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\ReplEmpForm.Designer.cs">
+      <DependentUpon>ReplEmpForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\ReportFilter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\ReportFilter.Designer.cs">
+      <DependentUpon>ReportFilter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\ReportsReplEmp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\ReportsReplEmp.designer.cs">
+      <DependentUpon>ReportsReplEmp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\SelectInterval.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\SelectInterval.designer.cs">
+      <DependentUpon>SelectInterval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\SelectPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\SelectPeriod.designer.cs">
+      <DependentUpon>SelectPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\SelectSubdivFromTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Shtat\SelectSubdivFromTree.Designer.cs">
+      <DependentUpon>SelectSubdivFromTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Shtat\ShtatLib.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <None Include="Shtat\TreeStaffEdit.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\TreeStaffEdit.Designer.cs">
+      <DependentUpon>TreeStaffEdit.cs</DependentUpon>
+    </None>
+    <None Include="Shtat\VIEW.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\VIEW.Designer.cs">
+      <DependentUpon>VIEW.cs</DependentUpon>
+    </None>
+    <None Include="Shtat\ViewArchiv.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\ViewArchiv.designer.cs">
+      <DependentUpon>ViewArchiv.cs</DependentUpon>
+    </None>
+    <None Include="Shtat\ViewVacancy.cs">
+      <SubType>Form</SubType>
+    </None>
+    <None Include="Shtat\ViewVacancy.Designer.cs">
+      <DependentUpon>ViewVacancy.cs</DependentUpon>
+    </None>
+    <Compile Include="Ras\spis_nolog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\spis_nolog.Designer.cs">
+      <DependentUpon>spis_nolog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Ras\spr_tariff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ras\spr_tariff.Designer.cs">
+      <DependentUpon>spr_tariff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TimeExecute.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TimeExecute.Designer.cs">
+      <DependentUpon>TimeExecute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transfers\Transfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfers\Transfer.Designer.cs">
+      <DependentUpon>Transfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transfers\OldTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfers\OldTransfer.Designer.cs">
+      <DependentUpon>OldTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transfers\TransferToFR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfers\TransferToFR.Designer.cs">
+      <DependentUpon>TransferToFR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transfers\PrevTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transfers\PrevTransfer.Designer.cs">
+      <DependentUpon>PrevTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListCombTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListCombTransfer.Designer.cs">
+      <DependentUpon>ListCombTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListCombDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListCombDismiss.Designer.cs">
+      <DependentUpon>ListCombDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HandBook\HandBookReward.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HandBook\HandBookReward.Designer.cs">
+      <DependentUpon>HandBookReward.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\AdditionalVacs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\AdditionalVacs.Designer.cs">
+      <DependentUpon>AdditionalVacs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\ArchivVac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\ArchivVac.Designer.cs">
+      <DependentUpon>ArchivVac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\ConfirmPercentView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\ConfirmPercentView.Designer.cs">
+      <DependentUpon>ConfirmPercentView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\ConfirmVS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\ConfirmVS.Designer.cs">
+      <DependentUpon>ConfirmVS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\DiagramVacS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\DiagramVacS.Designer.cs">
+      <DependentUpon>DiagramVacS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\EditVac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\EditVac.Designer.cs">
+      <DependentUpon>EditVac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\EmpSubLocation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\EmpSubLocation.Designer.cs">
+      <DependentUpon>EmpSubLocation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\GetPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\GetPeriod.designer.cs">
+      <DependentUpon>GetPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\MakeVS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\MakeVS.designer.cs">
+      <DependentUpon>MakeVS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\NumericInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\NumericInput.Designer.cs">
+      <DependentUpon>NumericInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\ReCalcPeriods.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\ReCalcPeriods.Designer.cs">
+      <DependentUpon>ReCalcPeriods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\Reminder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\Reminder.Designer.cs">
+      <DependentUpon>Reminder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\Signes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\Signes.Designer.cs">
+      <DependentUpon>Signes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Vacation_schedule\VacLibrary.cs" />
+    <Compile Include="Vacation_schedule\ViewCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Vacation_schedule\ViewCard.Designer.cs">
+      <DependentUpon>ViewCard.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Установщик Windows 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Contacts.ico" />
+    <None Include="Resources\document-new-62.ico" />
+    <None Include="Resources\filter_add.png" />
+    <None Include="Resources\filter_delete.png" />
+    <None Include="Resources\4261.jpg" />
+    <None Include="Resources\icon_administracion.png" />
+    <None Include="Resources\icon_administracion_32_32.png" />
+    <None Include="Resources\dialog_warning.png" />
+    <None Include="Resources\icon_resume_small.jpg" />
+    <None Include="Resources\icon_resume.png" />
+    <None Include="Resources\resume_small.jpg" />
+    <None Include="Resources\resume.jpg" />
+    <None Include="Resources\exchange.png" />
+    <None Include="Resources\exchange_2424.jpg" />
+    <None Include="Resources\Gradient_background.jpg" />
+    <None Include="Resources\Gradient_background2.jpg" />
+    <Content Include="Queries\BkOrdDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\BkOrdHireForPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\BkOrdHireYear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\BkOrdTransfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Rep_ListBlockEmpVS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectVacDiagram.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectVacDiagramData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectAdd_Agreement_For_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmps_For_Add_AgreementShortDay.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\CountReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\EmptyInsurNum.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\EndOfContr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\alarm_vac.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\AllocVSByMonths.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\CheckDatesValid.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\CheckVSForConfirm.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\ComprehSchedule.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Diagram_Man_month.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\FillArchivEmps.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\FillMakeVS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetAddVacEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetEmpData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetEmpForFilterPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetEmpVacAddPeriods.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetEmpVacForMakeGrid.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetRemVacs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\GetVacForConfirm.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Get_All_Vac_In_Year.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\get_AUOGRAPH_FOR_account.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\OrderSubdivReport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\ReCalcPeriods.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Rep_RemainPeriodsVac.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Rep_VacNotification.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Rep_VSOrderPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\Rep_VS_ByGroupMaster.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btActualDateByPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btCountVSOnDate.SQL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btCountVSOnDate_old.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btPlanOnYearVS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btSvondVSByMonths.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_btSvondVSByMonths_new.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\R_CountPlanSumDaysVS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectActualVacByRegion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectConfirmVacPercent.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectConsolidVacsByRegions.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectDocSignes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectEmpAllocateRegion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectEmpBySubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelecteRegionsBySub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectVacAddTypes.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SelectVacFilterPeriodData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Go\SynchronizeVacDocumnts.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\insur.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\LinkCanExecute.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListAcadDegree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListDismissForDir.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListDismissFull.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListDismissJobman.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListDismissShort.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListOrdDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListOrdHire.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListRetirerDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListRetirerPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListRetirerSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListRetirerSubdivOld.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListVeteranDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListVeteranPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ListVeteranSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\CalcSalaryWithClear.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\ChangeStaffTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\ChangeStaffTableWithFIO.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\EXCEL_BtSendToConfirm.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\EXCEL_ShtatTable_PERSON.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FillCombineReplEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FillGridRegistration.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FillReplEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FILL_TEMPALLOCSTAFF.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FILL_VIEWGRID.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\FindEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\GetEmpData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\GetEqualsFieldsOfStaffs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\GetMainEmpShtat.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\GetReplDataByPeriod.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\get_data_by_GROUP_INFO.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\Get_Pay_Type_Repl.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\GridExclude.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\gridInclude.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\Grid_CONFIRM_ALL_StaffsId.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\Grid_CONFIRM_INClude_Exclude.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\load_listStaffs_by_subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\R_btReplOrderPlant.SQL">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\R_btServiseNoteReplShtat.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\R_OrderSubdivRepl.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\R_ProtokolReplSal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\R_ReplOrderSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_about_staff.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_about_staff_gridVIEW.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_about_staff_when_edit_load.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_all_data_about_emp_by_button.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_applicant_to_confirm.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_falied_staffs.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_HISTORY_staff.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_list_confirm.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_MAIN_and_REPL_data.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_posNameCurrent_all.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_pos_name_from_subdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_staffs_for_Confirm_table_all.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_staffs_for_GridSend.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_staffs_for_tree.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\select_staffs_for_tree_curr_all.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\New\StaffTable.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Notice_Expiry.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjEdu.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjEduLevel.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjFioAddr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjPrevWork.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ObjWorkPlant.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCAttest.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCEduc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCHireTransfers.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCHoliday.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCMilitary.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCPassport.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCPostGEduc.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCProfRetrain.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCReward.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCRiseQual.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCShortInf.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCStructFamily.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCTrueAddress.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PCVac.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\PermitForEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Privileged_Position.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\QueryFind.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\CombineEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\dekr.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\Dump_AD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\PrintAccount_Data.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\ProfOrNotEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\prof_update.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\ProtocolDump.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\RASInvalidEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectAccountData.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectDependents.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectEditDep.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectEmpTransfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectProfUnion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectProtocolTr_Date_Order.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectRepEmpContract.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectRepEnteredProfUnion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectRepTransSub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SelectType_AD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\Select_Find_All_Transfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\SignProfUnion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\spr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\UpdateDependents.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\ras\Копия Dump_AD.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\Reference_By_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepChild_Rearing_Leave.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepChild_Rearing_Leave_Staff_Pension.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountDismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountDismiss12.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountDismissGen.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountDismissR.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountHire.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepCountHire1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepMRP.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepNonState_Pens_Prov.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepNPP_With_Date.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepOtherType.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepReasonDismiss1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepReasonDismiss2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepReference_Pregnancy.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepStaffSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepTransfer_By_Period.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepViolations_By_Period.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RepYoung_Specialist.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersBoss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersBoss1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersJob.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersJob1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersOther.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersOther1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersSpec.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersSpec1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersTotalSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersTotalSubdiv1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\RetirersWithoutPension.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectApprentices.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectChild_Care_Leave_For_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectCode.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectCombByPerNum.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectCombDismissByPerNum.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectCountEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectCurrentTransfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectDirector.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmpConditionWork.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmpForOrderOnEncouraging.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmps_For_Add_Agreement.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmps_For_Notification.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmpTransferCond.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectEmp_Project_Order_Dismiss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectFind.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectFindArchive.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectGroup.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectInvalid.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectInvalidSub.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectJurnal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectJurnal0.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectJurnal1.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectKolNarush.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectKolNarush2.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectKolNarush3.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmpArchive.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmpArchiveCount.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmpCount.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmpHire.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmpOnPrivPos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListEmp_Term.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListFR_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectListTr.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectNarush.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectNumbersEmpOnService.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectNumbersEmpOnService_New.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectOldTransfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectOrder_Transfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectOutside_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectOutside_Emp_CanExecute_Add.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectOutside_Transfer.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectPermit.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectReportMSFODisEmp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectReportMSFOSal.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectRepOtherType.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectSign_ProfUnion.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectSubdiv_For_Filter.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectTariff_Grid_Salary_For_Date.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectTransferByPerNum.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectTransferPrivPos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\SelectViolation_Emp.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\TransferForEditPrivPos.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransBoss.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransBossS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransJob.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransJobS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransOther.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransOtherS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransSpec.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransSpecS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransTotalSubdiv.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Queries\VeteransTotalSubdivS.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\download_manager.png" />
+    <None Include="Resources\download_manager_3636.png" />
+    <None Include="Resources\Access_Template.png" />
+    <None Include="Resources\Access_Template2424.png" />
+    <None Include="Resources\application_vnd_2424.png" />
+    <None Include="Resources\document_new_62.png" />
+    <None Include="Resources\ICO150.png" />
+    <None Include="Resources\confirm_list.png" />
+    <None Include="Resources\confirm1616.png" />
+    <None Include="Resources\NoneSelect.png" />
+    <None Include="Resources\confirm_list1616.png" />
+    <None Include="Resources\forward_2424.png" />
+    <None Include="Resources\Users1.png" />
+    <None Include="Resources\exchange_2424.png" />
+    <None Include="Resources\resume_3232.jpg" />
+    <None Include="Resources\Users1.jpg" />
+    <None Include="Resources\people_5085.png" />
+    <None Include="Resources\users_1.png" />
+    <Content Include="Resources\view_tree_1616.png" />
+    <Content Include="Resources\view_tree_4848.png" />
+    <None Include="Resources\48px-Crystal_Clear_app_Login_Manager.png" />
+    <None Include="Resources\48px-Crystal_Clear_app_Community_Help.png" />
+    <None Include="Resources\AddPlus.ico" />
+    <None Include="Resources\AddPlus1.ico" />
+    <None Include="Resources\accept.jpg" />
+    <None Include="Resources\add_to_tree.bmp" />
+    <None Include="Resources\user_edit.png" />
+    <Content Include="Resources\Arch_Small.png" />
+    <None Include="Resources\Arch_Small1.png" />
+    <None Include="Resources\arrowdown2424.png" />
+    <Content Include="Resources\arrow_refresh_mini.png" />
+    <Content Include="Resources\Book.png" />
+    <None Include="app.config" />
+    <None Include="Resources\Delete.png" />
+    <None Include="Resources\ExitApp.png" />
+    <None Include="Resources\Contacts.ico" />
+    <None Include="Resources\Extract.bmp" />
+    <None Include="Resources\downarrow.png" />
+    <None Include="Resources\ddbutton.png" />
+    <None Include="Resources\ExcludeFromTree.bmp" />
+    <None Include="Resources\dismiss.jpg" />
+    <None Include="Resources\calendar_Small.png" />
+    <None Include="Resources\cal.png" />
+    <Content Include="Resources\calculator.png" />
+    <None Include="Resources\Clear_action_editcut.png" />
+    <None Include="Resources\ClearDrawing.png" />
+    <None Include="Resources\clock.png" />
+    <None Include="Resources\cal_small.png" />
+    <None Include="Resources\clock_small.png" />
+    <None Include="Resources\confirm1616.ico" />
+    <None Include="Resources\confirm_list1.png" />
+    <None Include="Resources\confirm_list16161.png" />
+    <Content Include="Resources\Delete_Small.png" />
+    <None Include="Resources\Delete_Small1.png" />
+    <None Include="Resources\device_tablet.png" />
+    <None Include="Resources\device_tabletSmall.png" />
+    <None Include="Resources\Dump1.png" />
+    <None Include="Resources\document-save.png" />
+    <None Include="Resources\downarrow2424.bmp" />
+    <None Include="Resources\document3232.png" />
+    <Content Include="Resources\Emp_Small.png" />
+    <None Include="Resources\Emp_Small1.png" />
+    <None Include="Resources\Exit %284%29.bmp" />
+    <Content Include="Resources\FILTER.png" />
+    <None Include="Resources\forward_2424" />
+    <None Include="Resources\gtk-sort-ascending.png" />
+    <None Include="Resources\gtk-sort-descending.png" />
+    <Content Include="Resources\FILTER_Small.png" />
+    <None Include="Resources\FILTER_Small1.png" />
+    <Content Include="Resources\FIND_Small.png" />
+    <None Include="Resources\FIND_Small1.png" />
+    <Content Include="Resources\Hire_Small.png" />
+    <None Include="Resources\Hire_Small1.png" />
+    <Content Include="Resources\ID_BLANK_PAGE_SMALL.png" />
+    <None Include="Resources\ExitWindow.png" />
+    <None Include="Resources\ID_EDIT_FIND_BIG.png" />
+    <None Include="Resources\ID_EDIT_PASTE_BIG.png" />
+    <Content Include="Resources\Insert_ClipArt_Large.png" />
+    <None Include="Resources\OpenSmall.png" />
+    <None Include="Resources\MySorter.png" />
+    <None Include="Resources\NEXT2.BMP" />
+    <None Include="Resources\Order_Large.png" />
+    <None Include="Resources\Order_Small.png" />
+    <None Include="Resources\LimitAndLog_Large.png" />
+    <None Include="Resources\MarkAsFinal_Large.png" />
+    <None Include="Resources\MarkAsFinal_Small.png" />
+    <None Include="Resources\mimetype_txt2.png" />
+    <Content Include="Resources\MySorter_Small.png" />
+    <None Include="Resources\MySorter_Small1.png" />
+    <Content Include="Resources\NewTransfer_Small.png" />
+    <None Include="Resources\NewTransfer_Small1.png" />
+    <None Include="Resources\next_gray3232.png" />
+    <Content Include="Resources\NoneSelect.ico" />
+    <Content Include="Resources\Portrait_Large.png" />
+    <Content Include="Resources\Prepare_Large.png" />
+    <None Include="Resources\Print_Large.png" />
+    <None Include="Resources\Properties_Large.png" />
+    <Content Include="Resources\Print_Small.png" />
+    <None Include="Resources\Print_Small1.png" />
+    <None Include="Resources\RefreshDocViewHS.png" />
+    <None Include="Resources\project_open.png" />
+    <None Include="Resources\project_open_small.png" />
+    <None Include="Resources\Properties_Small.png" />
+    <Content Include="Resources\Remove_Small.png" />
+    <Content Include="Resources\SelecteNode.bmp" />
+    <None Include="Resources\table_refresh.png" />
+    <None Include="Resources\table_refresh_Large.png" />
+    <Content Include="Resources\Transfer_Small.png" />
+    <None Include="Resources\trash.png" />
+    <None Include="Resources\Копия 283-user_edit.png" />
+    <None Include="Resources\Копия 115.png" />
+    <None Include="Resources\UndoSmall.png" />
+    <None Include="Resources\Transfer_Small1.png" />
+    <None Include="Resources\search_mini.ico" />
+    <None Include="Resources\true.jpg" />
+    <None Include="Resources\sort_descending.jpg" />
+    <None Include="Resources\sort_ascending1.jpg" />
+    <None Include="Resources\sort_ascending.jpg" />
+    <None Include="Resources\uparrow.png" />
+    <None Include="Resources\SortHS.png" />
+    <None Include="Resources\Users 2.ico" />
+    <None Include="Resources\Users 1.ico" />
+    <None Include="Resources\Thesaurus_Small.png" />
+    <None Include="Resources\Thesaurus_Large.png" />
+    <None Include="Resources\Remove_SmallNew.png" />
+    <None Include="Resources\TrackChanges_Small.png" />
+    <None Include="Resources\ICO150.ICO" />
+    <None Include="Resources\Remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EditorsLibrary\EditorsLibrary.csproj">
+      <Project>{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}</Project>
+      <Name>EditorsLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\LibraryKadr\LibraryKadr.csproj">
+      <Project>{517A6844-4711-460E-BF17-38480C80D1F4}</Project>
+      <Name>LibraryKadr</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StaffReports\StaffReports.csproj">
+      <Project>{97F691D7-E622-43D8-8760-0185BC087923}</Project>
+      <Name>StaffReports</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSXML2">
+      <Guid>{F5078F18-C551-11D3-89B9-0000F81FE221}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Vacation_schedule\ViewVacsControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

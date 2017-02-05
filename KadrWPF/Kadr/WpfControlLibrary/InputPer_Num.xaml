@@ -1,0 +1,28 @@
+﻿<Window x:Class="WpfControlLibrary.InputPer_Num"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        ShowInTaskbar="False" ResizeMode="CanMinimize"
+        Title="Выбор работника" SizeToContent="WidthAndHeight">
+    <StackPanel>
+        <Border BorderBrush="AliceBlue" BorderThickness="2" CornerRadius="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0" Margin="7" Text="Табельный номер сотрудника"/>
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="4" Name="tbPER_NUM" Width="60"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Margin="7" Text="Признак совмещения работы"/>
+                <CheckBox Grid.Row="1" Grid.Column="1" Margin="4,7" Name="chSign_Comb"/>
+            </Grid>
+        </Border>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="6" Padding="4,0" Content="Далее>>" IsDefault="True" Name="btContinue" Click="btContinue_Click"/>
+            <Button Margin="6" Padding="4,0" Content="Отмена" IsCancel="True"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

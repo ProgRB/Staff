@@ -1,0 +1,175 @@
+﻿<Window x:Class="KadrWPF.Table.Worked_Day_Viewer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KadrWPF.Table"
+        xmlns:hl="clr-namespace:KadrWPF.Helpers"
+        xmlns:staff="clr-namespace:Staff;assembly=LibraryKadr"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen" ShowInTaskbar="False"
+        Title="Отработанные часы по видам оплат" Height="600" Width="800" Name="_this">
+    <Window.CommandBindings>
+        <CommandBinding Command="hl:AppCommands.AddWork_Pay_Type" CanExecute="AddWork_Pay_Type_CanExecute" Executed="AddWork_Pay_Type_Executed"/>
+        <CommandBinding Command="hl:AppCommands.EditWork_Pay_Type" CanExecute="EditWork_Pay_Type_CanExecute" Executed="EditWork_Pay_Type_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DeleteWork_Pay_Type" CanExecute="EditWork_Pay_Type_CanExecute" Executed="DeleteWork_Pay_Type_Executed"/>
+        <CommandBinding Command="hl:AppCommands.TimePercoToTimeGraph" CanExecute="AddWork_Pay_Type_CanExecute" Executed="TimePercoToTimeGraph_Executed"/>
+        <CommandBinding Command="hl:AppCommands.TimePayTypeToTimePerco" CanExecute="EditWork_Pay_Type_CanExecute" Executed="TimePayTypeToTimePerco_Executed"/>
+        <CommandBinding Command="hl:AppCommands.TimeSumPayTypeToTimePerco" CanExecute="AddWork_Pay_Type_CanExecute" Executed="TimeSumPayTypeToTimePerco_Executed"/>
+        <CommandBinding Command="hl:AppCommands.CalcWorked_Day" CanExecute="AddWork_Pay_Type_CanExecute" Executed="CalcWorked_Day_Executed"/>
+        <CommandBinding Command="hl:AppCommands.EditOrderPayType" CanExecute="EditWork_Pay_Type_CanExecute" Executed="EditOrderPayType_Executed"/>
+        <CommandBinding Command="hl:AppCommands.SaveDocWorked_Day" CanExecute="AddWork_Pay_Type_CanExecute" Executed="SaveDocWorked_Day_Executed"/>
+        <CommandBinding Command="hl:AppCommands.AddReg_Doc" CanExecute="AddReg_Doc_CanExecute" Executed="AddReg_Doc_Executed"/>
+        <CommandBinding Command="hl:AppCommands.EditReg_Doc" CanExecute="EditReg_Doc_CanExecute" Executed="EditReg_Doc_Executed"/>
+        <CommandBinding Command="hl:AppCommands.DeleteReg_Doc" CanExecute="EditReg_Doc_CanExecute" Executed="DeleteReg_Doc_Executed"/>
+    </Window.CommandBindings>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Name="tsWorkTime" DockPanel.Dock="Top" Background="{StaticResource PanelGrayBack}">
+            <Button Name="tsbAdd" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.AddWork_Pay_Type">
+                <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/new_1616.png"/>
+            </Button>
+            <Button Name="tsbEdit" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.EditWork_Pay_Type">
+                <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/edit_1616.png"/>
+            </Button>
+            <Button Name="tsbDelete" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.DeleteWork_Pay_Type">
+                <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/delete_1616.png"/>
+            </Button>
+            <Button Name="tsbFromPerco" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.TimePercoToTimeGraph"
+                    Margin="50,0,0,0">
+                <TextBlock Text="ВПр"/>
+            </Button>
+            <Button Name="tsbFromPT" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.TimePayTypeToTimePerco">
+                <TextBlock Text="ВШО"/>
+            </Button>
+            <Button Name="tsbFromSumTP" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.TimeSumPayTypeToTimePerco">
+                <TextBlock Text="ВШО общее"/>
+            </Button>
+            <Button Name="tsbCalcTime" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.CalcWorked_Day">
+                <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/gnome-calculator.png"/>
+            </Button>
+            <Button Name="tsbEditOrder" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.EditOrderPayType"
+                    Margin="50,0,0,0">
+                <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/document_edit_1616.ico"/>
+            </Button>
+            <TextBlock Name="tslCaption" Margin="20,4"/>
+        </WrapPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Часы по видам оплат">
+                <DataGrid Name="dgWork_Pay_Type" IsReadOnly="True" Style="{StaticResource datagridStyle}" ItemsSource="{Binding}" 
+                          staff:DataGridAddition.DoubleClickCommand="hl:AppCommands.EditWork_Pay_Type">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Шифр" Binding="{Binding Path=PAY_TYPE_ID}"/>
+                        <DataGridTextColumn Header="Наименование вида оплаты" Binding="{Binding Path=PAY_TYPE_NAME}" MaxWidth="240"/>
+                        <DataGridTextColumn Header="Часы" Binding="{Binding Path=VALID_TIME, StringFormat=N2}">
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="TextAlignment" Value="Right"></Setter>
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Время" Binding="{Binding Path=VFORMAT}"/>
+                        <DataGridTextColumn Header="Заказ" Binding="{Binding Path=ORDER_NAME}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <DataGrid Grid.Column="1" Name="dgPass_Event" IsReadOnly="True" Style="{StaticResource datagridStyle}" ItemsSource="{Binding}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Время" Binding="{Binding Path=EVENT_TIME, StringFormat=dd.MM.yyyy HH:mm:ss}"/>
+                    <DataGridTextColumn Header="Уст-во" Binding="{Binding Path=DISPLAY_NAME}"/>
+                    <DataGridTextColumn Header="Тип прохода" Binding="{Binding Path=EVENT}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Name="gbPassOrPutl" Header="Отсутствие сотрудника в рабочее время">
+                <DataGrid Name="dgPassWithDoc" Style="{StaticResource datagridStyle}" ItemsSource="{Binding}"
+                          SelectedCellsChanged="dgPassWithDoc_SelectedCellsChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Начало" Binding="{Binding Path=FROM_PLANT, StringFormat=dd.MM.yyyy HH:mm:ss}" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Окончание" Binding="{Binding Path=INTO_PLANT, StringFormat=dd.MM.yyyy HH:mm:ss}" IsReadOnly="True"/>
+                        <DataGridComboBoxColumn x:Name="dcDOC_LIST_ID" Header="Наименование документа" 
+                                            DisplayMemberPath="DOC_NAME" SelectedValuePath="DOC_LIST_ID" 
+                                            SelectedValueBinding="{Binding Path=DOC_LIST_ID}"/>
+                        <DataGridTextColumn Header="Местонахождение" Binding="{Binding Path=DOC_LOCATION}"/>
+                    </DataGrid.Columns></DataGrid>
+            </GroupBox>
+            <StackPanel Grid.Column="1" Orientation="Vertical" DockPanel.Dock="Top" Background="{StaticResource PanelGrayBack}" 
+                        Name="pnPassWithDoc">
+                <Button Name="btSaveDoc" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.SaveDocWorked_Day">
+                    <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/save_1616.ico"/>
+                </Button>
+            </StackPanel>
+            <GroupBox Grid.Row="1" Name="gbWay_Bill" Header="Путевые листы за текущий день">
+                <DataGrid Name="dgWay_Bill" IsReadOnly="True" Style="{StaticResource datagridStyle}" ItemsSource="{Binding}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="№ П/Л" Binding="{Binding Path=NPUT}" Width="55"/>
+                        <DataGridTextColumn Header="Дни ком." Binding="{Binding Path=DAYCOM}" Width="35"/>
+                        <DataGridTextColumn Header="Дата начала" Binding="{Binding Path=BEGIN_WORK, StringFormat=dd.MM.yyyy HH:mm}" Width="105"/>
+                        <DataGridTextColumn Header="Дата окончания" Binding="{Binding Path=END_WORK, StringFormat=dd.MM.yyyy HH:mm}" Width="105"/>
+                        <DataGridTextColumn Header="П/Л с" Binding="{Binding Path=BEGIN_PL}" Width="60"/>
+                        <DataGridTextColumn Header="П/Л по" Binding="{Binding Path=END_PL}" Width="60"/>
+                        <DataGridTextColumn Header="Перерыв" Binding="{Binding Path=RECESS}" Width="60"/>
+                        <DataGridTextColumn Header="Часы ремонта" Binding="{Binding Path=CHASREM}" Width="100"/>
+                        <DataGridTextColumn Header="Дата сдачи" Binding="{Binding Path=DAT_SDACH, StringFormat=dd.MM.yyyy}" Width="100"/>
+                        <DataGridTextColumn Header="Номер автомобиля" Binding="{Binding Path=NOMAVT}" Width="100"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <GroupBox Header="Оправдательные документы">
+                <DataGrid Name="dgReg_Doc" Style="{StaticResource datagridStyle}" IsReadOnly="True" ItemsSource="{Binding}" 
+                                      staff:DataGridAddition.DoubleClickCommand="hl:AppCommands.EditReg_Doc"
+                                      MinHeight="70">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_NAME}" Header="Наименование документа"/>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_BEGIN, StringFormat=dd.MM.yyyy HH:mm:ss}" Header="Дата начала"/>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_END, StringFormat=dd.MM.yyyy HH:mm:ss}" Header="Дата окончания"/>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_DATE, StringFormat=dd.MM.yyyy HH:mm}" Header="Дата документа"/>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_NUMBER}" Header="№ док."/>
+                        <DataGridTextColumn Binding="{Binding Path=DOC_LOCATION}" Header="Местонахождение"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+            <StackPanel Grid.Column="1" Orientation="Vertical" DockPanel.Dock="Top" Background="{StaticResource PanelGrayBack}">
+                <Button Name="tsbAddReg_Doc" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.AddReg_Doc">
+                    <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/new_1616.png"/>
+                </Button>
+                <Button Name="tsbEditReg_Doc" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.EditReg_Doc">
+                    <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/edit_1616.png"/>
+                </Button>
+                <Button Name="tsbDeleteReg_Doc" Style="{StaticResource ToolBoxLikeStyle}" Command="hl:AppCommands.DeleteReg_Doc">
+                    <Image Style="{StaticResource ToolBoxImageStyle}" Source="/Images/delete_1616.png"/>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" Name="lbTimeGraph" Margin="7" Text="Необходимое время присутствия по графику ="/>
+            <TextBlock Grid.Column="1" Margin="0,7" Text=""/>
+            <Button Grid.Column="2" Margin="15,5" Padding="20,0" Content="Выход" FontWeight="Bold" Name="btExit" Click="btExit_Click"/>
+        </Grid>
+    </Grid>
+</Window>

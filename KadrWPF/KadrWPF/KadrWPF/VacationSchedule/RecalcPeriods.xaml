@@ -1,0 +1,150 @@
+﻿<Window x:Class="VacationSchedule.RecalcPeriods"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VacationSchedule"
+        mc:Ignorable="d"
+        Title="Перерасчет периодов" Height="438.932" Width="923.781" WindowStartupLocation="CenterScreen" ShowInTaskbar="False">
+    <DockPanel>
+        <WrapPanel DockPanel.Dock="Bottom" Background="{StaticResource PanelGrayBack}">
+            <Button Content="Сохранить" Click="Save_Executed" Style="{StaticResource ToolBoxLikeStyle}" Padding="10,2"/>
+            <Separator Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+            <Button Content="Закрыть" Click="Close_Executed" Style="{StaticResource ToolBoxLikeStyle}" Padding="10,2"/>
+        </WrapPanel>
+        <DataGrid Style="{StaticResource DataGridSalaryStyle}" ItemsSource="{Binding PeriodSource}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn.Header>
+                        <CheckBox Checked="CheckAll_Checked" Unchecked="CheckAll_Checked" ToolTip="Отметить/снять все" HorizontalAlignment="Center"/>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding FL, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Дата отпуска" Binding="{Binding PLAN_BEGIN, StringFormat={}{0:dd.MM.yyyy}}" Width="110" IsReadOnly="True" SortDirection="Ascending"/>
+                <DataGridTextColumn Header="Кол-во дней" Binding="{Binding COUNT_DAYS}" Width="80"  IsReadOnly="True"/>
+                <DataGridTextColumn Header="Тип" Binding="{Binding NAME_VAC}" Width="150"  IsReadOnly="True"/>
+                <DataGridTemplateColumn Width="250"  IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="3" Text="Старые периоды" TextAlignment="Center" Padding="5,2"/>
+                            <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                            <TextBlock Grid.Row="2" Text="Начало" TextAlignment="Center" Padding="5,2"/>
+                            <Separator Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Окончание"  TextAlignment="Center" Padding="5,2"/>
+                        </Grid>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding PERIOD_BEGIN, StringFormat={}{0:dd.MM.yyyy H:mm:ss}}" TextAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ER_BEGIN}" Value="1">
+                                                    <Setter Property="Background" Value="LightCoral"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Separator Grid.Column="1" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding PERIOD_END, StringFormat={}{0:dd.MM.yyyy H:mm:ss}}"  TextAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ER_END}" Value="1">
+                                                    <Setter Property="Background" Value="LightCoral"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="250"  IsReadOnly="True">
+                    <DataGridTemplateColumn.Header>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.ColumnSpan="3" Text="Новые периоды" TextAlignment="Center" Padding="5,2"/>
+                            <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                            <TextBlock Grid.Row="2" Text="Начало" TextAlignment="Center" Padding="5,2"/>
+                            <Separator Grid.Column="1" Grid.Row="2" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="2" Text="Окончание"  TextAlignment="Center" Padding="5,2"/>
+                        </Grid>
+                    </DataGridTemplateColumn.Header>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding NEW_BEGIN, StringFormat={}{0:dd.MM.yyyy H:mm:ss}}" TextAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ER_BEGIN}" Value="1">
+                                                    <Setter Property="Background" Value="LightCoral"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                                <Separator Grid.Column="1" Style="{StaticResource ResourceKey={x:Static ToolBar.SeparatorStyleKey}}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding NEW_END, StringFormat={}{0:dd.MM.yyyy H:mm:ss}}"  TextAlignment="Left">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ER_END}" Value="1">
+                                                    <Setter Property="Background" Value="LightCoral"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </Grid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Binding="{Binding ERROR_MESSAGE}" Header="Текст ошибки" Width="200"/>
+            </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+    </DockPanel>
+</Window>

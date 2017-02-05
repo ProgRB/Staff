@@ -1,0 +1,54 @@
+﻿<Window x:Class="WpfControlLibrary.SelectViolationByPeriod"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="_this" ShowInTaskbar="False"
+        Title="Выбор нарушителей за период" xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:local="clr-namespace:WpfControlLibrary" Width="854" Height="464">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Margin="7" Grid.Row="1" Grid.Column="0">Период с</TextBlock>
+            <DatePicker Margin="4" Grid.Row="1" Grid.Column="1" Name="dpBegin"
+                        SelectedDate="{Binding Path=SelectedDateBegin, ElementName=_this}"></DatePicker>
+            <TextBlock Margin="7" Grid.Row="1" Grid.Column="2">по</TextBlock>
+            <DatePicker Margin="4" Grid.Row="1" Grid.Column="3" Name="dpEnd"
+                        SelectedDate="{Binding Path=SelectedDateEnd, ElementName=_this}"></DatePicker>
+        </StackPanel>
+        <DataGrid Grid.Row="1" Name="dgList_Violations" ItemsSource="{Binding}" MinHeight="200" 
+                  Style="{StaticResource datagridStyle}" SelectionUnit="CellOrRowHeader" SelectionMode="Single" >
+            <DataGrid.Columns>
+                <DataGridCheckBoxColumn x:Name="chFL" Binding="{Binding Path=FL}">
+                    <DataGridCheckBoxColumn.HeaderTemplate>
+                        <DataTemplate x:Name="dtAllChkBx">
+                            <CheckBox IsChecked="{Binding Path=AllItemsAreChecked, ElementName=_this}">                                
+                            </CheckBox>
+                        </DataTemplate>
+                    </DataGridCheckBoxColumn.HeaderTemplate>
+                </DataGridCheckBoxColumn>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Path=FIO}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Подр." Binding="{Binding Path=CODE_SUBDIV}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding Path=POS_NAME}" IsReadOnly="True" MaxWidth="200"/>
+                <DataGridTextColumn Header="Дата задержания" Binding="{Binding Path=DETENTION_DATE, StringFormat={}{0:d}, ConverterCulture=ru-RU}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Признак задержания" Binding="{Binding Path=SIGN_DETENTION_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Причина задержания" Binding="{Binding Path=REASON_DETENTION_NAME}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Принятые меры" Binding="{Binding Path=MEASURES_TAKEN}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Path=NOTE}" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Name="btPrint" Margin="4" Content="Далее >>>" Click="btPrint_Click"></Button>
+            <Button Name="btExit" Margin="4,4,20,4" Click="btExit_Click">Отмена</Button>
+        </StackPanel>
+    </Grid>
+</Window>

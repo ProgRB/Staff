@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{97F691D7-E622-43D8-8760-0185BC087923}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StaffReports</RootNamespace>
+    <AssemblyName>StaffReports</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Kadr\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Elegant.Ui.Common, Version=3.3.0.0, Culture=neutral, PublicKeyToken=3a2b400713aae6e0" />
+    <Reference Include="LibraryKadr, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\LibraryKadr.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Office, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c" />
+    <Reference Include="Oracle.DataAccess, Version=2.112.3.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Kadr\bin\Debug\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BkOrdHireYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BkOrdHireYear.Designer.cs">
+      <DependentUpon>BkOrdHireYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BkOrdDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BkOrdDismiss.Designer.cs">
+      <DependentUpon>BkOrdDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BkOrdTransfer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BkOrdTransfer.Designer.cs">
+      <DependentUpon>BkOrdTransfer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EndOfContr.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EndOfContr.Designer.cs">
+      <DependentUpon>EndOfContr.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BkOrdHireForPeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BkOrdHireForPeriod.Designer.cs">
+      <DependentUpon>BkOrdHireForPeriod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPersonCard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPersonCard.Designer.cs">
+      <DependentUpon>FormPersonCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormRepStaff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormRepStaff.Designer.cs">
+      <DependentUpon>FormRepStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListDismissFull.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListDismissFull.Designer.cs">
+      <DependentUpon>ListDismissFull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListDismissJobman.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListDismissJobman.Designer.cs">
+      <DependentUpon>ListDismissJobman.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListRetirerDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListRetirerDismiss.Designer.cs">
+      <DependentUpon>ListRetirerDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListDismissShort.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListDismissShort.Designer.cs">
+      <DependentUpon>ListDismissShort.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListOrdDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListOrdDismiss.Designer.cs">
+      <DependentUpon>ListOrdDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListOrdHire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListOrdHire.Designer.cs">
+      <DependentUpon>ListOrdHire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NumbersEmpOnService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NumbersEmpOnService.Designer.cs">
+      <DependentUpon>NumbersEmpOnService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OrderOnEncouraging.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OrderOnEncouraging.Designer.cs">
+      <DependentUpon>OrderOnEncouraging.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BkOrdHireYear.resx">
+      <DependentUpon>BkOrdHireYear.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BkOrdDismiss.resx">
+      <DependentUpon>BkOrdDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BkOrdTransfer.resx">
+      <DependentUpon>BkOrdTransfer.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EndOfContr.resx">
+      <DependentUpon>EndOfContr.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BkOrdHireForPeriod.resx">
+      <DependentUpon>BkOrdHireForPeriod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPersonCard.resx">
+      <DependentUpon>FormPersonCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormRepStaff.resx">
+      <DependentUpon>FormRepStaff.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListDismissFull.resx">
+      <DependentUpon>ListDismissFull.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListDismissJobman.resx">
+      <DependentUpon>ListDismissJobman.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListRetirerDismiss.resx">
+      <DependentUpon>ListRetirerDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListDismissShort.resx">
+      <DependentUpon>ListDismissShort.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListOrdDismiss.resx">
+      <DependentUpon>ListOrdDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListOrdHire.resx">
+      <DependentUpon>ListOrdHire.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NumbersEmpOnService.resx">
+      <DependentUpon>NumbersEmpOnService.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OrderOnEncouraging.resx">
+      <DependentUpon>OrderOnEncouraging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepOtherType.resx">
+      <DependentUpon>RepOtherType.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepReasonDismiss1.resx">
+      <DependentUpon>RepReasonDismiss1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepReasonDismiss2.resx">
+      <DependentUpon>RepReasonDismiss2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCountHire.resx">
+      <DependentUpon>RepCountHire.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCountDismissR.resx">
+      <DependentUpon>RepCountDismissR.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RepCountDismiss.resx">
+      <DependentUpon>RepCountDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListRetirerSubdiv.resx">
+      <DependentUpon>ListRetirerSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListRetirerStructSubdiv.resx">
+      <DependentUpon>ListRetirerStructSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SprObj.resx">
+      <DependentUpon>SprObj.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListVeteransStructSubdiv.resx">
+      <DependentUpon>ListVeteransStructSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListVeteranDismiss.resx">
+      <DependentUpon>ListVeteranDismiss.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListVeteranSubdiv.resx">
+      <DependentUpon>ListVeteranSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListInvalidSubdiv.resx">
+      <DependentUpon>ListInvalidSubdiv.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListDismissForDir.resx">
+      <DependentUpon>ListDismissForDir.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RepOtherType.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepOtherType.Designer.cs">
+      <DependentUpon>RepOtherType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepReasonDismiss1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepReasonDismiss1.Designer.cs">
+      <DependentUpon>RepReasonDismiss1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepReasonDismiss2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepReasonDismiss2.Designer.cs">
+      <DependentUpon>RepReasonDismiss2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCountHire.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCountHire.Designer.cs">
+      <DependentUpon>RepCountHire.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCountDismissR.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCountDismissR.Designer.cs">
+      <DependentUpon>RepCountDismissR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RepCountDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RepCountDismiss.Designer.cs">
+      <DependentUpon>RepCountDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListRetirerSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListRetirerSubdiv.Designer.cs">
+      <DependentUpon>ListRetirerSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListRetirerStructSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListRetirerStructSubdiv.Designer.cs">
+      <DependentUpon>ListRetirerStructSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SprObj.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SprObj.Designer.cs">
+      <DependentUpon>SprObj.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListVeteransStructSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListVeteransStructSubdiv.Designer.cs">
+      <DependentUpon>ListVeteransStructSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListVeteranDismiss.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListVeteranDismiss.Designer.cs">
+      <DependentUpon>ListVeteranDismiss.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListVeteranSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListVeteranSubdiv.Designer.cs">
+      <DependentUpon>ListVeteranSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListInvalidSubdiv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListInvalidSubdiv.Designer.cs">
+      <DependentUpon>ListInvalidSubdiv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListDismissForDir.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListDismissForDir.Designer.cs">
+      <DependentUpon>ListDismissForDir.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EditorsLibrary\EditorsLibrary.csproj">
+      <Project>{0F2260A6-E3A5-4A76-B75A-9B977DBA0D45}</Project>
+      <Name>EditorsLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\16.093.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,63 @@
+﻿<Window x:Class="WpfControlLibrary.Вase_Exchange.Matching_List_Statement_View"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Лист согласования заявления о переводе" SizeToContent="WidthAndHeight"
+        ResizeMode="CanMinimize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/WpfControlLibrary;component/ResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid Grid.Row="0" Name="dgProject_Approval" MinHeight="350" MaxHeight="350" MinWidth="600" MaxWidth="600" 
+                  ItemsSource="{Binding}" Style="{StaticResource datagridStyle}" CanUserResizeRows="True" >
+            <DataGrid.Columns>
+                <!--<DataGridComboBoxColumn x:Name="dcPROJECT_PLAN_APPROVAL_ID" Header="Роль" IsReadOnly="True" CanUserSort="False"
+                                                        SelectedValuePath="PROJECT_PLAN_APPROVAL_ID" DisplayMemberPath="NOTE_ROLE_NAME"
+                                                        SelectedValueBinding="{Binding Path=PROJECT_PLAN_APPROVAL_ID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                <DataGridTextColumn Header="Роль" Binding="{Binding Path=NOTE_ROLE_NAME}" IsReadOnly="True" CanUserSort="False" MaxWidth="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Пользователь" Binding="{Binding Path=USER_FIO}" IsReadOnly="True" MaxWidth="150" CanUserSort="False">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Решение" Binding="{Binding Path=TYPE_APPROVAL_NAME}" IsReadOnly="True" CanUserSort="False"/>
+                <!--<DataGridComboBoxColumn x:Name="dcTYPE_APPROVAL_ID" Header="Решение" IsReadOnly="True" 
+                                                        SelectedValuePath="TYPE_APPROVAL_ID" DisplayMemberPath="TYPE_APPROVAL_NAME"
+                                                        SelectedValueBinding="{Binding Path=TYPE_APPROVAL_ID, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />-->
+                <DataGridTextColumn Header="Дата" Binding="{Binding Path=DATE_APPROVAL, StringFormat={}{0:G}}" IsReadOnly="True" CanUserSort="False" 
+                                                    MaxWidth="80">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Примечание" Binding="{Binding Path=NOTE_APPROVAL}" IsReadOnly="True" CanUserSort="False" MaxWidth="200">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="TextWrapping" Value="Wrap"></Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="1" HorizontalAlignment="Right" LastChildFill="False">
+            <Button TabIndex="1" Margin="4,4,20,4" Click="btExit_Click" Content="Выход" IsCancel="True"/>
+        </DockPanel>
+    </Grid>
+</Window>
