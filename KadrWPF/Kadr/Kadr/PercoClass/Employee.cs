@@ -665,7 +665,7 @@ namespace PercoXML
             {
                 isEmpUpdate = false;
             }
-            //if (_perco2.SetConnect(_ipAddress, _port, "ADMIN", "hn-j[hfyf") == 0)
+            //if (_perco2.SetConnect(_ipAddress, _port, "ADMIN", "h") == 0)
             //{
             //    //Обновляем данные сотрудника
             //    isEmpUpdate = Update2(employee);
@@ -992,7 +992,7 @@ namespace PercoXML
         public bool UpdateAccessEmployee(Employee employee)
         {
             bool isEmpUpdate = true;
-            if (_percoSDK.SetConnect(_ipAddress, _port, "ADMIN", "hn-j[hfyf") == 0)
+            if (_percoSDK.SetConnect(_ipAddress, _port, "ADMIN", "h") == 0)
             {
                 //Обновляем данные сотрудника
                 isEmpUpdate = UpdateAccess(employee);
