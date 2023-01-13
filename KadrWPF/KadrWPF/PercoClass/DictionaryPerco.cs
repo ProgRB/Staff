@@ -24,9 +24,9 @@ namespace PercoXML
                 employees = new Employees(perco, Connect.UserId.ToUpper(), ParVal.Vals["ip_Perco"], ParVal.Vals["port_Perco"]);
                 positions = new Positions(perco, Connect.UserId.ToUpper(), ParVal.Vals["ip_Perco"], ParVal.Vals["port_Perco"]);
                 subdivisions = new Subdivisions(perco, Connect.UserId.ToUpper(), ParVal.Vals["ip_Perco"], ParVal.Vals["port_Perco"]);
-                //graphs_Work = new Graphs_Work(Connect.UserId.ToUpper(), ParVal.Vals["IP_PercoTest"], port_Perco, "ADMIN", "ghznrb");
-                //graphs_Work = new Graphs_Work(Connect.UserId.ToUpper(), ip_Perco, port_Perco, "ADMIN", "hn-j[hfyf");
-                holidays = new PercoXML.Holidays_Class(Connect.UserId.ToUpper(), ParVal.Vals["ip_Perco"], ParVal.Vals["port_Perco"], "ADMIN", "hn-j[hfyf");
+                //graphs_Work = new Graphs_Work(Connect.UserId.ToUpper(), ParVal.Vals["IP_PercoTest"], port_Perco, "ADMIN", "h");
+                //graphs_Work = new Graphs_Work(Connect.UserId.ToUpper(), ip_Perco, port_Perco, "ADMIN", "h");
+                holidays = new PercoXML.Holidays_Class(Connect.UserId.ToUpper(), ParVal.Vals["ip_Perco"], ParVal.Vals["port_Perco"], "ADMIN", "h");
             }
             catch { }
         }
